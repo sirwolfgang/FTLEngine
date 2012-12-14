@@ -8,5 +8,5 @@
 
 namespace Platform
 {
-	PLATFORM_API float64 GetCurrentTick_Milliseconds(void);
+	PLATFORM_API float64 GetCurrentTime_Milliseconds(void);
 }

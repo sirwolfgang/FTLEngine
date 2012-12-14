@@ -4,11 +4,7 @@
 //===============================================================
 #include <gtest/gtest.h>
 
-TEST(Platform, High_Res_Timer)
-{
-	EXPECT_NE(NULL, 5);
-	ASSERT_NE(NULL, 3);
-}
+#include "Tests\Platform\Platform.h"
 
 int main(int argc, char* argv[])
 {
