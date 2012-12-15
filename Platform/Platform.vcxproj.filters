@@ -12,6 +12,9 @@
     <Filter Include="Inline Files">
       <UniqueIdentifier>{d760d1ba-bade-45ca-9a85-8a003643f6ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Collections">
+      <UniqueIdentifier>{bb3db2a7-3cb9-4a87-863d-9882939b9b08}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Timer.cpp">
@@ -36,5 +39,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\DLL.h" />
+    <ClInclude Include="Source\Collections\Collections.h">
+      <Filter>Header Files\Collections</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

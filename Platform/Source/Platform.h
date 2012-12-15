@@ -8,3 +8,4 @@
 #include "Information.h"
 #include "DataTypes.h"
 #include "Timer.h"
+#include "Collections\Collections.h"
