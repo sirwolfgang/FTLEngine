@@ -21,6 +21,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\WindowManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DataTypes.h">
@@ -41,6 +44,9 @@
     <ClInclude Include="Source\DLL.h" />
     <ClInclude Include="Source\Collections\Collections.h">
       <Filter>Header Files\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WindowManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

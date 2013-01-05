@@ -9,3 +9,4 @@
 #include "DataTypes.h"
 #include "Timer.h"
 #include "Collections\Collections.h"
+#include "WindowManager.h"
