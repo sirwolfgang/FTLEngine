@@ -10,3 +10,4 @@
 #include "Timer.h"
 #include "Collections\Collections.h"
 #include "WindowManager.h"
+#include "Graphics.h"

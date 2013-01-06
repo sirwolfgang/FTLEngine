@@ -68,19 +68,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Platform\Source\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\Source\;$(SolutionDir)Core\Source\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Platform\Source\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\Source\;$(SolutionDir)Core\Source\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Platform\Source\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\Source\;$(SolutionDir)Core\Source\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Platform\Source\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\Source\;$(SolutionDir)Core\Source\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -146,6 +146,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.vcxproj">
+      <Project>{180eb86e-9f11-4b68-b96c-14b5d1b23628}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Platform\Platform.vcxproj">
       <Project>{087ff9a4-0270-4326-9eea-13a0aca79190}</Project>
     </ProjectReference>

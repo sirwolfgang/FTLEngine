@@ -2,7 +2,7 @@
 // File:	Main.cpp
 // Purpose: To Handle DLL Function
 //===============================================================
-#include "Platform.h"
+#include <Platform.h>
 
 bool APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {

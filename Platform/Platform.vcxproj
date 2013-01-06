@@ -27,6 +27,7 @@
     <ClInclude Include="Source\Collections\Collections.h" />
     <ClInclude Include="Source\DataTypes.h" />
     <ClInclude Include="Source\DLL.h" />
+    <ClInclude Include="Source\Graphics.h" />
     <ClInclude Include="Source\Information.h" />
     <ClInclude Include="Source\Platform.h" />
     <ClInclude Include="Source\Preprocessor.h" />
