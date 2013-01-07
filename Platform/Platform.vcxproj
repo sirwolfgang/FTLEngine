@@ -24,6 +24,7 @@
     <ClCompile Include="Source\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FTLPlatform.h" />
     <ClInclude Include="Source\Collections\Collections.h" />
     <ClInclude Include="Source\DataTypes.h" />
     <ClInclude Include="Source\DLL.h" />

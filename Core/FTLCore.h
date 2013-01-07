@@ -1,10 +1,7 @@
 //===============================================================
-// File:	Platform.h
-// Purpose: Inclusion for all the Platform Unit Tests
+// File:	FTLCore.h
+// Purpose: Core Technology Layer, Lib Include
 //===============================================================
 #pragma once
 
-#include <FTLPlatform.h>
-
-#include "Timer.h"
-#include "DataTypes.h"
+#include "Source\Core.h"

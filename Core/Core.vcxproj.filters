@@ -13,15 +13,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Module">
+      <UniqueIdentifier>{8067bc37-3f13-4734-acbd-6bb7f6580964}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Module">
+      <UniqueIdentifier>{af158dc7-79da-493f-a55e-2f438f655e30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DLL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FTLCore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Module\Module.h">
+      <Filter>Header Files\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Module\ModuleManager.h">
+      <Filter>Header Files\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Module\ModuleManager.cpp">
+      <Filter>Source Files\Module</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,7 +2,6 @@
 // File:	Timer.h
 // Purpose: Platform/Timer Unit Tests
 //===============================================================
-#include <Platform.h>
 
 TEST(Platform_DataTypes, Is_Correct_Size)
 {
