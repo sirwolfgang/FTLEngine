@@ -17,7 +17,24 @@ Graphics::DisplayMode::~DisplayMode()
 }
 
 //---------------------------------------------------------------
-Graphics::Adapter::Adapter() : DedicatedVideoMemory(NULL), DedicatedSystemMemory(NULL), SharedSystemMemory(NULL), NumberOfDisplayModes(NULL), DisplayModes(nullptr)
+Graphics::Monitor::Monitor() : NumberOfDisplayModes(NULL), DisplayModes(nullptr)
+{
+	memset(Name, NULL, sizeof(utf16) * 32);
+	Coordinates.top = Coordinates.left = Coordinates.bottom = Coordinates.right = NULL;
+}
+
+//---------------------------------------------------------------
+Graphics::Monitor::~Monitor()
+{
+	if(DisplayModes)
+	{
+		delete[] DisplayModes;
+		DisplayModes = nullptr;
+	}
+}
+
+//---------------------------------------------------------------
+Graphics::Adapter::Adapter() : DedicatedVideoMemory(NULL), DedicatedSystemMemory(NULL), SharedSystemMemory(NULL), NumberOfMonitors(NULL), Monitors(nullptr)
 {
 	memset(Name, NULL, sizeof(utf16) * 128);
 }
@@ -25,10 +42,10 @@ Graphics::Adapter::Adapter() : DedicatedVideoMemory(NULL), DedicatedSystemMemory
 //---------------------------------------------------------------
 Graphics::Adapter::~Adapter()
 {
-	if(DisplayModes)
+	if(Monitors)
 	{
-		delete[] DisplayModes;
-		DisplayModes = nullptr;
+		delete[] Monitors;
+		Monitors = nullptr;
 	}
 }
 
@@ -44,24 +61,22 @@ GRAPHICS_API void Graphics::EnumerateAdapters(uint32* _NumOfAdapters, Adapter** 
 	DXGI_MODE_DESC* DisplayModeList = nullptr;
 
 	DXGI_ADAPTER_DESC1	AdapterDesc;
+	DXGI_OUTPUT_DESC	MonitorDesc;
 	UINT				numDisplayModes = NULL;
-	HREFTYPE			hResult			= NULL;
 
 	// Create the DXGI Interface
-	hResult = CreateDXGIFactory1(__uuidof(IDXGIFactory1), (void**)&pFactory);
-	if(FAILED(hResult))
-			return;
+	if(FAILED(CreateDXGIFactory1(__uuidof(IDXGIFactory1), (void**)&pFactory)))
+		return;
 
 	// Find Number of Adapters
-	for((*_NumOfAdapters) = 0; pFactory->EnumAdapters1((*_NumOfAdapters), &pAdapter) != DXGI_ERROR_NOT_FOUND; ++(*_NumOfAdapters));
+	for((*_NumOfAdapters) = 0; !FAILED(pFactory->EnumAdapters1((*_NumOfAdapters), &pAdapter)); ++(*_NumOfAdapters));
 	(*_Adapters) = new Adapter[(*_NumOfAdapters)];
 
 	// Loop Through the Adapters
-	for(uint32 i = 0; pFactory->EnumAdapters1(i, &pAdapter) != DXGI_ERROR_NOT_FOUND; ++i) 
+	for(uint32 i = 0; !FAILED(pFactory->EnumAdapters1(i, &pAdapter)); ++i) 
 	{
 		// Get Device Description
-		hResult = pAdapter->GetDesc1(&AdapterDesc);
-		if(FAILED(hResult))
+		if(FAILED(pAdapter->GetDesc1(&AdapterDesc)))
 			continue;
 
 		memcpy_s((*_Adapters)[i].Name, 128, AdapterDesc.Description, 128);
@@ -69,35 +84,42 @@ GRAPHICS_API void Graphics::EnumerateAdapters(uint32* _NumOfAdapters, Adapter** 
 		(*_Adapters)[i].DedicatedSystemMemory	= AdapterDesc.DedicatedSystemMemory;
 		(*_Adapters)[i].SharedSystemMemory		= AdapterDesc.SharedSystemMemory;
 
-		// Get Adapter Output(monitor) Information
-		hResult = pAdapter->EnumOutputs(0, &pOutput);
-		if(FAILED(hResult))
-			continue;
+		// Get Number of Monitors
+		for((*_Adapters)[i].NumberOfMonitors = 0; !FAILED(pAdapter->EnumOutputs((*_Adapters)[i].NumberOfMonitors, &pOutput)); ++(*_Adapters)[i].NumberOfMonitors);
+		(*_Adapters)[i].Monitors = new Monitor[(*_Adapters)[i].NumberOfMonitors];
 
-		// Find DisplayMode List
-		// Note: If you wish to support TVs, use flag DXGI_ENUM_MODES_INTERLACED
-		hResult = pOutput->GetDisplayModeList(DXGI_FORMAT_R8G8B8A8_UNORM, NULL, &numDisplayModes, nullptr);
-		if(FAILED(hResult))
-			continue;
-
-		(*_Adapters)[i].NumberOfDisplayModes = numDisplayModes;
-
-		DisplayModeList					= new DXGI_MODE_DESC[numDisplayModes];
-		(*_Adapters)[i].DisplayModes	= new DisplayMode[numDisplayModes];
-
-		// Get DisplayMode List
-		hResult = pOutput->GetDisplayModeList(DXGI_FORMAT_R8G8B8A8_UNORM, NULL, &numDisplayModes, DisplayModeList);
-		if(FAILED(hResult))
-			continue;
-
-		for(uint32 j = 0; j < numDisplayModes; ++j)
+		// Get Adapter Output
+		for(uint32 j = 0; !FAILED(pAdapter->EnumOutputs(j, &pOutput)); ++j)
 		{
-			(*_Adapters)[i].DisplayModes->Width			= DisplayModeList->Width;
-			(*_Adapters)[i].DisplayModes->Height		= DisplayModeList->Height;
-			(*_Adapters)[i].DisplayModes->RefreshRate	= DisplayModeList->RefreshRate.Numerator;
-		}
+			// Get Monitor Information
+			if(FAILED(pOutput->GetDesc(&MonitorDesc)))
+				continue;
 
-		delete[] DisplayModeList;
+			memcpy_s((*_Adapters)[i].Monitors[j].Name, 32, MonitorDesc.DeviceName, 32);
+			(*_Adapters)[i].Monitors[j].Coordinates = MonitorDesc.DesktopCoordinates;
+
+			// Find DisplayMode List
+			// Note: If you wish to support TVs, use flag DXGI_ENUM_MODES_INTERLACED
+			if(FAILED(pOutput->GetDisplayModeList(DXGI_FORMAT_R8G8B8A8_UNORM, NULL, &numDisplayModes, nullptr)))
+				continue;
+
+			(*_Adapters)[i].Monitors[j].NumberOfDisplayModes	= numDisplayModes;
+			(*_Adapters)[i].Monitors[j].DisplayModes			= new DisplayMode[numDisplayModes];
+			DisplayModeList										= new DXGI_MODE_DESC[numDisplayModes];
+
+			// Get DisplayMode List
+			if(FAILED(pOutput->GetDisplayModeList(DXGI_FORMAT_R8G8B8A8_UNORM, NULL, &numDisplayModes, DisplayModeList)))
+				continue;
+
+			for(uint32 k = 0; k < numDisplayModes; ++k)
+			{
+				(*_Adapters)[i].Monitors[j].DisplayModes[k].Width		= DisplayModeList[k].Width;
+				(*_Adapters)[i].Monitors[j].DisplayModes[k].Height		= DisplayModeList[k].Height;
+				(*_Adapters)[i].Monitors[j].DisplayModes[k].RefreshRate	= DisplayModeList[k].RefreshRate.Numerator;
+			}
+
+			delete[] DisplayModeList;
+		}
 	}
 
 }

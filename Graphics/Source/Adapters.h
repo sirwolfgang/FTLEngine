@@ -20,14 +20,26 @@ namespace Graphics
 	};
 
 	//---------------------------------------------------------------
-	struct GRAPHICS_API Adapter
+	struct GRAPHICS_API Monitor
 	{
-		utf16			Name[128];
-		memsize			DedicatedVideoMemory;
-		memsize			DedicatedSystemMemory;
-		memsize			SharedSystemMemory;
+		utf16			Name[32];
+		RECT			Coordinates;
 		uint32			NumberOfDisplayModes;
 		DisplayMode*	DisplayModes;
+
+		Monitor();
+		~Monitor();
+	};
+
+	//---------------------------------------------------------------
+	struct GRAPHICS_API Adapter
+	{
+		utf16		Name[128];
+		memsize		DedicatedVideoMemory;
+		memsize		DedicatedSystemMemory;
+		memsize		SharedSystemMemory;
+		uint32		NumberOfMonitors;
+		Monitor*	Monitors;
 
 		Adapter();
 		~Adapter();
