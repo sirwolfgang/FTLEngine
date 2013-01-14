@@ -47,7 +47,7 @@ GRAPHICS_API void Graphics::EnumerateAdapters(uint32* _NumOfAdapters, Adapter** 
 	UINT				numDisplayModes = NULL;
 	HREFTYPE			hResult			= NULL;
 
-	// TODO:: Add Error Checking/Handling
+	// Create the DXGI Interface
 	hResult = CreateDXGIFactory1(__uuidof(IDXGIFactory1), (void**)&pFactory);
 	if(FAILED(hResult))
 			return;
@@ -56,8 +56,10 @@ GRAPHICS_API void Graphics::EnumerateAdapters(uint32* _NumOfAdapters, Adapter** 
 	for((*_NumOfAdapters) = 0; pFactory->EnumAdapters1((*_NumOfAdapters), &pAdapter) != DXGI_ERROR_NOT_FOUND; ++(*_NumOfAdapters));
 	(*_Adapters) = new Adapter[(*_NumOfAdapters)];
 
+	// Loop Through the Adapters
 	for(uint32 i = 0; pFactory->EnumAdapters1(i, &pAdapter) != DXGI_ERROR_NOT_FOUND; ++i) 
 	{
+		// Get Device Description
 		hResult = pAdapter->GetDesc1(&AdapterDesc);
 		if(FAILED(hResult))
 			continue;
@@ -67,10 +69,13 @@ GRAPHICS_API void Graphics::EnumerateAdapters(uint32* _NumOfAdapters, Adapter** 
 		(*_Adapters)[i].DedicatedSystemMemory	= AdapterDesc.DedicatedSystemMemory;
 		(*_Adapters)[i].SharedSystemMemory		= AdapterDesc.SharedSystemMemory;
 
+		// Get Adapter Output(monitor) Information
 		hResult = pAdapter->EnumOutputs(0, &pOutput);
 		if(FAILED(hResult))
 			continue;
 
+		// Find DisplayMode List
+		// Note: If you wish to support TVs, use flag DXGI_ENUM_MODES_INTERLACED
 		hResult = pOutput->GetDisplayModeList(DXGI_FORMAT_R8G8B8A8_UNORM, NULL, &numDisplayModes, nullptr);
 		if(FAILED(hResult))
 			continue;
@@ -80,6 +85,7 @@ GRAPHICS_API void Graphics::EnumerateAdapters(uint32* _NumOfAdapters, Adapter** 
 		DisplayModeList					= new DXGI_MODE_DESC[numDisplayModes];
 		(*_Adapters)[i].DisplayModes	= new DisplayMode[numDisplayModes];
 
+		// Get DisplayMode List
 		hResult = pOutput->GetDisplayModeList(DXGI_FORMAT_R8G8B8A8_UNORM, NULL, &numDisplayModes, DisplayModeList);
 		if(FAILED(hResult))
 			continue;
