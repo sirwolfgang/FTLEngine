@@ -94,7 +94,7 @@ GRAPHICS_API void Graphics::EnumerateAdapters(uint32* _NumOfAdapters, Adapter** 
 		{
 			(*_Adapters)[i].DisplayModes->Width			= DisplayModeList->Width;
 			(*_Adapters)[i].DisplayModes->Height		= DisplayModeList->Height;
-			(*_Adapters)[i].DisplayModes->RefreshRate	= (float32)DisplayModeList->RefreshRate.Numerator / (float32)DisplayModeList->RefreshRate.Denominator;
+			(*_Adapters)[i].DisplayModes->RefreshRate	= DisplayModeList->RefreshRate.Numerator;
 		}
 
 		delete[] DisplayModeList;

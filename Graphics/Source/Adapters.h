@@ -13,7 +13,7 @@ namespace Graphics
 	{
 		uint32	Width;
 		uint32	Height;
-		float32 RefreshRate;
+		uint32	RefreshRate; // RefreshRate (hz) = RefreshRate / 1000
 
 		DisplayMode();
 		~DisplayMode();
