@@ -49,6 +49,8 @@ GRAPHICS_API void Graphics::EnumerateAdapters(uint32* _NumOfAdapters, Adapter** 
 
 	// TODO:: Add Error Checking/Handling
 	hResult = CreateDXGIFactory1(__uuidof(IDXGIFactory1), (void**)&pFactory);
+	if(FAILED(hResult))
+			return;
 
 	// Find Number of Adapters
 	for((*_NumOfAdapters) = 0; pFactory->EnumAdapters1((*_NumOfAdapters), &pAdapter) != DXGI_ERROR_NOT_FOUND; ++(*_NumOfAdapters));
