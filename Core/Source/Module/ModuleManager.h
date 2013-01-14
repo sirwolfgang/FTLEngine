@@ -4,16 +4,17 @@
 //===============================================================
 #pragma once
 #include "../DLL.h"
+#include "Module.h"
 
 namespace Core
 {
-	class CORE_API ModuleManager
+	class CORE_API ModuleManager : public IModule
 	{
 	public:
 		ModuleManager();
 		~ModuleManager();
 
-		void Startup();
-		void Shutdown();
+		virtual void Startup();
+		virtual void Shutdown();
 	};
 }

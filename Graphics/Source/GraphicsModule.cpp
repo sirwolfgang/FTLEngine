@@ -1,38 +1,31 @@
 //===============================================================
-// File:	ModuleManager.cpp
-// Purpose: To Handle the base module managment interface
+// File:	GraphicsModule.cpp
+// Purpose: To Handle Startup and Shutdown, and common interface
+//			for graphics engine
 //===============================================================
-#include "ModuleManager.h"
-using namespace Core;
+#include "GraphicsModule.h"
+using namespace Graphics;
 
 //---------------------------------------------------------------
-ModuleManager::ModuleManager()
+GraphicsModule::GraphicsModule()
 {
 
 }
 
 //---------------------------------------------------------------
-ModuleManager::~ModuleManager()
+GraphicsModule::~GraphicsModule()
+{
+	
+}
+
+//---------------------------------------------------------------
+void GraphicsModule::Startup()
 {
 
 }
 
 //---------------------------------------------------------------
-void ModuleManager::Startup()
-{
-	// Memory
-	// File System
-	// Video
-	// Texture
-	// Render
-	// Animation
-	// Physics
-	// ...
-	// Simulation
-}
-
-//---------------------------------------------------------------
-void ModuleManager::Shutdown()
+void GraphicsModule::Shutdown()
 {
 
 }

@@ -1,23 +1,20 @@
 //===============================================================
-// File:	WindowManager.cpp
+// File:	Window.cpp
 // Purpose: To handle window managment
 //===============================================================
-#include "WindowManager.h"
+#include "Window.h"
 using namespace Platform;
 
 //---------------------------------------------------------------
-WindowManager::WindowManager()
+Window::Window()
 {
-#ifdef PLATFORM_WINDOWS
 	m_hWnd		= NULL;
 	m_hInstance = NULL;
 	m_nCmdShow	= NULL;
-#endif
 }
 
-#ifdef PLATFORM_WINDOWS
 //---------------------------------------------------------------
-WindowManager::WindowManager(HINSTANCE _hInstance, int32 _nCmdShow)
+Window::Window(HINSTANCE _hInstance, int32 _nCmdShow)
 {
 	m_hWnd		= NULL;
 	m_hInstance = _hInstance;
@@ -35,10 +32,9 @@ WindowManager::WindowManager(HINSTANCE _hInstance, int32 _nCmdShow)
 
 	RegisterClassEx(&wc);
 }
-#endif
 
 //---------------------------------------------------------------
-WindowManager::~WindowManager()
+Window::~Window()
 {
 	if(m_hWnd)
 		Destroy();
@@ -47,13 +43,12 @@ WindowManager::~WindowManager()
 }
 
 //---------------------------------------------------------------
-void WindowManager::Create(WINDOW_MODE _eMode, utf16* _szTitle, int32 _nPosX, int32 _nPosY, int32 _nWidth, int32 _nHeight)
+void Window::Create(WINDOW_MODE _eMode, utf16* _szTitle, int32 _nPosX, int32 _nPosY, int32 _nWidth, int32 _nHeight)
 {
-#ifdef PLATFORM_WINDOWS
 	if(m_hWnd)
 		Destroy();
 
-	DWORD windowStyle = (_eMode == WINDOW_MODE_NORMAL) ? WS_OVERLAPPEDWINDOW : WS_POPUP;
+	DWORD windowStyle = (_eMode == WINDOW_MODE_NORMAL) ? WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX : WS_POPUP;
 
 	// Adjust Window to be true res size on with client window
 	RECT windowRect = {0, 0, _nWidth, _nHeight};
@@ -73,55 +68,24 @@ void WindowManager::Create(WINDOW_MODE _eMode, utf16* _szTitle, int32 _nPosX, in
 		NULL);								// Multiple windows
 
 	ShowWindow(m_hWnd, m_nCmdShow);
-#endif
 }
 
 //---------------------------------------------------------------
-void WindowManager::Destroy()
+void Window::Destroy()
 {
-#ifdef PLATFORM_WINDOWS
 	if(DestroyWindow(m_hWnd))
 		m_hWnd = NULL;
-#endif
 }
 
 //---------------------------------------------------------------
-void WindowManager::Show()
+void Window::Show(int32 _nCmdShow)
 {
-#ifdef PLATFORM_WINDOWS
-	ShowWindow(m_hWnd, SW_SHOW);
-#endif
+	ShowWindow(m_hWnd, _nCmdShow);
 }
 
 //---------------------------------------------------------------
-void WindowManager::Hide()
+bool Window::Update()
 {
-#ifdef PLATFORM_WINDOWS
-	ShowWindow(m_hWnd, SW_HIDE);
-#endif
-}
-
-//---------------------------------------------------------------
-void WindowManager::Minimize()
-{
-#ifdef PLATFORM_WINDOWS
-	ShowWindow(m_hWnd, SW_MINIMIZE);
-#endif
-}
-
-//---------------------------------------------------------------
-void WindowManager::Maximize()
-{
-#ifdef PLATFORM_WINDOWS
-	ShowWindow(m_hWnd, SW_MAXIMIZE);
-#endif
-}
-
-//---------------------------------------------------------------
-bool WindowManager::Update()
-{
-#ifdef PLATFORM_WINDOWS
-
 	// TODO:: Proper Windows Error Handling
 	if(PeekMessage(&m_msg, NULL, 0, 0, PM_REMOVE))
 	{
@@ -131,11 +95,9 @@ bool WindowManager::Update()
 		return (m_msg.message != WM_QUIT);
 	}
 	return true;
-#endif
 }
 
 //---------------------------------------------------------------
-#ifdef PLATFORM_WINDOWS
 LRESULT CALLBACK WindowProc(HWND _hWnd, UINT _Message, WPARAM _wParam, LPARAM _lParam)
 {
 	// TODO: Handle Windows Events, By dispatching them to engine
@@ -151,4 +113,3 @@ LRESULT CALLBACK WindowProc(HWND _hWnd, UINT _Message, WPARAM _wParam, LPARAM _l
 
 	return DefWindowProc(_hWnd, _Message, _wParam, _lParam);
 }
-#endif

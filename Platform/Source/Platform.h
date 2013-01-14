@@ -9,5 +9,5 @@
 #include "DataTypes.h"
 #include "Timer.h"
 #include "Collections\Collections.h"
-#include "WindowManager.h"
+#include "Window.h"
 #include "Graphics.h"

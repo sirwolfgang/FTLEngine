@@ -2,7 +2,7 @@
 // File:	Main.cpp
 // Purpose: Entry Point for Game/Engine
 //===============================================================
-#include <FTLCore.h>
+#include <FTLGraphics.h>
 
 int CALLBACK WinMain(HINSTANCE _hInstance, 
 					 HINSTANCE _hPrevInstance, 
@@ -10,12 +10,11 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 					 int _nCmdShow)
 {
 	// TODO: Handle Parsing CMDLine arguments
+	Platform::Window Window(_hInstance, _nCmdShow);
 
-	Platform::WindowManager wManager(_hInstance, _nCmdShow);
+	Window.Create(Platform::Window::WINDOW_MODE_FRAMELESS_FIXED, L"FTL Engine", 0, 0, 1920, 1080);
 
-	wManager.Create(Platform::WindowManager::WINDOW_MODE_NORMAL, L"FTL Engine", 0, 0, 800, 600);
-	
-	while(wManager.Update());
+	while(Window.Update());
 
 	return NULL;
 }

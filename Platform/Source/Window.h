@@ -1,5 +1,5 @@
 //===============================================================
-// File:	WindowManager.h
+// File:	Window.h
 // Purpose: To handle window managment
 //===============================================================
 #pragma once
@@ -9,7 +9,7 @@
 
 namespace Platform
 {
-	class PLATFORM_API WindowManager
+	class PLATFORM_API Window
 	{
 	public:
 		enum WINDOW_MODE
@@ -19,30 +19,24 @@ namespace Platform
 		};
 	private:
 
-#ifdef PLATFORM_WINDOWS
 		HWND		m_hWnd;
 		HINSTANCE	m_hInstance;
 		int32		m_nCmdShow;
 		MSG			m_msg;
 
-		WindowManager();
+		Window();
 	public:
-		WindowManager(HINSTANCE _hInstance, int32 _nCmdShow);
-#endif
-
-		~WindowManager();
+		Window(HINSTANCE _hInstance, int32 _nCmdShow);
+		~Window();
 
 		void Create(WINDOW_MODE _eMode, utf16* _szTitle, int32 _nPosX, int32 _nPosY, int32 _nWidth, int32 _nHeight);
 		void Destroy();
-		void Show();
-		void Hide();
-		void Minimize();
-		void Maximize();
+		void Show(int32 _nCmdShow);
 		bool Update();
+		HWND GetHandle();
 	};
-
 }
 
-#ifdef PLATFORM_WINDOWS
 LRESULT CALLBACK WindowProc(HWND _hWnd, UINT _Message, WPARAM _wParam, LPARAM _lParam);
-#endif
+
+#include "Window.inl"
