@@ -12,7 +12,7 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 	// TODO: Handle Parsing CMDLine arguments
 	Platform::Window Window(_hInstance, _nCmdShow);
 
-	Window.Create(Platform::Window::WINDOW_MODE_FRAMELESS_FIXED, L"FTL Engine", 0, 0, 1920, 1080);
+	Window.Create(Platform::Window::WINDOW_MODE_FRAMELESS_FIXED, L"FTL Engine", 0, 0, 1024, 768);
 
 	while(Window.Update());
 

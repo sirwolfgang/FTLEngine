@@ -5,12 +5,15 @@
 //===============================================================
 #pragma once
 #include "DLL.h"
-#include <FTLCore.h>
+#include <FTLPlatform.h>
 
 namespace Graphics
 {
-	class GRAPHICS_API GraphicsModule : public Core::IModule
+	class GRAPHICS_API Renderer;
+	class GRAPHICS_API GraphicsModule : public Platform::IModule
 	{
+		Renderer* m_pRenderer;
+
 	public:
 		GraphicsModule();
 		~GraphicsModule();

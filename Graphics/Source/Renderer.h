@@ -4,18 +4,31 @@
 //===============================================================
 #pragma once
 #include "DLL.h"
-#include <FTLCore.h>
+#include <FTLPlatform.h>
 
 namespace Graphics
 {
 	class GRAPHICS_API Renderer
 	{
+	public:
+		struct Settings
+		{
+			HWND	hOutput;
+			uint32	Width;
+			uint32	Height;
+			uint32	RefreshRate; // Express as RefreshRate / 1000
+
+			Settings();
+		};
+
+	private:
 		ID3D11Device*			m_pDevice;
 		ID3D11DeviceContext*	m_pDeviceContext;
 		IDXGISwapChain*			m_pSwapChain;
 
-	public:
 		Renderer();
+	public:
+		Renderer(Settings& _Settings);
 		~Renderer();
 	};
 }

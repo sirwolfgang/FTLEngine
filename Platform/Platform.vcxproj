@@ -30,6 +30,7 @@
     <ClInclude Include="Source\DLL.h" />
     <ClInclude Include="Source\Graphics.h" />
     <ClInclude Include="Source\Information.h" />
+    <ClInclude Include="Source\Module.h" />
     <ClInclude Include="Source\Platform.h" />
     <ClInclude Include="Source\Preprocessor.h" />
     <ClInclude Include="Source\Timer.h" />

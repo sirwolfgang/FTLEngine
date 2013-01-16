@@ -5,4 +5,4 @@
 #pragma once
 #include <FTLPlatform.h>
 
-#include "Module\Module.h"
+#include "Module\ModuleManager.h"

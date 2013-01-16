@@ -4,11 +4,11 @@
 //===============================================================
 #pragma once
 #include "../DLL.h"
-#include "Module.h"
+#include <FTLPlatform.h>
 
 namespace Core
 {
-	class CORE_API ModuleManager : public IModule
+	class CORE_API ModuleManager : public Platform::IModule
 	{
 	public:
 		ModuleManager();

@@ -3,7 +3,7 @@
 // Purpose: To handle enumeration of adapters
 //===============================================================
 #pragma once
-#include <FTLCore.h>
+#include <FTLPlatform.h>
 #include "DLL.h"
 
 namespace Graphics

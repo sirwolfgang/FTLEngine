@@ -11,3 +11,4 @@
 #include "Collections\Collections.h"
 #include "Window.h"
 #include "Graphics.h"
+#include "Module.h"
