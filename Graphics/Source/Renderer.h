@@ -11,7 +11,7 @@ namespace Graphics
 	class GRAPHICS_API Renderer
 	{
 	public:
-		struct Settings
+		struct GRAPHICS_API Settings
 		{
 			HWND	hOutput;
 			uint32	Width;

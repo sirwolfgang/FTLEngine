@@ -36,12 +36,18 @@
     <ClInclude Include="Source\Core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Module\GraphicsModule.h">
+      <Filter>Header Files\Module</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Module\ModuleManager.cpp">
+      <Filter>Source Files\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Module\GraphicsModule.cpp">
       <Filter>Source Files\Module</Filter>
     </ClCompile>
   </ItemGroup>

@@ -22,14 +22,19 @@
     <ClInclude Include="FTLCore.h" />
     <ClInclude Include="Source\Core.h" />
     <ClInclude Include="Source\DLL.h" />
+    <ClInclude Include="Source\Module\GraphicsModule.h" />
     <ClInclude Include="Source\Module\Module.h" />
     <ClInclude Include="Source\Module\ModuleManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Module\GraphicsModule.cpp" />
     <ClCompile Include="Source\Module\ModuleManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Graphics\Graphics.vcxproj">
+      <Project>{2412ac16-a372-40d9-a600-da7368b448df}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Platform\Platform.vcxproj">
       <Project>{087ff9a4-0270-4326-9eea-13a0aca79190}</Project>
     </ProjectReference>
@@ -88,7 +93,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\;$(SolutionDir)Graphics\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

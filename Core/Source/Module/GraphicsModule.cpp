@@ -4,8 +4,7 @@
 //			for graphics engine
 //===============================================================
 #include "GraphicsModule.h"
-#include "Renderer.h"
-using namespace Graphics;
+using namespace Core;
 
 //---------------------------------------------------------------
 GraphicsModule::GraphicsModule()
@@ -28,8 +27,8 @@ void GraphicsModule::Startup()
 	if(m_pRenderer)
 		Shutdown();
 
-	Renderer::Settings Settings;
-	m_pRenderer = new Renderer(Settings);
+	Graphics::Renderer::Settings Settings;
+	m_pRenderer = new Graphics::Renderer(Settings);
 }
 
 //---------------------------------------------------------------

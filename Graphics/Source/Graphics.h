@@ -4,7 +4,6 @@
 //===============================================================
 #pragma once
 #include <FTLPlatform.h>
-#include <FTLCore.h>
 
-#include "GraphicsModule.h"
+#include "Renderer.h"
 #include "Adapters.h"

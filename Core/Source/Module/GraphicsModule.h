@@ -4,15 +4,14 @@
 //			for graphics engine
 //===============================================================
 #pragma once
-#include "DLL.h"
-#include <FTLPlatform.h>
+#include "../DLL.h"
+#include <FTLGraphics.h>
 
-namespace Graphics
+namespace Core
 {
-	class GRAPHICS_API Renderer;
-	class GRAPHICS_API GraphicsModule : public Platform::IModule
+	class CORE_API GraphicsModule : public Platform::IModule
 	{
-		Renderer* m_pRenderer;
+		Graphics::Renderer* m_pRenderer;
 
 	public:
 		GraphicsModule();
