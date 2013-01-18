@@ -10,7 +10,8 @@ namespace Platform
 	class PLATFORM_API IModule
 	{
 	public:
-		virtual void Startup()	= 0;
-		virtual void Shutdown() = 0;
+		virtual void Startup()				= NULL;
+		virtual void Shutdown()				= NULL;
+		virtual void Update(float32 _fTime) = NULL;
 	};
 }

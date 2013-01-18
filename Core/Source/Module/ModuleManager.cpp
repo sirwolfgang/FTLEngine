@@ -24,7 +24,7 @@ void ModuleManager::Startup()
 	// File System
 	// Video
 	// Texture
-	// Render
+	m_GraphicsModule.Startup();
 	// Animation
 	// Physics
 	// ...
@@ -34,5 +34,27 @@ void ModuleManager::Startup()
 //---------------------------------------------------------------
 void ModuleManager::Shutdown()
 {
+	// Simulation
+	// ...
+	// Physics
+	// Animation
+	m_GraphicsModule.Shutdown();
+	// Texture
+	// Video
+	// File System
+	// Memory
+}
 
+//---------------------------------------------------------------
+void ModuleManager::Update(float32 _fTime)
+{
+	// Memory
+	// File System
+	// Video
+	// Texture
+	m_GraphicsModule.Update(_fTime);
+	// Animation
+	// Physics
+	// ...
+	// Simulation
 }

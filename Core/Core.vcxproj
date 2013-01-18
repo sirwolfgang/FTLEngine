@@ -22,14 +22,18 @@
     <ClInclude Include="FTLCore.h" />
     <ClInclude Include="Source\Core.h" />
     <ClInclude Include="Source\DLL.h" />
+    <ClInclude Include="Source\Engine.h" />
     <ClInclude Include="Source\Module\GraphicsModule.h" />
     <ClInclude Include="Source\Module\Module.h" />
     <ClInclude Include="Source\Module\ModuleManager.h" />
+    <ClInclude Include="Source\Module\WindowModule.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Module\GraphicsModule.cpp" />
     <ClCompile Include="Source\Module\ModuleManager.cpp" />
+    <ClCompile Include="Source\Module\WindowModule.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Graphics\Graphics.vcxproj">
@@ -38,6 +42,9 @@
     <ProjectReference Include="..\Platform\Platform.vcxproj">
       <Project>{087ff9a4-0270-4326-9eea-13a0aca79190}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\Engine.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{180EB86E-9F11-4B68-B96C-14B5D1B23628}</ProjectGuid>

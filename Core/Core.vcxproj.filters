@@ -19,6 +19,9 @@
     <Filter Include="Source Files\Module">
       <UniqueIdentifier>{af158dc7-79da-493f-a55e-2f438f655e30}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Inline Files">
+      <UniqueIdentifier>{163a0cf3-e33c-4677-aa52-5e33d47564cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DLL.h">
@@ -39,6 +42,12 @@
     <ClInclude Include="Source\Module\GraphicsModule.h">
       <Filter>Header Files\Module</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Module\WindowModule.h">
+      <Filter>Header Files\Module</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
@@ -50,5 +59,16 @@
     <ClCompile Include="Source\Module\GraphicsModule.cpp">
       <Filter>Source Files\Module</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Module\WindowModule.cpp">
+      <Filter>Source Files\Module</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\Engine.inl">
+      <Filter>Inline Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

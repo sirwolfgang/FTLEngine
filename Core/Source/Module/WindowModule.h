@@ -1,21 +1,21 @@
 //===============================================================
-// File:	ModuleManager.h
-// Purpose: To Handle the base module managment interface
+// File:	WindowModule.h
+// Purpose: To Handle Startup and Shutdown, and common interface
+//			for graphics engine
 //===============================================================
 #pragma once
-#include <FTLPlatform.h>
 #include "../DLL.h"
-#include "GraphicsModule.h"
+#include <FTLPlatform.h>
 
 namespace Core
 {
-	class CORE_API ModuleManager : public Platform::IModule
+	class CORE_API WindowModule : public Platform::IModule
 	{
-		GraphicsModule	m_GraphicsModule;
+		Platform::Window* m_pWindow;
 
 	public:
-		ModuleManager();
-		~ModuleManager();
+		WindowModule();
+		~WindowModule();
 
 		virtual void Startup();
 		virtual void Shutdown();

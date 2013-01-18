@@ -27,6 +27,8 @@ void GraphicsModule::Startup()
 	if(m_pRenderer)
 		Shutdown();
 
+	m_WindowModule.Startup();
+
 	Graphics::Renderer::Settings Settings;
 	m_pRenderer = new Graphics::Renderer(Settings);
 }
@@ -39,4 +41,12 @@ void GraphicsModule::Shutdown()
 		delete m_pRenderer;
 		m_pRenderer = nullptr;
 	}
+
+	m_WindowModule.Shutdown();
+}
+
+//---------------------------------------------------------------
+void GraphicsModule::Update(float32 _fTime)
+{
+	m_WindowModule.Update(_fTime);
 }
