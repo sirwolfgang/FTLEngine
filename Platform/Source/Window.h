@@ -12,10 +12,10 @@ namespace Platform
 	class PLATFORM_API Window
 	{
 	public:
-		enum WINDOW_MODE
+		enum eWINDOW_MODE
 		{
-			WINDOW_MODE_NORMAL,
-			WINDOW_MODE_FRAMELESS_FIXED,
+			eWINDOW_MODE_NORMAL,
+			eWINDOW_MODE_FRAMELESS_FIXED,
 		};
 	private:
 
@@ -29,7 +29,7 @@ namespace Platform
 		Window(HINSTANCE _hInstance, int32 _nCmdShow);
 		~Window();
 
-		void Create(WINDOW_MODE _eMode, utf16* _szTitle, int32 _nPosX, int32 _nPosY, int32 _nWidth, int32 _nHeight);
+		void Create(eWINDOW_MODE _eMode, utf16* _szTitle, int32 _nPosX, int32 _nPosY, int32 _nWidth, int32 _nHeight);
 		void Destroy();
 		void Show(int32 _nCmdShow);
 		bool Update();

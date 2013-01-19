@@ -43,12 +43,12 @@ Window::~Window()
 }
 
 //---------------------------------------------------------------
-void Window::Create(WINDOW_MODE _eMode, utf16* _szTitle, int32 _nPosX, int32 _nPosY, int32 _nWidth, int32 _nHeight)
+void Window::Create(eWINDOW_MODE _eMode, utf16* _szTitle, int32 _nPosX, int32 _nPosY, int32 _nWidth, int32 _nHeight)
 {
 	if(m_hWnd)
 		Destroy();
 
-	DWORD windowStyle = (_eMode == WINDOW_MODE_NORMAL) ? WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX : WS_POPUP;
+	DWORD windowStyle = (_eMode == eWINDOW_MODE_NORMAL) ? WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX : WS_POPUP;
 
 	// Adjust Window to be true res size on with client window
 	RECT windowRect = {0, 0, _nWidth, _nHeight};
