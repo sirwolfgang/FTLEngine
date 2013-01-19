@@ -26,6 +26,7 @@
   <ItemGroup>
     <ClInclude Include="FTLGraphics.h" />
     <ClInclude Include="Source\Adapters.h" />
+    <ClInclude Include="Source\DirectX.h" />
     <ClInclude Include="Source\DLL.h" />
     <ClInclude Include="Source\Graphics.h" />
     <ClInclude Include="Source\Renderer.h" />

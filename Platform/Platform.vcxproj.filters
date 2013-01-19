@@ -46,9 +46,6 @@
     <ClInclude Include="Source\Collections\Collections.h">
       <Filter>Header Files\Collections</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\DLL.h">
       <Filter>Header Files</Filter>
     </ClInclude>

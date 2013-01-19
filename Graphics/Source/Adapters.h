@@ -3,8 +3,9 @@
 // Purpose: To handle enumeration of adapters
 //===============================================================
 #pragma once
-#include <FTLPlatform.h>
 #include "DLL.h"
+#include "DirectX.h"
+#include <FTLPlatform.h>
 
 namespace Graphics
 {

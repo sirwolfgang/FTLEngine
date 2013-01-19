@@ -4,6 +4,7 @@
 //===============================================================
 #pragma once
 #include "DLL.h"
+#include "DirectX.h"
 #include <FTLPlatform.h>
 
 namespace Graphics
