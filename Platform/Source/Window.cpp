@@ -27,7 +27,7 @@ Window::Window(HINSTANCE _hInstance, int32 _nCmdShow)
 	wc.lpfnWndProc		= WindowProc;
 	wc.hInstance		= _hInstance;
 	wc.hCursor			= LoadCursor(NULL, IDC_ARROW);
-	wc.hbrBackground	= (HBRUSH)COLOR_WINDOW;
+	//wc.hbrBackground	= (HBRUSH)COLOR_WINDOW;
 	wc.lpszClassName	= L"FTLWindowClass";
 
 	RegisterClassEx(&wc);

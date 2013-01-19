@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Engine.inl" />
+    <None Include="Source\Module\WindowModule.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{180EB86E-9F11-4B68-B96C-14B5D1B23628}</ProjectGuid>

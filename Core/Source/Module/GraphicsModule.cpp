@@ -29,7 +29,13 @@ void GraphicsModule::Startup()
 
 	m_WindowModule.Startup();
 
+	// TODO:: Handle Dynamic Settings
 	Graphics::Renderer::Settings Settings;
+	//Settings.Width		= ;
+	//Settings.Height		= ;
+	//Settings.RefreshRate	= ;
+	Settings.hOutput		= m_WindowModule.Window()->GetHandle();
+
 	m_pRenderer = new Graphics::Renderer(Settings);
 }
 
@@ -49,4 +55,5 @@ void GraphicsModule::Shutdown()
 void GraphicsModule::Update(float32 _fTime)
 {
 	m_WindowModule.Update(_fTime);
+	m_pRenderer->RenderFrame();
 }

@@ -20,5 +20,9 @@ namespace Core
 		virtual void Startup();
 		virtual void Shutdown();
 		virtual void Update(float32 _fTime);
+
+		Platform::Window* Window();
 	};
 }
+
+#include "WindowModule.inl"

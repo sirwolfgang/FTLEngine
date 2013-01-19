@@ -26,10 +26,14 @@ namespace Graphics
 		ID3D11DeviceContext*	m_pDeviceContext;
 		IDXGISwapChain*			m_pSwapChain;
 
+		ID3D11RenderTargetView* m_pBackBuffer;
+
 		Renderer();
 	public:
 		Renderer(Settings& _Settings);
 		~Renderer();
+
+		void RenderFrame();
 	};
 }
 

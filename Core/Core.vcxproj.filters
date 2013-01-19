@@ -22,6 +22,9 @@
     <Filter Include="Inline Files">
       <UniqueIdentifier>{163a0cf3-e33c-4677-aa52-5e33d47564cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Inline Files\Module">
+      <UniqueIdentifier>{730f14d6-52cc-4b0a-b7e1-0e1157bfe9c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DLL.h">
@@ -69,6 +72,9 @@
   <ItemGroup>
     <None Include="Source\Engine.inl">
       <Filter>Inline Files</Filter>
+    </None>
+    <None Include="Source\Module\WindowModule.inl">
+      <Filter>Inline Files\Module</Filter>
     </None>
   </ItemGroup>
 </Project>
