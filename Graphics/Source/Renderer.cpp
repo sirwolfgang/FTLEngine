@@ -78,8 +78,8 @@ Renderer::Renderer(Settings& _Settings)
 
 	Viewport.TopLeftX	= 0;
 	Viewport.TopLeftY	= 0;
-	Viewport.Width		= _Settings.Width;
-	Viewport.Height		= _Settings.Height;
+	Viewport.Width		= (float)_Settings.Width;
+	Viewport.Height		= (float)_Settings.Height;
 
 	m_pDeviceContext->RSSetViewports(1, &Viewport);
 }

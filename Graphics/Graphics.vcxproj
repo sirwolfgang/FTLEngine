@@ -30,11 +30,15 @@
     <ClInclude Include="Source\DLL.h" />
     <ClInclude Include="Source\Graphics.h" />
     <ClInclude Include="Source\Renderer.h" />
+    <ClInclude Include="Source\Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Adapters.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\Shader.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2412AC16-A372-40D9-A600-DA7368B448DF}</ProjectGuid>
