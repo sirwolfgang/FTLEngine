@@ -14,8 +14,9 @@ namespace Platform
 	public:
 		enum eWINDOW_MODE
 		{
-			eWINDOW_MODE_NORMAL,
-			eWINDOW_MODE_FRAMELESS_FIXED,
+			eWindow_Mode_Unspecified,
+			eWindow_Mode_Normal,
+			eWindow_Mode_Frameless_Fixed,
 		};
 	private:
 

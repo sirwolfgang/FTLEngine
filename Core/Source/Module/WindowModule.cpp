@@ -27,7 +27,7 @@ WindowModule::~WindowModule()
 void WindowModule::Startup()
 {
 	// TODO:: Handle Dynamic Settings
-	m_pWindow->Create(Platform::Window::eWINDOW_MODE_NORMAL, L"FTL Engine", 0, 0, 1024, 768);
+	m_pWindow->Create(Platform::Window::eWindow_Mode_Normal, L"FTL Engine", 0, 0, 1024, 768);
 }
 
 //---------------------------------------------------------------
