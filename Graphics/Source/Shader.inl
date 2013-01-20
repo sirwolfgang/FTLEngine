@@ -4,11 +4,43 @@
 //===============================================================
 
 //---------------------------------------------------------------
-// VertexShader
+// Shader
 //---------------------------------------------------------------
-inline Graphics::eShaderType Graphics::VertexShader::GetShaderType()
+inline Graphics::eShaderType Graphics::Shader::GetShaderType()
 {
-	return eShaderType_Vertex;
+	return eShaderType_Unspecified;
+}
+
+//---------------------------------------------------------------
+// ComputeShader
+//---------------------------------------------------------------
+inline Graphics::eShaderType Graphics::ComputeShader::GetShaderType()
+{
+	return eShaderType_Compute;
+}
+
+//---------------------------------------------------------------
+// DomainShader
+//---------------------------------------------------------------
+inline Graphics::eShaderType Graphics::DomainShader::GetShaderType()
+{
+	return eShaderType_Domain;
+}
+
+//---------------------------------------------------------------
+// GeometryShader
+//---------------------------------------------------------------
+inline Graphics::eShaderType Graphics::GeometryShader::GetShaderType()
+{
+	return eShaderType_Geometry;
+}
+
+//---------------------------------------------------------------
+// HullShader
+//---------------------------------------------------------------
+inline Graphics::eShaderType Graphics::HullShader::GetShaderType()
+{
+	return eShaderType_Hull;
 }
 
 //---------------------------------------------------------------
@@ -20,9 +52,9 @@ inline Graphics::eShaderType Graphics::PixelShader::GetShaderType()
 }
 
 //---------------------------------------------------------------
-// GeometryShader
+// VertexShader
 //---------------------------------------------------------------
-inline Graphics::eShaderType Graphics::GeometryShader::GetShaderType()
+inline Graphics::eShaderType Graphics::VertexShader::GetShaderType()
 {
-	return eShaderType_Geometry;
+	return eShaderType_Vertex;
 }

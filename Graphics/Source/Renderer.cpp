@@ -5,6 +5,8 @@
 #include "Renderer.h"
 using namespace Graphics;
 
+Renderer* Renderer::sm_pInstance = nullptr;
+
 //---------------------------------------------------------------
 Renderer::Settings::Settings()
 {
@@ -17,6 +19,8 @@ Renderer::Settings::Settings()
 //---------------------------------------------------------------
 Renderer::Renderer()
 {
+	sm_pInstance		= this;
+
 	m_pDevice			= nullptr;
 	m_pDeviceContext	= nullptr;
 	m_pSwapChain		= nullptr;
@@ -25,6 +29,8 @@ Renderer::Renderer()
 //---------------------------------------------------------------
 Renderer::Renderer(Settings& _Settings)
 {
+	sm_pInstance		= this;
+
 	m_pDevice			= nullptr;
 	m_pDeviceContext	= nullptr;
 	m_pSwapChain		= nullptr;
@@ -111,6 +117,11 @@ Renderer::~Renderer()
 		m_pDeviceContext->Release();
 		m_pDeviceContext = nullptr;
 	}
+
+	if(sm_pInstance)
+	{
+		sm_pInstance = nullptr;
+	}
 }
 
 //---------------------------------------------------------------
@@ -125,33 +136,39 @@ void Renderer::RenderFrame()
 }
 
 //---------------------------------------------------------------
-IShader* Renderer::CompileShaderFromFile(utf16* _szFilename, eShaderType _eShaderType)
+Shader* Renderer::CompileShaderFromFile(utf16* _szFilename, eShaderType _eShaderType)
 {
-	IShader*	pShader			= nullptr;
+	Shader*		pShader			= nullptr;
 	ID3DBlob*	pCompiledCode	= nullptr;
 	ID3DBlob*	pError			= nullptr;
+
+	// TODO:: Error Handling
 
 	switch(_eShaderType)
 	{
 	case eShaderType_Compute:
 		{
-			// TODO:: Support Compute Shader
-			//D3DCompileFromFile(_szFilename, NULL, NULL, NULL, "cs_5_0", NULL, NULL, &pCompiledCode, &pError);
+			pShader = new ComputeShader();
+			D3DCompileFromFile(_szFilename, NULL, NULL, NULL, "cs_5_0", NULL, NULL, &pCompiledCode, &pError);
+			m_pDevice->CreateComputeShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, &((ComputeShader*)pShader)->m_pShader);
 		} break;
 	case eShaderType_Domain:
 		{
-			// TODO:: Support Domain Shader
-			//D3DCompileFromFile(_szFilename, NULL, NULL, NULL, "ds_5_0", NULL, NULL, &pCompiledCode, &pError);
+			pShader = new DomainShader();
+			D3DCompileFromFile(_szFilename, NULL, NULL, NULL, "ds_5_0", NULL, NULL, &pCompiledCode, &pError);
+			m_pDevice->CreateDomainShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, &((DomainShader*)pShader)->m_pShader);
 		} break;
 	case eShaderType_Geometry:
 		{
-			// TODO:: Support Geometry Shader
-			//D3DCompileFromFile(_szFilename, NULL, NULL, NULL, "gs_5_0", NULL, NULL, &pCompiledCode, &pError);
+			pShader = new GeometryShader();
+			D3DCompileFromFile(_szFilename, NULL, NULL, NULL, "gs_5_0", NULL, NULL, &pCompiledCode, &pError);
+			m_pDevice->CreateGeometryShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, &((GeometryShader*)pShader)->m_pShader);
 		} break;
 	case eShaderType_Hull:
 		{
-			// TODO:: Support Hull Shader
-			//D3DCompileFromFile(_szFilename, NULL, NULL, NULL, "hs_5_0", NULL, NULL, &pCompiledCode, &pError);
+			pShader = new HullShader();
+			D3DCompileFromFile(_szFilename, NULL, NULL, NULL, "hs_5_0", NULL, NULL, &pCompiledCode, &pError);
+			m_pDevice->CreateHullShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, &((HullShader*)pShader)->m_pShader);
 		} break;
 	case eShaderType_Pixel:
 		{

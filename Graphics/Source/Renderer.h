@@ -8,7 +8,6 @@
 #include "DirectX.h"
 #include "Shader.h"
 
-
 namespace Graphics
 {
 	class GRAPHICS_API Renderer
@@ -25,6 +24,8 @@ namespace Graphics
 		};
 
 	private:
+		static Renderer*		sm_pInstance;
+
 		ID3D11Device*			m_pDevice;
 		ID3D11DeviceContext*	m_pDeviceContext;
 		IDXGISwapChain*			m_pSwapChain;
@@ -39,7 +40,7 @@ namespace Graphics
 		void RenderFrame();
 
 		// Shader Support
-		IShader* CompileShaderFromFile(utf16* _szFilename, eShaderType _eShaderType);
+		Shader* CompileShaderFromFile(utf16* _szFilename, eShaderType _eShaderType);
 	};
 }
 

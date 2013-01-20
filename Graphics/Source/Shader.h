@@ -22,55 +22,122 @@ namespace Graphics
 	//---------------------------------------------------------------
 	// IShader
 	//---------------------------------------------------------------
-	class GRAPHICS_API IShader
+	class IShader
 	{
 	public:
 		virtual eShaderType GetShaderType() = 0;
+		virtual void SetShaderActive()		= 0;
 	};
 
 	//---------------------------------------------------------------
-	// VertexShader
+	// Shader
 	//---------------------------------------------------------------
-	class GRAPHICS_API VertexShader : public IShader
+	class GRAPHICS_API Shader : public IShader
 	{
-		friend class Renderer;
-		ID3D11VertexShader* m_pShader;
-
 	public:
-		VertexShader();
-		~VertexShader();
+		Shader();
+		virtual ~Shader();
 
 		virtual eShaderType GetShaderType();
+		virtual void SetShaderActive();
+	};
+
+	//---------------------------------------------------------------
+	// ComputeShader
+	//---------------------------------------------------------------
+	class ComputeShader : public Shader
+	{
+		friend class Renderer;
+		ID3D11ComputeShader* m_pShader;
+
+		ComputeShader();
+	public:
+		virtual ~ComputeShader();
+
+		virtual eShaderType GetShaderType();
+		virtual void SetShaderActive();
+	};
+
+
+	//---------------------------------------------------------------
+	// DomainShader
+	//---------------------------------------------------------------
+	class DomainShader : public Shader
+	{
+		friend class Renderer;
+		ID3D11DomainShader* m_pShader;
+
+		DomainShader();
+	public:
+		virtual ~DomainShader();
+
+		virtual eShaderType GetShaderType();
+		virtual void SetShaderActive();
+	};
+
+
+	//---------------------------------------------------------------
+	// GeometryShader
+	//---------------------------------------------------------------
+	class GeometryShader : public Shader
+	{
+		friend class Renderer;
+		ID3D11GeometryShader* m_pShader;
+
+		GeometryShader();
+	public:
+		virtual ~GeometryShader();
+
+		virtual eShaderType GetShaderType();
+		virtual void SetShaderActive();
+	};
+
+	//---------------------------------------------------------------
+	// HullShader
+	//---------------------------------------------------------------
+	class HullShader : public Shader
+	{
+		friend class Renderer;
+		ID3D11HullShader* m_pShader;
+
+		HullShader();
+	public:
+		virtual ~HullShader();
+
+		virtual eShaderType GetShaderType();
+		virtual void SetShaderActive();
 	};
 
 	//---------------------------------------------------------------
 	// PixelShader
 	//---------------------------------------------------------------
-	class GRAPHICS_API PixelShader : public IShader
+	class PixelShader : public Shader
 	{
 		friend class Renderer;
 		ID3D11PixelShader* m_pShader;
 
-	public:
 		PixelShader();
-		~PixelShader();
+	public:
+		virtual ~PixelShader();
 
 		virtual eShaderType GetShaderType();
+		virtual void SetShaderActive();
 	};
 
 	//---------------------------------------------------------------
-	// GeometryShader
+	// VertexShader
 	//---------------------------------------------------------------
-	class GRAPHICS_API GeometryShader : public IShader
+	class VertexShader : public Shader
 	{
 		friend class Renderer;
-		ID3D11GeometryShader* m_pShader;
+		ID3D11VertexShader* m_pShader;
 
+		VertexShader();
 	public:
-		GeometryShader();
-		~GeometryShader();
+		virtual ~VertexShader();
 
 		virtual eShaderType GetShaderType();
+		virtual void SetShaderActive();
 	};
 }
 
