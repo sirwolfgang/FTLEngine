@@ -1,8 +1,6 @@
 //===============================================================
-// File:	Core.h
-// Purpose: Core Technology Layer Entry Point
+// File:	FTLGraphics.h
+// Purpose: Graphics Layer, Lib Include
 //===============================================================
 #pragma once
-
-#include "Engine.h"
-#include "Module\ModuleManager.h"
+#include "Source\Graphics.h"

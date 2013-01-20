@@ -5,8 +5,6 @@
 #include "Renderer.h"
 using namespace Graphics;
 
-Renderer* Renderer::sm_pInstance = nullptr;
-
 //---------------------------------------------------------------
 Renderer::Settings::Settings()
 {
@@ -19,8 +17,6 @@ Renderer::Settings::Settings()
 //---------------------------------------------------------------
 Renderer::Renderer()
 {
-	sm_pInstance		= this;
-
 	m_pDevice			= nullptr;
 	m_pDeviceContext	= nullptr;
 	m_pSwapChain		= nullptr;
@@ -29,8 +25,6 @@ Renderer::Renderer()
 //---------------------------------------------------------------
 Renderer::Renderer(Settings& _Settings)
 {
-	sm_pInstance		= this;
-
 	m_pDevice			= nullptr;
 	m_pDeviceContext	= nullptr;
 	m_pSwapChain		= nullptr;
@@ -116,11 +110,6 @@ Renderer::~Renderer()
 	{
 		m_pDeviceContext->Release();
 		m_pDeviceContext = nullptr;
-	}
-
-	if(sm_pInstance)
-	{
-		sm_pInstance = nullptr;
 	}
 }
 

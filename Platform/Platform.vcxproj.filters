@@ -10,22 +10,11 @@
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
     <Filter Include="Inline Files">
-      <UniqueIdentifier>{d760d1ba-bade-45ca-9a85-8a003643f6ba}</UniqueIdentifier>
+      <UniqueIdentifier>{111491a8-8d88-4415-be2c-da7fddb59c02}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Collections">
-      <UniqueIdentifier>{bb3db2a7-3cb9-4a87-863d-9882939b9b08}</UniqueIdentifier>
+      <UniqueIdentifier>{39002e1a-b838-4f14-aa56-267484de82d7}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Source\Timer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DataTypes.h">
@@ -43,21 +32,21 @@
     <ClInclude Include="Source\Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Collections\Collections.h">
-      <Filter>Header Files\Collections</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\DLL.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FTLPlatform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Module.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="FTLPlatform.h" />
+    <ClInclude Include="Source\Collections\Collections.h">
+      <Filter>Header Files\Collections</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Window.inl">

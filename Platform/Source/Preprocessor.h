@@ -3,7 +3,6 @@
 // Purpose: To handle platform specific #defines and macros
 //===============================================================
 #pragma once
-#include "DLL.h"
 
 #ifdef _DEBUG
 #define PLATFORM_DEBUG

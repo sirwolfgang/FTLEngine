@@ -8,5 +8,5 @@
 
 namespace Platform
 {
-	PLATFORM_API float64 GetCurrentTime_Milliseconds(void);
+	float64 GetCurrentTime_Milliseconds(void);
 }

@@ -3,13 +3,12 @@
 // Purpose: To handle window managment
 //===============================================================
 #pragma once
-#include "DLL.h"
 #include "Preprocessor.h"
 #include "DataTypes.h"
 
 namespace Platform
 {
-	class PLATFORM_API Window
+	class Window
 	{
 	public:
 		enum eWINDOW_MODE

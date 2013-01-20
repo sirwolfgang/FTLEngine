@@ -3,13 +3,11 @@
 // Purpose: To Handle the base module managment interface
 //===============================================================
 #pragma once
-#include <FTLPlatform.h>
-#include "../DLL.h"
 #include "GraphicsModule.h"
 
 namespace Core
 {
-	class CORE_API ModuleManager : public Platform::IModule
+	class CORE_API ModuleManager //: public Platform::IModule
 	{
 		GraphicsModule	m_GraphicsModule;
 

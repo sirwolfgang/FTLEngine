@@ -24,8 +24,6 @@ namespace Graphics
 		};
 
 	private:
-		static Renderer*		sm_pInstance;
-
 		ID3D11Device*			m_pDevice;
 		ID3D11DeviceContext*	m_pDeviceContext;
 		IDXGISwapChain*			m_pSwapChain;

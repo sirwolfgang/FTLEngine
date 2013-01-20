@@ -50,7 +50,7 @@ Graphics::Adapter::~Adapter()
 }
 
 //---------------------------------------------------------------
-GRAPHICS_API void Graphics::EnumerateAdapters(uint32* _NumOfAdapters, Adapter** _Adapters)
+void Graphics::EnumerateAdapters(uint32* _NumOfAdapters, Adapter** _Adapters)
 {
 	(*_NumOfAdapters)	= NULL;
 	(*_Adapters)		= nullptr;

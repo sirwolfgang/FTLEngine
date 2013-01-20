@@ -4,12 +4,12 @@
 //			for graphics engine
 //===============================================================
 #pragma once
-#include "../DLL.h"
 #include <FTLPlatform.h>
+#include "../DLL.h"
 
 namespace Core
 {
-	class CORE_API WindowModule : public Platform::IModule
+	class CORE_API WindowModule //: public Platform::IModule
 	{
 		Platform::Window* m_pWindow;
 

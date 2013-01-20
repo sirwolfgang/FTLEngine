@@ -36,16 +36,13 @@
     <ClCompile Include="Source\Module\WindowModule.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Graphics\Graphics.vcxproj">
-      <Project>{2412ac16-a372-40d9-a600-da7368b448df}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Platform\Platform.vcxproj">
-      <Project>{087ff9a4-0270-4326-9eea-13a0aca79190}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Source\Engine.inl" />
     <None Include="Source\Module\WindowModule.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Platform\Platform.vcxproj">
+      <Project>{78624e3f-3cb8-4afa-9886-2ac60cbb423b}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{180EB86E-9F11-4B68-B96C-14B5D1B23628}</ProjectGuid>

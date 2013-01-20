@@ -3,8 +3,8 @@
 // Purpose: To handle game engine runtime, and scope
 //===============================================================
 #pragma once
-#include "DLL.h"
 #include <FTLPlatform.h>
+#include "DLL.h"
 #include "Module\ModuleManager.h"
 
 namespace Core

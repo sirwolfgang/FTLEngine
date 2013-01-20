@@ -4,7 +4,7 @@
 //===============================================================
 #include "Timer.h"
 
-PLATFORM_API float64 Platform::GetCurrentTime_Milliseconds(void)
+float64 Platform::GetCurrentTime_Milliseconds(void)
 {
 #ifdef PLATFORM_WINDOWS
 	LARGE_INTEGER TicksPerSecond;
