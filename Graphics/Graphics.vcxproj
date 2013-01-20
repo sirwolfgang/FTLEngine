@@ -36,6 +36,7 @@
     <ClCompile Include="Source\Adapters.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
+    <ClCompile Include="Source\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Shader.inl" />

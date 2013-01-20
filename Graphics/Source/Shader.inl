@@ -6,7 +6,7 @@
 //---------------------------------------------------------------
 // VertexShader
 //---------------------------------------------------------------
-inline Graphics::VertexShader::eShaderType Graphics::VertexShader::GetShaderType()
+inline Graphics::eShaderType Graphics::VertexShader::GetShaderType()
 {
 	return eShaderType_Vertex;
 }
@@ -14,7 +14,7 @@ inline Graphics::VertexShader::eShaderType Graphics::VertexShader::GetShaderType
 //---------------------------------------------------------------
 // PixelShader
 //---------------------------------------------------------------
-inline Graphics::PixelShader::eShaderType Graphics::PixelShader::GetShaderType()
+inline Graphics::eShaderType Graphics::PixelShader::GetShaderType()
 {
 	return eShaderType_Pixel;
 }
@@ -22,7 +22,7 @@ inline Graphics::PixelShader::eShaderType Graphics::PixelShader::GetShaderType()
 //---------------------------------------------------------------
 // GeometryShader
 //---------------------------------------------------------------
-inline Graphics::GeometryShader::eShaderType Graphics::GeometryShader::GetShaderType()
+inline Graphics::eShaderType Graphics::GeometryShader::GetShaderType()
 {
 	return eShaderType_Geometry;
 }

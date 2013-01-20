@@ -3,9 +3,11 @@
 // Purpose: Act as the direct Rendering Interface
 //===============================================================
 #pragma once
+#include <FTLPlatform.h>
 #include "DLL.h"
 #include "DirectX.h"
-#include <FTLPlatform.h>
+#include "Shader.h"
+
 
 namespace Graphics
 {
@@ -35,6 +37,9 @@ namespace Graphics
 		~Renderer();
 
 		void RenderFrame();
+
+		// Shader Support
+		IShader* CompileShaderFromFile(utf16* _szFilename, eShaderType _eShaderType);
 	};
 }
 

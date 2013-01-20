@@ -123,3 +123,54 @@ void Renderer::RenderFrame()
 	// Present
 	m_pSwapChain->Present(0, 0);
 }
+
+//---------------------------------------------------------------
+IShader* Renderer::CompileShaderFromFile(utf16* _szFilename, eShaderType _eShaderType)
+{
+	IShader*	pShader			= nullptr;
+	ID3DBlob*	pCompiledCode	= nullptr;
+	ID3DBlob*	pError			= nullptr;
+
+	switch(_eShaderType)
+	{
+	case eShaderType_Compute:
+		{
+			// TODO:: Support Compute Shader
+			//D3DCompileFromFile(_szFilename, NULL, NULL, NULL, "cs_5_0", NULL, NULL, &pCompiledCode, &pError);
+		} break;
+	case eShaderType_Domain:
+		{
+			// TODO:: Support Domain Shader
+			//D3DCompileFromFile(_szFilename, NULL, NULL, NULL, "ds_5_0", NULL, NULL, &pCompiledCode, &pError);
+		} break;
+	case eShaderType_Geometry:
+		{
+			// TODO:: Support Geometry Shader
+			//D3DCompileFromFile(_szFilename, NULL, NULL, NULL, "gs_5_0", NULL, NULL, &pCompiledCode, &pError);
+		} break;
+	case eShaderType_Hull:
+		{
+			// TODO:: Support Hull Shader
+			//D3DCompileFromFile(_szFilename, NULL, NULL, NULL, "hs_5_0", NULL, NULL, &pCompiledCode, &pError);
+		} break;
+	case eShaderType_Pixel:
+		{
+			pShader = new PixelShader();
+			D3DCompileFromFile(_szFilename, NULL, NULL, NULL, "ps_5_0", NULL, NULL, &pCompiledCode, &pError);
+			m_pDevice->CreatePixelShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, &((PixelShader*)pShader)->m_pShader);
+		} break;
+	case eShaderType_Vertex:
+		{
+			pShader = new VertexShader();
+			D3DCompileFromFile(_szFilename, NULL, NULL, NULL, "vs_5_0", NULL, NULL, &pCompiledCode, &pError);
+			m_pDevice->CreateVertexShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, &((VertexShader*)pShader)->m_pShader);
+		} break;
+	case eShaderType_Unspecified:
+	default:
+		{
+			// TODO:: Handle Error
+		} break;
+	}
+
+	return pShader;
+}
