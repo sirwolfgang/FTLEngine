@@ -16,19 +16,11 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 	Window window(_hInstance, _nCmdShow);
 	window.Create(Platform::Window::eWindow_Mode_Normal, L"FTL Engine", 0, 0, 1024, 768);
 
+	RendererDLL		rendererDLL;
 	Renderer*		pRenderer;
-	RendererDLL*	pRendererDLL;
 
-	pRendererDLL = new RendererDLL();
-	pRendererDLL->CreateRenderer();
-
-	pRenderer = pRendererDLL->GetRenderer();
-
-	pRenderer->IsFullscreen();
-
-	pRendererDLL->Release();
-
-	delete pRendererDLL;
+	rendererDLL.Create(&pRenderer);
+	rendererDLL.Release();
 
 	while(window.Update());
 

@@ -17,9 +17,9 @@ namespace Graphics
 		~RendererDLL();
 
 		Renderer*	GetRenderer();
-		HMODULE	GetModule();
+		HMODULE		GetModule();
 
-		void CreateRenderer();
+		void Create(Renderer** _pRenderer);
 		void Release();
 	};
 }

@@ -19,7 +19,7 @@ RendererDLL::~RendererDLL()
 }
 
 //---------------------------------------------------------------
-void RendererDLL::CreateRenderer()
+void RendererDLL::Create(Renderer** _pRenderer)
 {
 	// Load DLL
 	m_hDLL = LoadLibraryEx(L"Graphics DirectX 11.0.dll", NULL, 0);
@@ -29,6 +29,7 @@ void RendererDLL::CreateRenderer()
 	DWORD Err = GetLastError();
 
 	CreateRendererFunc(m_hDLL, &m_pRenderer);
+	(*_pRenderer) = m_pRenderer;
 }
 
 //---------------------------------------------------------------
