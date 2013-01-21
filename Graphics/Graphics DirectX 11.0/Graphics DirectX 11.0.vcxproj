@@ -20,21 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FTLGraphics.h" />
-    <ClInclude Include="Source\Adapters.h" />
     <ClInclude Include="Source\DirectX.h" />
     <ClInclude Include="Source\DLL.h" />
     <ClInclude Include="Source\Graphics.h" />
-    <ClInclude Include="Source\Renderer.h" />
-    <ClInclude Include="Source\Shader.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\Shader.inl" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Source\Adapters.cpp" />
     <ClCompile Include="Source\Main.cpp" />
-    <ClCompile Include="Source\Renderer.cpp" />
-    <ClCompile Include="Source\Shader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BFF11BF9-B603-4FE9-A1C7-A4C1CC3F4195}</ProjectGuid>

@@ -4,6 +4,3 @@
 //===============================================================
 #pragma once
 #include <FTLPlatform.h>
-
-#include "Renderer.h"
-#include "Adapters.h"

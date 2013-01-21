@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="FTLGraphics.h" />
     <ClInclude Include="Source\Graphics.h" />
+    <ClInclude Include="Source\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Platform\Platform.vcxproj">
