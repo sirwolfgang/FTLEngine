@@ -14,6 +14,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graphics DirectX 11.0", "Graphics\Graphics DirectX 11.0\Graphics DirectX 11.0.vcxproj", "{BFF11BF9-B603-4FE9-A1C7-A4C1CC3F4195}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graphics Test", "Graphics\Graphics Test\Graphics Test.vcxproj", "{07799624-8355-4331-9692-0CAD3DF9448D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{802B506A-B93D-4A0E-88CE-FA597C6E58CB} = {802B506A-B93D-4A0E-88CE-FA597C6E58CB}
+		{BFF11BF9-B603-4FE9-A1C7-A4C1CC3F4195} = {BFF11BF9-B603-4FE9-A1C7-A4C1CC3F4195}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Platform", "Platform\Platform.vcxproj", "{78624E3F-3CB8-4AFA-9886-2AC60CBB423B}"
 EndProject

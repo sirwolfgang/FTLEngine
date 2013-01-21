@@ -23,9 +23,11 @@
     <ClInclude Include="Source\DirectX.h" />
     <ClInclude Include="Source\DLL.h" />
     <ClInclude Include="Source\Graphics.h" />
+    <ClInclude Include="Source\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Renderer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BFF11BF9-B603-4FE9-A1C7-A4C1CC3F4195}</ProjectGuid>
@@ -77,19 +79,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\;$(SolutionDir)Graphics\Graphics Interface;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\;$(SolutionDir)Graphics\Graphics Interface;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\;$(SolutionDir)Graphics\Graphics Interface;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\;$(SolutionDir)Graphics\Graphics Interface;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

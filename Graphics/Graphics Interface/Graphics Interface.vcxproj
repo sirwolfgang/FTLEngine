@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FTLGraphics.h" />
+    <ClInclude Include="Source\DLLInterface.h" />
     <ClInclude Include="Source\Graphics.h" />
     <ClInclude Include="Source\Renderer.h" />
   </ItemGroup>
@@ -27,6 +28,13 @@
     <ProjectReference Include="..\..\Platform\Platform.vcxproj">
       <Project>{78624e3f-3cb8-4afa-9886-2ac60cbb423b}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\DLLInterface.inl" />
+    <None Include="Source\Renderer.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\DLLInterface.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{802B506A-B93D-4A0E-88CE-FA597C6E58CB}</ProjectGuid>

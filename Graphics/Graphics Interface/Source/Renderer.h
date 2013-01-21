@@ -12,6 +12,7 @@ namespace Graphics
 	public:
 		enum eDriverMode
 		{
+			eDriverMode_Unspecified,// Error
 			eDriverMode_Hardware,	// Normal Rendering
 			eDriverMode_Software,	// Software Emulation
 			eDriverMode_Reference,	// Precision Software Emulation, Rendering 
@@ -34,10 +35,9 @@ namespace Graphics
 		};
 
 		//---------------------------------------------------------------
-		// Class Construction
+		// Class Destruction
 		//---------------------------------------------------------------
-		Renderer(){}
-		virtual ~Renderer() = 0;
+		virtual ~Renderer()								= 0;
 
 		//---------------------------------------------------------------
 		// Rendering System Managment
@@ -70,7 +70,21 @@ namespace Graphics
 		//---------------------------------------------------------------
 		// View Management
 		//---------------------------------------------------------------
-		virtual void GetFullscreen()					= 0;
+		virtual bool IsFullscreen()						= 0;
 		virtual void SetFullscreen(bool _bFullscreen)	= 0;
 	};
+
+	//---------------------------------------------------------------
+	// DLL Interfacing
+	//---------------------------------------------------------------
+	extern "C"
+	{
+		void DLLIMPORT CreateRenderer(HINSTANCE _hDLL, Renderer** _pInterface);
+		typedef void (*CREATERENDERER)(HINSTANCE _hDLL, Renderer** _pInterface);
+
+		void DLLIMPORT ReleaseRenderer(Renderer** _pInterface);
+		typedef void (*RELEASERENDERER)(Renderer** pInterface);
+	}
 }
+
+#include "Renderer.inl"

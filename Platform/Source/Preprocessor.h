@@ -30,3 +30,11 @@
 #ifndef NULL
 #define NULL 0
 #endif
+
+#ifndef DLLIMPORT
+#define DLLIMPORT __declspec(dllimport)
+#endif
+
+#ifndef DLLEXPORT
+#define DLLEXPORT __declspec(dllexport)
+#endif

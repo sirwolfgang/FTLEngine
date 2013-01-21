@@ -25,6 +25,9 @@
     <ProjectReference Include="..\..\Platform\Platform.vcxproj">
       <Project>{78624e3f-3cb8-4afa-9886-2ac60cbb423b}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\Graphics Interface\Graphics Interface.vcxproj">
+      <Project>{802b506a-b93d-4a0e-88ce-fa597c6e58cb}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{07799624-8355-4331-9692-0CAD3DF9448D}</ProjectGuid>
@@ -76,19 +79,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\;$(SolutionDir)Graphics\Graphics Interface;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\;$(SolutionDir)Graphics\Graphics Interface;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\;$(SolutionDir)Graphics\Graphics Interface;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\;$(SolutionDir)Graphics\Graphics Interface;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
