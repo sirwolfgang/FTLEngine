@@ -10,13 +10,26 @@ using namespace Graphics;
 //---------------------------------------------------------------
 Renderer_DX11_0::Renderer_DX11_0()
 {
+	m_pDevice			= nullptr;
+	m_pDeviceContext	= nullptr;
+	m_pSwapChain		= nullptr;
 
+	m_pBackBuffer		= nullptr;
+
+	m_bIsFullscreen		= false;
 }
 
 //---------------------------------------------------------------
 Renderer_DX11_0::~Renderer_DX11_0()
 {
-
+	// TODO:: Error Not Shutdown properly
+	if(m_pDevice 
+		|| m_pDeviceContext 
+		|| m_pSwapChain 
+		|| m_pBackBuffer)
+	{
+		Shutdown();
+	}
 }
 
 //---------------------------------------------------------------
@@ -24,25 +37,98 @@ Renderer_DX11_0::~Renderer_DX11_0()
 //---------------------------------------------------------------
 void Renderer_DX11_0::Initialize(Settings _tSettings)
 {
-
+	m_StarupSettings = _tSettings;
 }
 
 //---------------------------------------------------------------
 void Renderer_DX11_0::Startup()
 {
+	DXGI_SWAP_CHAIN_DESC SwapChainDesc;
+	ZeroMemory(&SwapChainDesc, sizeof(DXGI_SWAP_CHAIN_DESC));
 
+	SwapChainDesc.BufferDesc.Width						= m_StarupSettings.nWidth;					//* Resolution Width
+	SwapChainDesc.BufferDesc.Height						= m_StarupSettings.nHeight;					//* Resolution Height
+	SwapChainDesc.BufferDesc.RefreshRate.Numerator		= m_StarupSettings.nRefreshRate;			//* RefeshRate
+	SwapChainDesc.BufferDesc.RefreshRate.Denominator	= 1000;										//* RefeshRate
+	SwapChainDesc.BufferDesc.Format						= DXGI_FORMAT_R8G8B8A8_UNORM;				//  Format
+	SwapChainDesc.BufferDesc.ScanlineOrdering			= DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;		//  Scan Line Ordering
+	SwapChainDesc.BufferDesc.Scaling					= DXGI_MODE_SCALING_UNSPECIFIED;			//  Scaling Mode
+	SwapChainDesc.SampleDesc.Count						= m_StarupSettings.nMSAASamples;			//* Multisamples Per Pixel
+	SwapChainDesc.SampleDesc.Quality					= m_StarupSettings.nSampleQuality;			//* Quality Level
+	SwapChainDesc.BufferUsage							= DXGI_USAGE_RENDER_TARGET_OUTPUT;			//  Buffer Usage
+	SwapChainDesc.BufferCount							= m_StarupSettings.nBufferCount;			//* Buffer Count
+	SwapChainDesc.OutputWindow							= m_StarupSettings.hOutput;					//+ Handle To Output Window
+	SwapChainDesc.Windowed								= true;										//* Windowed Mode
+	SwapChainDesc.SwapEffect							= DXGI_SWAP_EFFECT_DISCARD;					//  Swap Mode
+	SwapChainDesc.Flags									= DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;	// Flags
+
+	m_bIsFullscreen		= false;
+
+	//------------------------------
+	D3D_DRIVER_TYPE DriverType;
+
+	switch (m_StarupSettings.eDriverMode)
+	{
+	case eDriverMode_Hardware:	{	DriverType = D3D_DRIVER_TYPE_HARDWARE;	}	break;
+	case eDriverMode_Software:	{	DriverType = D3D_DRIVER_TYPE_SOFTWARE;	}	break;
+	case eDriverMode_Reference: {	DriverType = D3D_DRIVER_TYPE_REFERENCE;	}	break;
+	case eDriverMode_Null:		{	DriverType = D3D_DRIVER_TYPE_NULL;		}	break;
+	case eDriverMode_Unspecified:
+	default:					{	DriverType = D3D_DRIVER_TYPE_UNKNOWN;	}	break; // TODO:: Handle Error
+	}
+
+	HRESULT hResult = D3D11CreateDeviceAndSwapChain(NULL,
+		DriverType,
+		NULL,
+		(m_StarupSettings.eDriverMode) ? D3D11_CREATE_DEVICE_DEBUG : NULL,
+		NULL,
+		NULL,
+		D3D11_SDK_VERSION,
+		&SwapChainDesc,
+		&m_pSwapChain,
+		&m_pDevice,
+		nullptr,
+		&m_pDeviceContext);
+
+	//------------------------------
+	ID3D11Texture2D *pBackBuffer;
+	m_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
+
+	m_pDevice->CreateRenderTargetView(pBackBuffer, NULL, &m_pBackBuffer);
+	pBackBuffer->Release();
+
+	m_pDeviceContext->OMSetRenderTargets(1, &m_pBackBuffer, NULL);
+
+	//------------------------------
+	D3D11_VIEWPORT Viewport;
+	ZeroMemory(&Viewport, sizeof(D3D11_VIEWPORT));
+
+	Viewport.TopLeftX	= 0;
+	Viewport.TopLeftY	= 0;
+	Viewport.Width		= (float)m_StarupSettings.nWidth;
+	Viewport.Height		= (float)m_StarupSettings.nHeight;
+
+	m_pDeviceContext->RSSetViewports(1, &Viewport);
 }
 
 //---------------------------------------------------------------
 void Renderer_DX11_0::Shutdown()
 {
+	RELEASE_COM(m_pBackBuffer);
 
+	if(m_pSwapChain)
+		m_pSwapChain->SetFullscreenState(false, NULL);
+
+	RELEASE_COM(m_pSwapChain);
+	RELEASE_COM(m_pDeviceContext);
+	RELEASE_COM(m_pDevice);
 }
 
 //---------------------------------------------------------------
 void Renderer_DX11_0::Restart()
 {
-
+	Shutdown();
+	Startup();
 }
 
 //---------------------------------------------------------------
@@ -50,49 +136,49 @@ void Renderer_DX11_0::Restart()
 //---------------------------------------------------------------
 uint32 Renderer_DX11_0::GetWidth()
 {
-	return NULL;
+	return m_StarupSettings.nWidth;
 }
 
 //---------------------------------------------------------------
 uint32 Renderer_DX11_0::GetHeight()
 {
-	return NULL;
+	return m_StarupSettings.nHeight;
 }
 
 //---------------------------------------------------------------
 uint32 Renderer_DX11_0::GetRefreshRate()
 {
-	return NULL;
+	return m_StarupSettings.nRefreshRate;
 }
 
 //---------------------------------------------------------------
 uint32 Renderer_DX11_0::GetMSAASamples()
 {
-	return NULL;
+	return m_StarupSettings.nMSAASamples;
 }
 
 //---------------------------------------------------------------
 uint32 Renderer_DX11_0::GetSampleQuality()
 {
-	return NULL;
+	return m_StarupSettings.nSampleQuality;
 }
 
 //---------------------------------------------------------------
 uint32 Renderer_DX11_0::GetBuffersCount()
 {
-	return NULL;
+	return m_StarupSettings.nBufferCount;
 }
 
 //---------------------------------------------------------------
 Renderer_DX11_0::eDriverMode Renderer_DX11_0::GetDriverMode()
 {
-	return eDriverMode_Unspecified;
+	return m_StarupSettings.eDriverMode;
 }
 
 //---------------------------------------------------------------
 bool Renderer_DX11_0::GetDebugMode()
 {
-	return false;
+	return m_StarupSettings.bDebugMode;
 }
 
 //---------------------------------------------------------------
@@ -100,7 +186,7 @@ bool Renderer_DX11_0::GetDebugMode()
 //---------------------------------------------------------------
 void Renderer_DX11_0::ClearBuffer(float _fARGB[4])
 {
-
+	m_pDeviceContext->ClearRenderTargetView(m_pBackBuffer, _fARGB);
 }
 
 //---------------------------------------------------------------
@@ -118,7 +204,7 @@ void Renderer_DX11_0::PostDraw()
 //---------------------------------------------------------------
 void Renderer_DX11_0::Present()
 {
-
+	m_pSwapChain->Present(0, 0);
 }
 
 //---------------------------------------------------------------
@@ -126,13 +212,13 @@ void Renderer_DX11_0::Present()
 //---------------------------------------------------------------
 bool Renderer_DX11_0::IsFullscreen()
 {
-	return false;
+	return m_bIsFullscreen;
 }
 
 //---------------------------------------------------------------
 void Renderer_DX11_0::SetFullscreen(bool _bFullscreen)
 {
-
+	m_pSwapChain->SetFullscreenState(m_bIsFullscreen = _bFullscreen, NULL);
 }
 
 //---------------------------------------------------------------

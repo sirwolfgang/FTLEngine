@@ -62,7 +62,7 @@ namespace Graphics
 		//---------------------------------------------------------------
 		// Draw Management
 		//---------------------------------------------------------------
-		virtual void ClearBuffer(float _fARGB[4])		= 0; 
+		virtual void ClearBuffer(float _fRGBA[4])		= 0; 
 		virtual void PreDraw()							= 0;
 		virtual void PostDraw()							= 0;
 		virtual void Present()							= 0;

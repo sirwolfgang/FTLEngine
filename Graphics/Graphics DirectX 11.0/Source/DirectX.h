@@ -13,3 +13,11 @@
 //	but you can't use it in apps that you submit to the Windows Store.
 #include <D3Dcompiler.h>
 #pragma comment(lib, "D3dcompiler.lib")
+
+
+#define RELEASE_COM(_ptr) \
+	if(_ptr)\
+	{\
+		_ptr->Release();\
+		_ptr = nullptr;\
+	}

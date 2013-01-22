@@ -13,16 +13,40 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 					 LPSTR _lpCmdLine, 
 					 int _nCmdShow)
 {
-	Window window(_hInstance, _nCmdShow);
-	window.Create(Platform::Window::eWindow_Mode_Normal, L"FTL Engine", 0, 0, 1024, 768);
+	Window Window(_hInstance, _nCmdShow);
+	Window.Create(Platform::Window::eWindow_Mode_Normal, L"FTL Engine", 0, 0, 1024, 768);
 
 	RendererDLL		rendererDLL;
 	Renderer*		pRenderer;
 
 	rendererDLL.Create(&pRenderer);
-	rendererDLL.Release();
+	{
+		Graphics::Renderer::Settings Settings;
 
-	while(window.Update());
+		Settings.nWidth			= 1024;
+		Settings.nHeight		= 768;
+		Settings.nRefreshRate	= 0;
+		Settings.nMSAASamples	= 1;
+		Settings.nSampleQuality = 0;
+		Settings.nBufferCount	= 1;
+		Settings.eDriverMode	= Graphics::Renderer::eDriverMode_Hardware;
+		Settings.hOutput		= Window.GetHandle();
+		Settings.bDebugMode		= true;
+
+		pRenderer->Initialize(Settings);
+		pRenderer->Startup();
+		{
+			float Color[4] = {0.33f, 0.33f, 0.33f, 1.00f};
+			pRenderer->ClearBuffer(Color);
+
+			pRenderer->Present();
+
+			while(Window.Update());
+
+		}
+		pRenderer->Shutdown();
+	}
+	rendererDLL.Release();
 
 	return NULL;
 }

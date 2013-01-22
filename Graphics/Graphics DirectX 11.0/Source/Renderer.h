@@ -5,11 +5,22 @@
 #pragma once
 #include <FTLGraphics.h>
 #include "DLL.h"
+#include "DirectX.h"
 
 namespace Graphics
 {
 	class Renderer_DX11_0 : public Renderer
 	{
+		Settings				m_StarupSettings;
+
+		ID3D11Device*			m_pDevice;
+		ID3D11DeviceContext*	m_pDeviceContext;
+		IDXGISwapChain*			m_pSwapChain;
+
+		ID3D11RenderTargetView* m_pBackBuffer;
+
+		bool					m_bIsFullscreen;
+
 	public:
 		//---------------------------------------------------------------
 		// Class Construction
@@ -40,7 +51,7 @@ namespace Graphics
 		//---------------------------------------------------------------
 		// Draw Management
 		//---------------------------------------------------------------
-		virtual void ClearBuffer(float _fARGB[4]);
+		virtual void ClearBuffer(float _fRGBA[4]);
 		virtual void PreDraw();
 		virtual void PostDraw();
 		virtual void Present();
