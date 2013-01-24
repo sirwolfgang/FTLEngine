@@ -21,7 +21,8 @@ namespace Graphics
 
 		virtual ~Shader() = 0;
 
-		virtual eSHADER_TYPES GetShaderType() = 0;
+		virtual eSHADER_TYPES	GetShaderType() = 0;
+		virtual void			SetShaderActive() = 0;
 	};
 }
 

@@ -42,6 +42,9 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 			Graphics::Shader* VertexShader	= pRenderer->CompileFromFile(L"Source/Shader.hlsl", "VShader", Graphics::Shader::eSHADER_TYPE_VERTEX);
 			Graphics::Shader* PixelShader	= pRenderer->CompileFromFile(L"Source/Shader.hlsl", "PShader", Graphics::Shader::eSHADER_TYPE_PIXEL);
 
+			VertexShader->SetShaderActive();
+			PixelShader->SetShaderActive();
+
 			pRenderer->Present();
 
 			while(Window.Update());

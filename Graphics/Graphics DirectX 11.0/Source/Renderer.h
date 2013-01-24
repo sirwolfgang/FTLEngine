@@ -12,6 +12,8 @@ namespace Graphics
 {
 	class Renderer_DX11_0 : public Renderer
 	{
+		static Renderer_DX11_0* sm_pInstance;
+
 		Settings				m_StarupSettings;
 
 		ID3D11Device*			m_pDevice;
@@ -23,6 +25,11 @@ namespace Graphics
 		bool					m_bIsFullscreen;
 
 	public:
+		//---------------------------------------------------------------
+		// Singleton
+		//---------------------------------------------------------------
+		static Renderer_DX11_0* Instance();
+
 		//---------------------------------------------------------------
 		// Class Construction
 		//---------------------------------------------------------------
@@ -36,6 +43,12 @@ namespace Graphics
 		virtual void Startup();
 		virtual void Shutdown();
 		virtual void Restart();
+
+		//---------------------------------------------------------------
+		// Device Access
+		//---------------------------------------------------------------
+		ID3D11Device*			Device();
+		ID3D11DeviceContext*	DeviceContext();
 
 		//---------------------------------------------------------------
 		// Rendering Settings
@@ -83,3 +96,5 @@ namespace Graphics
 	// 	typedef void (*RELEASERENDERER)(Renderer** pInterface);
 	// }
 }
+
+#include "Renderer.inl"

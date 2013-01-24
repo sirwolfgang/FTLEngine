@@ -46,5 +46,8 @@
     <None Include="Source\Shader.inl">
       <Filter>Inline Files</Filter>
     </None>
+    <None Include="Source\Renderer.inl">
+      <Filter>Inline Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

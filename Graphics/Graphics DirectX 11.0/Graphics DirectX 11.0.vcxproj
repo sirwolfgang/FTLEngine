@@ -32,6 +32,7 @@
     <ClCompile Include="Source\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Source\Renderer.inl" />
     <None Include="Source\Shader.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

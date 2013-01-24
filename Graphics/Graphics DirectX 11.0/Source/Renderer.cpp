@@ -6,10 +6,17 @@
 using namespace Graphics;
 
 //---------------------------------------------------------------
+// Singleton
+//---------------------------------------------------------------
+Renderer_DX11_0* Renderer_DX11_0::sm_pInstance = nullptr;
+
+//---------------------------------------------------------------
 // Class Construction
 //---------------------------------------------------------------
 Renderer_DX11_0::Renderer_DX11_0()
 {
+	sm_pInstance		= this;
+
 	m_pDevice			= nullptr;
 	m_pDeviceContext	= nullptr;
 	m_pSwapChain		= nullptr;
@@ -22,6 +29,8 @@ Renderer_DX11_0::Renderer_DX11_0()
 //---------------------------------------------------------------
 Renderer_DX11_0::~Renderer_DX11_0()
 {
+	sm_pInstance		= nullptr;
+
 	// TODO:: Error Not Shutdown properly
 	if(m_pDevice 
 		|| m_pDeviceContext 

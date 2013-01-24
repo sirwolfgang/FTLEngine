@@ -3,6 +3,7 @@
 // Purpose: Handle Shader Wrapping
 //===============================================================
 #include "Shader.h"
+#include "Renderer.h"
 using namespace Graphics;
 
 //---------------------------------------------------------------
@@ -26,6 +27,12 @@ ComputeShader::~ComputeShader()
 }
 
 //---------------------------------------------------------------
+void ComputeShader::SetShaderActive()
+{
+	Renderer_DX11_0::Instance()->DeviceContext()->CSSetShader(m_pShader, NULL, NULL);
+}
+
+//---------------------------------------------------------------
 // DomainShader
 //---------------------------------------------------------------
 DomainShader::DomainShader()
@@ -43,6 +50,12 @@ DomainShader::DomainShader(ID3D11DomainShader* _pShader)
 DomainShader::~DomainShader()
 {
 	RELEASE_COM(m_pShader);
+}
+
+//---------------------------------------------------------------
+void DomainShader::SetShaderActive()
+{
+	Renderer_DX11_0::Instance()->DeviceContext()->DSSetShader(m_pShader, NULL, NULL);
 }
 
 //---------------------------------------------------------------
@@ -66,6 +79,12 @@ GeometryShader::~GeometryShader()
 }
 
 //---------------------------------------------------------------
+void GeometryShader::SetShaderActive()
+{
+	Renderer_DX11_0::Instance()->DeviceContext()->GSSetShader(m_pShader, NULL, NULL);
+}
+
+//---------------------------------------------------------------
 // HullShader
 //---------------------------------------------------------------
 HullShader::HullShader()
@@ -83,6 +102,12 @@ HullShader::HullShader(ID3D11HullShader* _pShader)
 HullShader::~HullShader()
 {
 	RELEASE_COM(m_pShader);
+}
+
+//---------------------------------------------------------------
+void HullShader::SetShaderActive()
+{
+	Renderer_DX11_0::Instance()->DeviceContext()->HSSetShader(m_pShader, NULL, NULL);
 }
 
 //---------------------------------------------------------------
@@ -106,6 +131,12 @@ PixelShader::~PixelShader()
 }
 
 //---------------------------------------------------------------
+void PixelShader::SetShaderActive()
+{
+	Renderer_DX11_0::Instance()->DeviceContext()->PSSetShader(m_pShader, NULL, NULL);
+}
+
+//---------------------------------------------------------------
 // VertexShader
 //---------------------------------------------------------------
 VertexShader::VertexShader()
@@ -123,4 +154,10 @@ VertexShader::VertexShader(ID3D11VertexShader* _pShader)
 VertexShader::~VertexShader()
 {
 	RELEASE_COM(m_pShader);
+}
+
+//---------------------------------------------------------------
+void VertexShader::SetShaderActive()
+{
+	Renderer_DX11_0::Instance()->DeviceContext()->VSSetShader(m_pShader, NULL, NULL);
 }

@@ -20,7 +20,8 @@ namespace Graphics
 		ComputeShader(ID3D11ComputeShader* _pShader);
 		virtual ~ComputeShader();
 
-		virtual eSHADER_TYPES GetShaderType();
+		virtual eSHADER_TYPES	GetShaderType();
+		virtual void			SetShaderActive();
 	};
 
 	//---------------------------------------------------------------
@@ -35,7 +36,8 @@ namespace Graphics
 		DomainShader(ID3D11DomainShader* _pShader);
 		virtual ~DomainShader();
 
-		virtual eSHADER_TYPES GetShaderType();
+		virtual eSHADER_TYPES	GetShaderType();
+		virtual void			SetShaderActive();
 	};
 
 	//---------------------------------------------------------------
@@ -50,7 +52,8 @@ namespace Graphics
 		GeometryShader(ID3D11GeometryShader* _pShader);
 		virtual ~GeometryShader();
 
-		virtual eSHADER_TYPES GetShaderType();
+		virtual eSHADER_TYPES	GetShaderType();
+		virtual void			SetShaderActive();
 	};
 
 	//---------------------------------------------------------------
@@ -65,7 +68,8 @@ namespace Graphics
 		HullShader(ID3D11HullShader* _pShader);
 		virtual ~HullShader();
 
-		virtual eSHADER_TYPES GetShaderType();
+		virtual eSHADER_TYPES	GetShaderType();
+		virtual void			SetShaderActive();
 	};
 
 	//---------------------------------------------------------------
@@ -80,7 +84,8 @@ namespace Graphics
 		PixelShader(ID3D11PixelShader* _pShader);
 		virtual ~PixelShader();
 
-		virtual eSHADER_TYPES GetShaderType();
+		virtual eSHADER_TYPES	GetShaderType();
+		virtual void			SetShaderActive();
 	};
 
 	//---------------------------------------------------------------
@@ -95,7 +100,8 @@ namespace Graphics
 		VertexShader(ID3D11VertexShader* _pShader);
 		virtual ~VertexShader();
 
-		virtual eSHADER_TYPES GetShaderType();
+		virtual eSHADER_TYPES	GetShaderType();
+		virtual void			SetShaderActive();
 	};
 }
 
