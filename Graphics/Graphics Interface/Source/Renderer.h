@@ -4,6 +4,7 @@
 //===============================================================
 #pragma once
 #include <FTLPlatform.h>
+#include "Shader.h"
 
 namespace Graphics
 {
@@ -62,10 +63,15 @@ namespace Graphics
 		//---------------------------------------------------------------
 		// Draw Management
 		//---------------------------------------------------------------
-		virtual void ClearBuffer(float _fRGBA[4])		= 0; 
+		virtual void ClearBackBuffer(float _fRGBA[4])	= 0; 
 		virtual void PreDraw()							= 0;
 		virtual void PostDraw()							= 0;
 		virtual void Present()							= 0;
+
+		//---------------------------------------------------------------
+		// Shader Management
+		//---------------------------------------------------------------
+		virtual Shader* CompileFromFile(utf16* _szFile, utf8* _szFunction, Shader::eSHADER_TYPES _eShaderType)	= 0;
 
 		//---------------------------------------------------------------
 		// View Management

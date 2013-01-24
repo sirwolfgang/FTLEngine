@@ -6,6 +6,7 @@
 #include <FTLGraphics.h>
 #include "DLL.h"
 #include "DirectX.h"
+#include "Shader.h"
 
 namespace Graphics
 {
@@ -51,10 +52,15 @@ namespace Graphics
 		//---------------------------------------------------------------
 		// Draw Management
 		//---------------------------------------------------------------
-		virtual void ClearBuffer(float _fRGBA[4]);
+		virtual void ClearBackBuffer(float _fRGBA[4]);
 		virtual void PreDraw();
 		virtual void PostDraw();
 		virtual void Present();
+
+		//---------------------------------------------------------------
+		// Shader Management
+		//---------------------------------------------------------------
+		virtual Shader* CompileFromFile(utf16* _szFile, utf8* _szFunction, Shader::eSHADER_TYPES _eShaderType);
 
 		//---------------------------------------------------------------
 		// View Management

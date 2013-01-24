@@ -60,7 +60,7 @@ void Renderer_DX11_0::Startup()
 	SwapChainDesc.OutputWindow							= m_StarupSettings.hOutput;					//+ Handle To Output Window
 	SwapChainDesc.Windowed								= true;										//* Windowed Mode
 	SwapChainDesc.SwapEffect							= DXGI_SWAP_EFFECT_DISCARD;					//  Swap Mode
-	SwapChainDesc.Flags									= DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;	// Flags
+	SwapChainDesc.Flags									= NULL;										// Flags
 
 	m_bIsFullscreen		= false;
 
@@ -184,7 +184,7 @@ bool Renderer_DX11_0::GetDebugMode()
 //---------------------------------------------------------------
 // Draw Management
 //---------------------------------------------------------------
-void Renderer_DX11_0::ClearBuffer(float _fARGB[4])
+void Renderer_DX11_0::ClearBackBuffer(float _fARGB[4])
 {
 	m_pDeviceContext->ClearRenderTargetView(m_pBackBuffer, _fARGB);
 }
@@ -205,6 +205,58 @@ void Renderer_DX11_0::PostDraw()
 void Renderer_DX11_0::Present()
 {
 	m_pSwapChain->Present(0, 0);
+}
+
+//---------------------------------------------------------------
+// Shader Management
+//---------------------------------------------------------------
+Shader* Renderer_DX11_0::CompileFromFile(utf16* _szFile, utf8* _szFunction, Shader::eSHADER_TYPES _eShaderType)
+{
+	ID3DBlob*	pCompiledCode	= nullptr;
+	ID3DBlob*	pErrorMessage	= nullptr;
+	void*		pShader			= nullptr;
+
+	switch (_eShaderType)
+	{
+	case Shader::eSHADER_TYPE_COMPUTE:
+		{
+			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "cs_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
+			m_pDevice->CreateComputeShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11ComputeShader**) &pShader);
+			return new ComputeShader((ID3D11ComputeShader*)pShader);
+		} break;
+	case Shader::eSHADER_TYPE_DOMAIN:
+		{
+			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "ds_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
+			m_pDevice->CreateDomainShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11DomainShader**) &pShader);
+			return new DomainShader((ID3D11DomainShader*)pShader);
+		} break;
+	case Shader::eSHADER_TYPE_GEOMETRY:
+		{ 
+			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "gs_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
+			m_pDevice->CreateGeometryShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11GeometryShader**) &pShader);
+			return new GeometryShader((ID3D11GeometryShader*)pShader);
+		} break;
+	case Shader::eSHADER_TYPE_HULL:
+		{ 		
+			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "hs_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
+			m_pDevice->CreateHullShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11HullShader**) &pShader);
+			return new HullShader((ID3D11HullShader*)pShader);
+		} break;
+	case Shader::eSHADER_TYPE_PIXEL:
+		{
+			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "ps_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
+			m_pDevice->CreatePixelShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11PixelShader**) &pShader);
+			return new PixelShader((ID3D11PixelShader*)pShader);
+		} break;
+	case Shader::eSHADER_TYPE_VERTEX:
+		{ 
+			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "vs_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
+			m_pDevice->CreateVertexShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11VertexShader**)&pShader);
+			return new VertexShader((ID3D11VertexShader*)pShader);
+		} break;
+	}
+
+	return nullptr;
 }
 
 //---------------------------------------------------------------

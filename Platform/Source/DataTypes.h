@@ -6,6 +6,7 @@
 #include "Preprocessor.h"
 
 typedef wchar_t				utf16;
+typedef char				utf8;
 
 typedef	unsigned char		uint8;
 typedef	unsigned short		uint16;

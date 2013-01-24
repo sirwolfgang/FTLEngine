@@ -23,6 +23,7 @@
     <ClInclude Include="Source\DLLInterface.h" />
     <ClInclude Include="Source\Graphics.h" />
     <ClInclude Include="Source\Renderer.h" />
+    <ClInclude Include="Source\Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Platform\Platform.vcxproj">
@@ -32,6 +33,7 @@
   <ItemGroup>
     <None Include="Source\DLLInterface.inl" />
     <None Include="Source\Renderer.inl" />
+    <None Include="Source\Shader.inl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\DLLInterface.cpp" />

@@ -37,7 +37,10 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 		pRenderer->Startup();
 		{
 			float Color[4] = {0.33f, 0.33f, 0.33f, 1.00f};
-			pRenderer->ClearBuffer(Color);
+			pRenderer->ClearBackBuffer(Color);
+
+			Graphics::Shader* VertexShader	= pRenderer->CompileFromFile(L"Source/Shader.hlsl", "VShader", Graphics::Shader::eSHADER_TYPE_VERTEX);
+			Graphics::Shader* PixelShader	= pRenderer->CompileFromFile(L"Source/Shader.hlsl", "PShader", Graphics::Shader::eSHADER_TYPE_PIXEL);
 
 			pRenderer->Present();
 

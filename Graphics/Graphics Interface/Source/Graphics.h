@@ -6,3 +6,4 @@
 
 #include "Renderer.h"
 #include "DLLInterface.h"
+#include "Shader.h"
