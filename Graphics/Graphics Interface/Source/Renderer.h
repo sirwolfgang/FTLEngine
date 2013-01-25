@@ -5,6 +5,7 @@
 #pragma once
 #include <FTLPlatform.h>
 #include "Shader.h"
+#include "VertexBuffer.h"
 
 namespace Graphics
 {

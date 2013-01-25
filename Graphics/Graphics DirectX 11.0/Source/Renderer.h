@@ -7,6 +7,7 @@
 #include "DLL.h"
 #include "DirectX.h"
 #include "Shader.h"
+#include "VertexBuffer.h"
 
 namespace Graphics
 {
@@ -74,6 +75,11 @@ namespace Graphics
 		// Shader Management
 		//---------------------------------------------------------------
 		virtual Shader* CompileFromFile(utf16* _szFile, utf8* _szFunction, Shader::eSHADER_TYPES _eShaderType);
+
+		//---------------------------------------------------------------
+		// Buffer Management
+		//---------------------------------------------------------------
+		virtual VertexBuffer* CreateVertexBuffer(uint32 _nBufferSize, void* _pData, VertexFormat* _pFormat);
 
 		//---------------------------------------------------------------
 		// View Management
