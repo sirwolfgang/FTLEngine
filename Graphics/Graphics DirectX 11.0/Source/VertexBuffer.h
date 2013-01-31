@@ -5,17 +5,20 @@
 #pragma once
 #include <FTLGraphics.h>
 #include "DirectX.h"
+#include "VertexFormat.h"
 
 namespace Graphics
 {
 	class VertexBuffer_DX11_0 : public VertexBuffer
 	{
-		ID3D11Buffer* m_pBuffer; 
-		VertexFormat* m_pFormat;
+		ID3D11Buffer*			m_pBuffer; 
+		VertexFormat_DX11_0*	m_pFormat;
 
 		VertexBuffer_DX11_0();
 	public:
-		VertexBuffer_DX11_0(ID3D11Buffer* _pBuffer);
+		VertexBuffer_DX11_0(uint32 _nBufferSize, void* _pData, VertexFormat* _pFormat);
 		virtual ~VertexBuffer_DX11_0();
+
+		virtual void SetVertexBufferActive();
 	};
 };

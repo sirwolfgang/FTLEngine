@@ -271,42 +271,16 @@ Shader* Renderer_DX11_0::CompileFromFile(utf16* _szFile, utf8* _szFunction, Shad
 //---------------------------------------------------------------
 // Buffer Management
 //---------------------------------------------------------------
+VertexFormat* Renderer_DX11_0::CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength)
+{
+	return new VertexFormat_DX11_0(_VertexFormatArray, _nLength);
+}
+
+//---------------------------------------------------------------
 VertexBuffer* Renderer_DX11_0::CreateVertexBuffer(uint32 _nBufferSize, void* _pData, VertexFormat* _pFormat)
 {
-	D3D11_BUFFER_DESC BufferDescription;
-	ZeroMemory(&BufferDescription, sizeof(BufferDescription));
 
-	BufferDescription.Usage				= D3D11_USAGE_DEFAULT;
-	BufferDescription.ByteWidth			= _nBufferSize;
-	BufferDescription.BindFlags			= D3D11_BIND_VERTEX_BUFFER;
-	BufferDescription.CPUAccessFlags	= NULL;
-	BufferDescription.MiscFlags			= NULL;
-
-	ID3D11Buffer* pBuffer;
-	m_pDevice->CreateBuffer(&BufferDescription, NULL, &pBuffer);
-
-	D3D11_MAPPED_SUBRESOURCE MappedResouce;
-	m_pDeviceContext->Map(pBuffer, NULL, D3D11_MAP_WRITE_DISCARD, NULL, &MappedResouce);
-	memcpy_s(MappedResouce.pData, _nBufferSize, _pData, _nBufferSize);
-	m_pDeviceContext->Unmap(pBuffer, NULL);
-
-	//ID3D11InputLayout* pLayout;
-
-	//D3D11_INPUT_ELEMENT_DESC* pInputElementDescription = new D3D11_INPUT_ELEMENT_DESC[_nElementCount];
-	//for(uint32 i = 0; i < _nElementCount; ++i)
-	//{
-		// pInputElementDescription[i].SemanticName				= ;
-		// pInputElementDescription[i].SemanticIndex			= ;
-		// pInputElementDescription[i].Format					= ;
-		// pInputElementDescription[i].InputSlot				= ;
-		// pInputElementDescription[i].AlignedByteOffset		= ;
-		// pInputElementDescription[i].InputSlotClass			= ;
-		// pInputElementDescription[i].InstanceDataStepRate		= ;
-	//}
-
-
-
-	return new VertexBuffer_DX11_0(pBuffer);
+	return nullptr;
 }
 
 //---------------------------------------------------------------

@@ -33,6 +33,9 @@
     <ClInclude Include="Source\VertexBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\VertexFormat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
@@ -47,12 +50,18 @@
     <ClCompile Include="Source\VertexBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\VertexFormat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Shader.inl">
       <Filter>Inline Files</Filter>
     </None>
     <None Include="Source\Renderer.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="Source\VertexFormat.inl">
       <Filter>Inline Files</Filter>
     </None>
   </ItemGroup>

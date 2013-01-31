@@ -42,6 +42,13 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 			Graphics::Shader* VertexShader	= pRenderer->CompileFromFile(L"Source/Shader.hlsl", "VShader", Graphics::Shader::eSHADER_TYPE_VERTEX);
 			Graphics::Shader* PixelShader	= pRenderer->CompileFromFile(L"Source/Shader.hlsl", "PShader", Graphics::Shader::eSHADER_TYPE_PIXEL);
 
+			Graphics::VertexFormat::VertDataPair VertFormat[2] = 
+			{
+				{ Graphics::VertexFormat::eSEMANTICS_POSITION,	Graphics::VertexFormat::eDATASIZES_FLOAT3},
+				{ Graphics::VertexFormat::eSEMANTICS_COLOR,		Graphics::VertexFormat::eDATASIZES_FLOAT4},
+			};
+			pRenderer->CreateVertexFormat(VertFormat, 2);
+
 			VertexShader->SetShaderActive();
 			PixelShader->SetShaderActive();
 

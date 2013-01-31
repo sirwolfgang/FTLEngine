@@ -72,7 +72,13 @@ namespace Graphics
 		//---------------------------------------------------------------
 		// Shader Management
 		//---------------------------------------------------------------
-		virtual Shader* CompileFromFile(utf16* _szFile, utf8* _szFunction, Shader::eSHADER_TYPES _eShaderType)	= 0;
+		virtual Shader* CompileFromFile(utf16* _szFile, utf8* _szFunction, Shader::eSHADER_TYPES _eShaderType)		= 0;
+
+				//---------------------------------------------------------------
+		// Buffer Management
+		//---------------------------------------------------------------
+		virtual VertexFormat* CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength)	= 0;
+		virtual VertexBuffer* CreateVertexBuffer(uint32 _nBufferSize, void* _pData, VertexFormat* _pFormat)			= 0;
 
 		//---------------------------------------------------------------
 		// View Management

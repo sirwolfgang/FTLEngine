@@ -79,6 +79,7 @@ namespace Graphics
 		//---------------------------------------------------------------
 		// Buffer Management
 		//---------------------------------------------------------------
+		virtual VertexFormat* CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength);
 		virtual VertexBuffer* CreateVertexBuffer(uint32 _nBufferSize, void* _pData, VertexFormat* _pFormat);
 
 		//---------------------------------------------------------------
