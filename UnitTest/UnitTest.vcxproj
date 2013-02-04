@@ -151,8 +151,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Tests\Core\Core.h" />
     <ClInclude Include="Tests\Platform\DataTypes.h" />
+    <ClInclude Include="Tests\Platform\Handles.h" />
     <ClInclude Include="Tests\Platform\Platform.h" />
     <ClInclude Include="Tests\Platform\Timer.h" />
   </ItemGroup>

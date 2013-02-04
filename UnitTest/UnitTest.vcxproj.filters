@@ -4,9 +4,6 @@
     <Filter Include="Platform">
       <UniqueIdentifier>{8a20e2cb-2b81-486e-8735-ca8d330f060e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core">
-      <UniqueIdentifier>{70b39e86-796f-4081-9394-0520e2af8bce}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Tests\Platform\Platform.h">
@@ -18,8 +15,8 @@
     <ClInclude Include="Tests\Platform\DataTypes.h">
       <Filter>Platform</Filter>
     </ClInclude>
-    <ClInclude Include="Tests\Core\Core.h">
-      <Filter>Core</Filter>
+    <ClInclude Include="Tests\Platform\Handles.h">
+      <Filter>Platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

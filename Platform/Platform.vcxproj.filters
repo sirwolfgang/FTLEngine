@@ -15,6 +15,18 @@
     <Filter Include="Header Files\Collections">
       <UniqueIdentifier>{39002e1a-b838-4f14-aa56-267484de82d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Handles">
+      <UniqueIdentifier>{0ac1c2d9-1295-44e9-af4d-9385132e2db5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Handles\Header Files">
+      <UniqueIdentifier>{14af4f9a-f9e7-49a9-af3f-ac7257aa157a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Handles\Inline Files">
+      <UniqueIdentifier>{897a0990-9b8b-4211-8d3b-af82b88cb2a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Handles\Source Files">
+      <UniqueIdentifier>{ca3e6e68-63c3-443d-adc5-9bec98197a3f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DataTypes.h">
@@ -39,6 +51,15 @@
     <ClInclude Include="Source\Collections\Collections.h">
       <Filter>Header Files\Collections</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Handles\Handle.h">
+      <Filter>Handles\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Handles\Handles.h">
+      <Filter>Handles\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Handles\HandleManager.h">
+      <Filter>Handles\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Timer.cpp">
@@ -47,10 +68,19 @@
     <ClCompile Include="Source\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Handles\HandleManager.cpp">
+      <Filter>Handles\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Window.inl">
       <Filter>Inline Files</Filter>
+    </None>
+    <None Include="Source\Handles\Handle.inl">
+      <Filter>Handles\Inline Files</Filter>
+    </None>
+    <None Include="Source\Handles\HandleManager.inl">
+      <Filter>Handles\Inline Files</Filter>
     </None>
   </ItemGroup>
 </Project>

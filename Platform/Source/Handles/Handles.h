@@ -1,6 +1,8 @@
 //===============================================================
-// File:	Platform.h
-// Purpose: Inclusion for all the Platform Unit Tests
+// File:	Handles.h
+// Purpose: Entry Inclusion point for Handles section of platform
 //===============================================================
 #pragma once
-#include <FTLCore.h>
+
+#include "Handle.h"
+#include "HandleManager.h"
