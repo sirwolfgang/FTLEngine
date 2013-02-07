@@ -23,8 +23,8 @@ namespace Platform
 		uint32	GetReferenceCount();
 
 		Handle&	operator=(Handle const& _That);
-		Type	operator->();
-		Type	operator*();
+		Type&	operator->();
+		Type&	operator*();
 	};
 };
 

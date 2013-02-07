@@ -67,14 +67,14 @@ inline Platform::Handle<Type>& Platform::Handle<Type>::operator=(Handle const& _
 
 //---------------------------------------------------------------
 template <typename Type>
-inline Type Platform::Handle<Type>::operator->()
+inline Type& Platform::Handle<Type>::operator->()
 {
 	return *RetrieveEntry();
 }
 
 //---------------------------------------------------------------
 template <typename Type>
-inline Type Platform::Handle<Type>::operator*()
+inline Type& Platform::Handle<Type>::operator*()
 {
 	return *RetrieveEntry();
 }

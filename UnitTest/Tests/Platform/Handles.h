@@ -32,6 +32,26 @@ TEST(Platform_Handles, Are_Working)
 		hHandle_3	= hHandles[3];
 	}
 
+	(*hData[0]) = 7;
+	(*hData[1]) = 8;
+	(*hData[2]) = 9;
+
+	EXPECT_EQ(7, *hData[0]);
+	EXPECT_EQ(8, *hData[1]);
+	EXPECT_EQ(9, *hData[2]);
+
+	hData[3] = hData[2];
+	hData[4] = hData[1];
+
+	EXPECT_EQ(9, *hData[3]);
+	EXPECT_EQ(8, *hData[4]);
+
+	EXPECT_EQ(7, Data[0]);
+	EXPECT_EQ(8, Data[1]);
+	EXPECT_EQ(9, Data[2]);
+	EXPECT_EQ(3, Data[3]);
+	EXPECT_EQ(4, Data[4]);
+
 	for(uint32 i = 0; i < 5; ++i)
 		Manager.RemoveEntry(hData[i]);
 }
