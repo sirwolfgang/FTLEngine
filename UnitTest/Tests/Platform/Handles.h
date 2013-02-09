@@ -2,56 +2,61 @@
 // File:	Handles.h
 // Purpose: Platform/Handles Unit Tests
 //===============================================================
-
-TEST(Platform_Handles, Are_Working)
+TEST(Platform_Handles, Can_Store_Data)
 {
 	Platform::HandleManager Manager;
 
-	uint32 Data[5] = {0, 1, 2, 3, 4};
-	Platform::Handle<uint32> hData[5];
+	uint32 Data = 7;
+	Platform::Handle<uint32> hData(Manager.CreateHandle(&Data));
 
-	for(uint32 i = 0; i < 5; ++i)
-		hData[i] = Manager.CreateHandle(&Data[i]);
+	EXPECT_EQ(Data, *hData);
+}
 
-	EXPECT_EQ(0, *hData[0]);
-	EXPECT_EQ(1, *hData[1]);
-	EXPECT_EQ(2, *hData[2]);
-	EXPECT_EQ(3, *hData[3]);
-	EXPECT_EQ(4, *hData[4]);
+//---------------------------------------------------------------
+TEST(Platform_Handles, Modifiable_Values)
+{
+	Platform::HandleManager Manager;
+
+	uint32 Data = 0;
+	Platform::Handle<uint32> hData(Manager.CreateHandle(&Data));
+
+	uint32 i = 0;
+	for(Data = 0; Data < 10; (*hData)++)
+	{
+		EXPECT_EQ(Data, *hData);
+		EXPECT_EQ(i++, *hData);
+	}
+}
+
+//---------------------------------------------------------------
+TEST(Platform_Handles, Correct_Reference_Counting)
+{
+	Platform::HandleManager Manager;
+	Platform::Handle<uint32> hData[2];
+
+	uint32 Data = 5;
+	
+	// Creation
+	hData[0] = Manager.CreateHandle(&Data);
+	EXPECT_EQ(1, hData->GetReferenceCount());
+
+	// Assigment Into
+	hData[1] = hData[0];
+	EXPECT_EQ(2, hData->GetReferenceCount());
+
+	// Assigment Over
+	hData[1] = Platform::Handle<uint32>();
+	EXPECT_EQ(1, hData->GetReferenceCount());
 
 	{
-		Platform::Handle<uint32> hHandles[4];
-		Platform::Handle<uint32> hHandle_1 = hData[1];
-		Platform::Handle<uint32> hHandle_3 = hData[3];
-
-		hHandles[0] = hHandle_1;
-		hHandle_1	= hHandle_3;
-		hHandles[1] = hHandles[0];
-		hHandles[2] = hHandles[2];
-		hHandles[2] = hHandle_3;
-		hHandle_3	= hHandles[3];
+		// Copy Constructor
+		Platform::Handle<uint32> tmpHandle(hData[0]);
+		EXPECT_EQ(2, hData->GetReferenceCount());
 	}
+	// Destruction
+	EXPECT_EQ(1, hData->GetReferenceCount());
 
-	(*hData[0]) = 7;
-	(*hData[1]) = 8;
-	(*hData[2]) = 9;
-
-	EXPECT_EQ(7, *hData[0]);
-	EXPECT_EQ(8, *hData[1]);
-	EXPECT_EQ(9, *hData[2]);
-
-	hData[3] = hData[2];
-	hData[4] = hData[1];
-
-	EXPECT_EQ(9, *hData[3]);
-	EXPECT_EQ(8, *hData[4]);
-
-	EXPECT_EQ(7, Data[0]);
-	EXPECT_EQ(8, Data[1]);
-	EXPECT_EQ(9, Data[2]);
-	EXPECT_EQ(3, Data[3]);
-	EXPECT_EQ(4, Data[4]);
-
-	for(uint32 i = 0; i < 5; ++i)
-		Manager.RemoveEntry(hData[i]);
+	// Removing Entry
+	Manager.RemoveEntry(hData[0]);
+	EXPECT_EQ(0, hData->GetReferenceCount());
 }

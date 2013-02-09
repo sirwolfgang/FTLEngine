@@ -15,10 +15,6 @@ inline Platform::Handle<Type> Platform::HandleManager::CreateHandle(Type* _pEntr
 
 		m_Handles[Index].m_nReferenceCount	= 1;
 		m_Handles[Index].m_pEntry			= _pEntry;	
-
-		hHandle.m_nIndex	= Index;
-		hHandle.m_nUsageID	= m_Handles[Index].m_nUsageID;
-		hHandle.m_pManager	= this;
 	}
 	else
 	{
@@ -29,11 +25,11 @@ inline Platform::Handle<Type> Platform::HandleManager::CreateHandle(Type* _pEntr
 
 		m_Handles.push_back(Entry);
 		Index = m_Handles.size() - 1;
-
-		hHandle.m_nIndex	= Index;
-		hHandle.m_nUsageID	= m_Handles[Index].m_nUsageID;
-		hHandle.m_pManager	= this;
 	}
+
+	hHandle.m_nIndex	= Index;
+	hHandle.m_nUsageID	= m_Handles[Index].m_nUsageID;
+	hHandle.m_pManager	= this;
 
 	return hHandle;
 }

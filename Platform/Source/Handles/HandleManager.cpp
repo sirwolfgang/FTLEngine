@@ -63,7 +63,7 @@ void HandleManager::ReleaseReference(memsize _nIndex, uint32 _nUsageID)
 {
 	if(m_Handles[_nIndex].m_nUsageID == _nUsageID)
 	{
-		// TODO:: Assert on ReferenceCount is 0
+		// TODO:: Error on ReferenceCount is already 0
 		m_Handles[_nIndex].m_nReferenceCount--;
 	}
 }
