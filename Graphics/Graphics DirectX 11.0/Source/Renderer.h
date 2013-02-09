@@ -25,6 +25,8 @@ namespace Graphics
 
 		bool					m_bIsFullscreen;
 
+		Platform::HandleManager m_HandleManager;
+
 	public:
 		//---------------------------------------------------------------
 		// Singleton
@@ -74,13 +76,13 @@ namespace Graphics
 		//---------------------------------------------------------------
 		// Shader Management
 		//---------------------------------------------------------------
-		virtual Shader* CompileFromFile(utf16* _szFile, utf8* _szFunction, Shader::eSHADER_TYPES _eShaderType);
+		virtual Handle<Shader> CompileFromFile(utf16* _szFile, utf8* _szFunction, Shader::eSHADER_TYPES _eShaderType);
 
 		//---------------------------------------------------------------
 		// Buffer Management
 		//---------------------------------------------------------------
-		virtual VertexFormat* CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength);
-		virtual VertexBuffer* CreateVertexBuffer(uint32 _nBufferSize, void* _pData, VertexFormat* _pFormat);
+		virtual Handle<VertexFormat> CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength);
+		virtual Handle<VertexBuffer> CreateVertexBuffer(uint32 _nBufferSize, void* _pData, VertexFormat* _pFormat);
 
 		//---------------------------------------------------------------
 		// View Management

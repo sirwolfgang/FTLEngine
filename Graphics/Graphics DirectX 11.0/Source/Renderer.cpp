@@ -123,6 +123,9 @@ void Renderer_DX11_0::Startup()
 //---------------------------------------------------------------
 void Renderer_DX11_0::Shutdown()
 {
+	// TODO:: Clean up Memory, Handles
+	// m_HandleManager
+
 	RELEASE_COM(m_pBackBuffer);
 
 	if(m_pSwapChain)
@@ -219,7 +222,7 @@ void Renderer_DX11_0::Present()
 //---------------------------------------------------------------
 // Shader Management
 //---------------------------------------------------------------
-Shader* Renderer_DX11_0::CompileFromFile(utf16* _szFile, utf8* _szFunction, Shader::eSHADER_TYPES _eShaderType)
+Handle<Shader> Renderer_DX11_0::CompileFromFile(utf16* _szFile, utf8* _szFunction, Shader::eSHADER_TYPES _eShaderType)
 {
 	ID3DBlob*	pCompiledCode	= nullptr;
 	ID3DBlob*	pErrorMessage	= nullptr;
@@ -231,56 +234,55 @@ Shader* Renderer_DX11_0::CompileFromFile(utf16* _szFile, utf8* _szFunction, Shad
 		{
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "cs_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreateComputeShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11ComputeShader**) &pShader);
-			return new ComputeShader((ID3D11ComputeShader*)pShader);
+			return m_HandleManager.CreateHandle((Shader*) new ComputeShader((ID3D11ComputeShader*)pShader));
 		} break;
 	case Shader::eSHADER_TYPE_DOMAIN:
 		{
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "ds_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreateDomainShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11DomainShader**) &pShader);
-			return new DomainShader((ID3D11DomainShader*)pShader);
+			return m_HandleManager.CreateHandle((Shader*) new DomainShader((ID3D11DomainShader*)pShader));
 		} break;
 	case Shader::eSHADER_TYPE_GEOMETRY:
 		{ 
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "gs_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreateGeometryShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11GeometryShader**) &pShader);
-			return new GeometryShader((ID3D11GeometryShader*)pShader);
+			return m_HandleManager.CreateHandle((Shader*) new GeometryShader((ID3D11GeometryShader*)pShader));
 		} break;
 	case Shader::eSHADER_TYPE_HULL:
 		{ 		
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "hs_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreateHullShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11HullShader**) &pShader);
-			return new HullShader((ID3D11HullShader*)pShader);
+			return m_HandleManager.CreateHandle((Shader*) new HullShader((ID3D11HullShader*)pShader));
 		} break;
 	case Shader::eSHADER_TYPE_PIXEL:
 		{
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "ps_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreatePixelShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11PixelShader**) &pShader);
-			return new PixelShader((ID3D11PixelShader*)pShader);
+			return m_HandleManager.CreateHandle((Shader*) new PixelShader((ID3D11PixelShader*)pShader));
 		} break;
 	case Shader::eSHADER_TYPE_VERTEX:
 		{ 
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "vs_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreateVertexShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11VertexShader**)&pShader);
-			return new VertexShader((ID3D11VertexShader*)pShader);
+			return m_HandleManager.CreateHandle((Shader*) new VertexShader((ID3D11VertexShader*)pShader));
 		} break;
 	}
 
-	return nullptr;
+	return Handle<Shader>();
 }
 
 //---------------------------------------------------------------
 // Buffer Management
 //---------------------------------------------------------------
-VertexFormat* Renderer_DX11_0::CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength)
+Handle<VertexFormat> Renderer_DX11_0::CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength)
 {
-	return new VertexFormat_DX11_0(_VertexFormatArray, _nLength);
+	return m_HandleManager.CreateHandle((VertexFormat*)new VertexFormat_DX11_0(_VertexFormatArray, _nLength));
 }
 
 //---------------------------------------------------------------
-VertexBuffer* Renderer_DX11_0::CreateVertexBuffer(uint32 _nBufferSize, void* _pData, VertexFormat* _pFormat)
+Handle<VertexBuffer> Renderer_DX11_0::CreateVertexBuffer(uint32 _nBufferSize, void* _pData, VertexFormat* _pFormat)
 {
-
-	return nullptr;
+	return Handle<VertexBuffer>();
 }
 
 //---------------------------------------------------------------

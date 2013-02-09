@@ -40,6 +40,11 @@
     <None Include="Source\Shader.inl" />
     <None Include="Source\VertexFormat.inl" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Platform\Platform.vcxproj">
+      <Project>{78624e3f-3cb8-4afa-9886-2ac60cbb423b}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BFF11BF9-B603-4FE9-A1C7-A4C1CC3F4195}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
