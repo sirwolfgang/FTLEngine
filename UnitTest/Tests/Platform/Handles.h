@@ -60,3 +60,31 @@ TEST(Platform_Handles, Correct_Reference_Counting)
 	Manager.RemoveEntry(hData[0]);
 	EXPECT_EQ(0, hData->GetReferenceCount());
 }
+
+//---------------------------------------------------------------
+TEST(Platform_Handles, Is_Boolable)
+{
+	Platform::HandleManager Manager;
+	Platform::Handle<uint32> hData;
+
+	// Empty Handle
+	EXPECT_FALSE(hData);
+
+	uint32 Data = 5;
+	hData = Manager.CreateHandle(&Data);
+
+	// Full Handle
+	EXPECT_TRUE(hData);
+
+	Manager.RemoveEntry(hData);
+
+	// Removed Handle
+	EXPECT_FALSE(hData);
+
+	// Assigned Handle
+	hData = Manager.CreateHandle(&Data);
+	EXPECT_TRUE(hData);
+
+	hData = Platform::Handle<uint32>();
+	EXPECT_FALSE(hData);
+}

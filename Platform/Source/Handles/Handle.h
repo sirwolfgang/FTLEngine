@@ -25,6 +25,8 @@ namespace Platform
 		Handle&	operator=(Handle const& _That);
 		Type*	operator->();
 		Type&	operator*();
+
+		operator bool();
 	};
 };
 

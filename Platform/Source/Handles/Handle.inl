@@ -78,3 +78,10 @@ inline Type& Platform::Handle<Type>::operator*()
 {
 	return *RetrieveEntry();
 }
+
+//---------------------------------------------------------------
+template <typename Type>
+inline Platform::Handle<Type>::operator bool()
+{
+	return (m_pManager != nullptr);
+}
