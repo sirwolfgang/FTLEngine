@@ -10,23 +10,22 @@ using namespace Graphics;
 VertexFormat_DX11_0::VertexFormat_DX11_0()
 {
 	memset(m_VertexFormat, NULL, sizeof(m_VertexFormat));
-	m_VertexFormatLength	= NULL;
+	m_VertexElements		= NULL;
 	m_VertexSize			= NULL;
 }
 
 //---------------------------------------------------------------
-VertexFormat_DX11_0::VertexFormat_DX11_0(VertDataPair _VertexFormatArray[], uint32 _nLength)
+VertexFormat_DX11_0::VertexFormat_DX11_0(VertDataPair _VertexFormatArray[], uint32 _nElements)
 {
 	memset(m_VertexFormat, NULL, sizeof(m_VertexFormat));
-	m_VertexFormatLength	= _nLength;
+	m_VertexElements		= _nElements;
 	m_VertexSize			= NULL;
 
-	for(memsize i = 0; i < m_VertexFormatLength; ++i)
+	for(memsize i = 0; i < m_VertexElements; ++i)
 	{
 		// SemanticName
 		switch (_VertexFormatArray[i].Semantic)
 		{
-		case eSEMANTICS_NONE:			{ m_VertexFormat[i].SemanticName = "";				} break;
 		case eSEMANTICS_POSITION:		{ m_VertexFormat[i].SemanticName = "POSITION";		} break;
 		case eSEMANTICS_NORMAL:			{ m_VertexFormat[i].SemanticName = "NORMAL";		} break;
 		case eSEMANTICS_TANGENT:		{ m_VertexFormat[i].SemanticName = "TANGENT";		} break;
@@ -37,6 +36,7 @@ VertexFormat_DX11_0::VertexFormat_DX11_0(VertDataPair _VertexFormatArray[], uint
 		case eSEMANTICS_BLENDWEIGHT:	{ m_VertexFormat[i].SemanticName = "BLENDWEIGHT";	} break;
 		case eSEMANTICS_FOGCOORD:		{ m_VertexFormat[i].SemanticName = "FOGCOORD";		} break;
 		case eSEMANTICS_PSIZE:			{ m_VertexFormat[i].SemanticName = "PSIZE";			} break;
+		case eSEMANTICS_NONE:
 		default:						{ m_VertexFormat[i].SemanticName = "";				} break;
 		}
 
@@ -47,19 +47,18 @@ VertexFormat_DX11_0::VertexFormat_DX11_0(VertDataPair _VertexFormatArray[], uint
 		// Format
 		switch (_VertexFormatArray[i].DataSize)
 		{
-		case eDATASIZES_FLOAT1:		{ m_VertexSize += sizeof(float32);	m_VertexFormat[i].Format = DXGI_FORMAT_R32_FLOAT;				} break;
-		case eDATASIZES_FLOAT2:		{ m_VertexSize += sizeof(float32);	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32_FLOAT;			} break;
-		case eDATASIZES_FLOAT3:		{ m_VertexSize += sizeof(float32);	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32_FLOAT;			} break;
-		case eDATASIZES_FLOAT4:		{ m_VertexSize += sizeof(float32);	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;		} break;
-		case eDATASIZES_UINT1:		{ m_VertexSize += sizeof(uint32);	m_VertexFormat[i].Format = DXGI_FORMAT_R32_UINT;				} break;
-		case eDATASIZES_UINT2:		{ m_VertexSize += sizeof(uint32);	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32_UINT;				} break;
-		case eDATASIZES_UINT3:		{ m_VertexSize += sizeof(uint32);	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32_UINT;			} break;
-		case eDATASIZES_UINT4:		{ m_VertexSize += sizeof(uint32);	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32A32_UINT;		} break;
-		case eDATASIZES_INT1:		{ m_VertexSize += sizeof(uint32);	m_VertexFormat[i].Format = DXGI_FORMAT_R32_SINT;				} break;
-		case eDATASIZES_INT2:		{ m_VertexSize += sizeof(int32);	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32_SINT;				} break;
-		case eDATASIZES_INT3:		{ m_VertexSize += sizeof(int32);	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32_SINT;			} break;
-		case eDATASIZES_INT4:		{ m_VertexSize += sizeof(int32);	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32A32_SINT;		} break;
-		default:					{ m_VertexSize += sizeof(int32);	m_VertexFormat[i].Format = DXGI_FORMAT_UNKNOWN;					} break;
+		case eDATASIZES_FLOAT1:		{ m_VertexSize += sizeof(float32)	* 1;	m_VertexFormat[i].Format = DXGI_FORMAT_R32_FLOAT;				} break;
+		case eDATASIZES_FLOAT2:		{ m_VertexSize += sizeof(float32)	* 2;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32_FLOAT;			} break;
+		case eDATASIZES_FLOAT3:		{ m_VertexSize += sizeof(float32)	* 3;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32_FLOAT;			} break;
+		case eDATASIZES_FLOAT4:		{ m_VertexSize += sizeof(float32)	* 4;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;		} break;
+		case eDATASIZES_UINT1:		{ m_VertexSize += sizeof(uint32)	* 1;	m_VertexFormat[i].Format = DXGI_FORMAT_R32_UINT;				} break;
+		case eDATASIZES_UINT2:		{ m_VertexSize += sizeof(uint32)	* 2;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32_UINT;				} break;
+		case eDATASIZES_UINT3:		{ m_VertexSize += sizeof(uint32)	* 3;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32_UINT;			} break;
+		case eDATASIZES_UINT4:		{ m_VertexSize += sizeof(uint32)	* 4;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32A32_UINT;		} break;
+		case eDATASIZES_INT1:		{ m_VertexSize += sizeof(int32)		* 1;	m_VertexFormat[i].Format = DXGI_FORMAT_R32_SINT;				} break;
+		case eDATASIZES_INT2:		{ m_VertexSize += sizeof(int32)		* 2;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32_SINT;				} break;
+		case eDATASIZES_INT3:		{ m_VertexSize += sizeof(int32)		* 3;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32_SINT;			} break;
+		case eDATASIZES_INT4:		{ m_VertexSize += sizeof(int32)		* 4;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32A32_SINT;		} break;
 		}
 
 		// InputSlot
