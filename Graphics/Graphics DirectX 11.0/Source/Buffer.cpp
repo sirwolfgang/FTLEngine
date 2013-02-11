@@ -3,6 +3,7 @@
 // Purpose: Handle Buffer Functionality
 //===============================================================
 #include "Buffer.h"
+#include "Renderer.h"
 using namespace Graphics;
 
 //---------------------------------------------------------------
@@ -51,5 +52,5 @@ VertexBuffer_DX11_0::VertexBuffer_DX11_0(ID3D11Buffer* _pBuffer)
 //---------------------------------------------------------------
 void VertexBuffer_DX11_0::SetBufferActive()
 {
-
+	Renderer_DX11_0::Instance()->SetVertexBufferActive(this);
 }

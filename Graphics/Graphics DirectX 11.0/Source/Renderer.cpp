@@ -173,6 +173,20 @@ void Renderer_DX11_0::Present()
 }
 
 //---------------------------------------------------------------
+void Renderer_DX11_0::Draw(uint32 _nVertexCount, uint32 _nFirstVertex)
+{
+	m_pDeviceContext->Draw(_nVertexCount, _nFirstVertex);
+}
+
+//---------------------------------------------------------------
+// Primitive Management
+//---------------------------------------------------------------
+void Renderer_DX11_0::SetPrimitiveTopology(Primitive::eTOPOLOGY _eTopology)
+{
+	m_pDeviceContext->IASetPrimitiveTopology((D3D_PRIMITIVE_TOPOLOGY)Primitive::Topology_DX11_0[_eTopology]);
+}
+
+//---------------------------------------------------------------
 // Shader Management
 //---------------------------------------------------------------
 Handle<Shader> Renderer_DX11_0::CompileFromFile(utf16* _szFile, utf8* _szFunction, Shader::eSHADER_TYPES _eShaderType)
@@ -314,7 +328,7 @@ HVertexBuffer Renderer_DX11_0::CreateVertexBuffer(uint32 _nBufferSize, void* _pD
 	ID3D11Buffer* pVertexBuffer = nullptr;
 	m_pDevice->CreateBuffer(&BufferDescription, &SubresourceData, &pVertexBuffer);
 
-	return HVertexBuffer();
+	return m_HandleManager.CreateHandle((Buffer*)new VertexBuffer_DX11_0(pVertexBuffer));
 }
 
 //---------------------------------------------------------------
@@ -327,6 +341,10 @@ void Renderer_DX11_0::SetVertexBufferActive(HVertexBuffer _hVertexBuffer)
 void Renderer_DX11_0::SetVertexBufferActive(VertexBuffer_DX11_0* _pVertexBuffer)
 {
 	m_pActiveVertexBuffer = _pVertexBuffer;
+
+	// UINT stride = sizeof(VERTEX);
+	// UINT offset = 0;
+	// devcon->IASetVertexBuffers(0, 1, &pVBuffer, &stride, &offset);
 }
 
 //---------------------------------------------------------------

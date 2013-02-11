@@ -76,6 +76,14 @@ inline bool Graphics::Renderer_DX11_0::GetDebugMode()
 }
 
 //---------------------------------------------------------------
+// Primitive Management
+//---------------------------------------------------------------
+inline Graphics::Primitive::eTOPOLOGY Graphics::Renderer_DX11_0::GetPrimitiveTopology()
+{
+	return m_eActivePrimitiveTopology;
+}
+
+//---------------------------------------------------------------
 // View Management
 //---------------------------------------------------------------
 inline bool Graphics::Renderer_DX11_0::IsFullscreen()

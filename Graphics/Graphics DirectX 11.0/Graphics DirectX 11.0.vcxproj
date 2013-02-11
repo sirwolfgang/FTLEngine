@@ -25,6 +25,7 @@
     <ClInclude Include="Source\DLL.h" />
     <ClInclude Include="Source\Graphics.h" />
     <ClInclude Include="Source\InputLayout.h" />
+    <ClInclude Include="Source\Primitive.h" />
     <ClInclude Include="Source\Renderer.h" />
     <ClInclude Include="Source\Shader.h" />
     <ClInclude Include="Source\VertexFormat.h" />
@@ -33,6 +34,7 @@
     <ClCompile Include="Source\Buffer.cpp" />
     <ClCompile Include="Source\InputLayout.cpp" />
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Primitive.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
     <ClCompile Include="Source\VertexFormat.cpp" />
   </ItemGroup>

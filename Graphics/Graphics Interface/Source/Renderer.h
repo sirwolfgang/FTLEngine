@@ -7,6 +7,7 @@
 #include "Shader.h"
 #include "Buffer.h"
 #include "VertexFormat.h"
+#include "Primitive.h"
 using Platform::Handle;
 
 namespace Graphics
@@ -70,6 +71,14 @@ namespace Graphics
 		virtual void PreDraw()							= 0;
 		virtual void PostDraw()							= 0;
 		virtual void Present()							= 0;
+
+		virtual void Draw(uint32 _nVertexCount, uint32 _nFirstVertex) = 0;
+
+		//---------------------------------------------------------------
+		// Primitive Management
+		//---------------------------------------------------------------
+		virtual void					SetPrimitiveTopology(Primitive::eTOPOLOGY _eTopology)	= 0;
+		virtual Primitive::eTOPOLOGY	GetPrimitiveTopology()									= 0;
 
 		//---------------------------------------------------------------
 		// Shader Management

@@ -8,6 +8,12 @@ using Platform::Window;
 using Graphics::Renderer;
 using Graphics::RendererDLL;
 
+struct Vertex
+{
+	float Position[3];
+	float Color[4];
+};
+
 int CALLBACK WinMain(HINSTANCE _hInstance, 
 					 HINSTANCE _hPrevInstance, 
 					 LPSTR _lpCmdLine, 
@@ -39,9 +45,11 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 			float Color[4] = {0.33f, 0.33f, 0.33f, 1.00f};
 			pRenderer->ClearBackBuffer(Color);
 
+			// Shaders
 			Graphics::HShader VertexShader	= pRenderer->CompileFromFile(L"Source/Shader.hlsl", "VShader", Graphics::Shader::eSHADER_TYPE_VERTEX);
 			Graphics::HShader PixelShader	= pRenderer->CompileFromFile(L"Source/Shader.hlsl", "PShader", Graphics::Shader::eSHADER_TYPE_PIXEL);
 
+			// Vertex Format
 			Graphics::VertexFormat::VertDataPair VertFormat[2] = 
 			{
 				{ Graphics::VertexFormat::eSEMANTICS_POSITION,	Graphics::VertexFormat::eDATASIZES_FLOAT3},
@@ -50,9 +58,21 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 			
 			Graphics::HVertexFormat hVertexFormat = pRenderer->CreateVertexFormat(VertFormat, 2);
 
+			// Vertex Buffer
+			Vertex VertexBuffer[] =
+			{
+				{ 0.00f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f},
+				{ 0.45f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f},
+				{-0.45f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f},
+			};
+
+			Graphics::HVertexBuffer hVertexBuffer = pRenderer->CreateVertexBuffer(hVertexFormat->GetVertexSize() * 3, &VertexBuffer);
+
+			// Activate Settings
 			VertexShader->SetShaderActive();
 			PixelShader->SetShaderActive();
 			hVertexFormat->SetVertexFormatActive();
+			hVertexBuffer->SetBufferActive();
 
 			pRenderer->Present();
 

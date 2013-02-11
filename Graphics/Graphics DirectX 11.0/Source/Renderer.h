@@ -9,6 +9,7 @@
 #include "Shader.h"
 #include "Buffer.h"
 #include "VertexFormat.h"
+#include "Primitive.h"
 
 namespace Graphics
 {
@@ -38,6 +39,8 @@ namespace Graphics
 
 		VertexFormat_DX11_0*	m_pActiveVertexFormat;
 		VertexBuffer_DX11_0*	m_pActiveVertexBuffer;
+
+		Primitive::eTOPOLOGY	m_eActivePrimitiveTopology;
 
 	public:
 		//---------------------------------------------------------------
@@ -84,6 +87,14 @@ namespace Graphics
 		virtual void PreDraw();
 		virtual void PostDraw();
 		virtual void Present();
+
+		virtual void Draw(uint32 _nVertexCount, uint32 _nFirstVertex);
+
+		//---------------------------------------------------------------
+		// Primitive Management
+		//---------------------------------------------------------------
+		virtual void					SetPrimitiveTopology(Primitive::eTOPOLOGY _eTopology);
+		virtual Primitive::eTOPOLOGY	GetPrimitiveTopology();
 
 		//---------------------------------------------------------------
 		// Shader Management
