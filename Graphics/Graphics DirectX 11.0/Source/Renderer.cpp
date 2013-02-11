@@ -13,17 +13,20 @@ Renderer_DX11_0* Renderer_DX11_0::sm_pInstance = nullptr;
 //---------------------------------------------------------------
 // Class Construction
 //---------------------------------------------------------------
-Renderer_DX11_0::Renderer_DX11_0()
+Renderer_DX11_0::Renderer_DX11_0() 
+	: m_pDevice(nullptr), 
+	m_pDeviceContext(nullptr), 
+	m_pSwapChain(nullptr), 
+	m_pBackBuffer(nullptr), 
+	m_bIsFullscreen(false), 
+	m_pActiveComputeShader(nullptr), 
+	m_pActiveDomainShader(nullptr), 
+	m_pActiveGeometry(nullptr), 
+	m_pActiveHull(nullptr), 
+	m_pActivePixel(nullptr), 
+	m_pActiveVertex(nullptr)
 {
-	sm_pInstance		= this;
-
-	m_pDevice			= nullptr;
-	m_pDeviceContext	= nullptr;
-	m_pSwapChain		= nullptr;
-
-	m_pBackBuffer		= nullptr;
-
-	m_bIsFullscreen		= false;
+	sm_pInstance = this;
 }
 
 //---------------------------------------------------------------
@@ -141,56 +144,6 @@ void Renderer_DX11_0::Restart()
 {
 	Shutdown();
 	Startup();
-}
-
-//---------------------------------------------------------------
-// Rendering Settings
-//---------------------------------------------------------------
-uint32 Renderer_DX11_0::GetWidth()
-{
-	return m_StarupSettings.nWidth;
-}
-
-//---------------------------------------------------------------
-uint32 Renderer_DX11_0::GetHeight()
-{
-	return m_StarupSettings.nHeight;
-}
-
-//---------------------------------------------------------------
-uint32 Renderer_DX11_0::GetRefreshRate()
-{
-	return m_StarupSettings.nRefreshRate;
-}
-
-//---------------------------------------------------------------
-uint32 Renderer_DX11_0::GetMSAASamples()
-{
-	return m_StarupSettings.nMSAASamples;
-}
-
-//---------------------------------------------------------------
-uint32 Renderer_DX11_0::GetSampleQuality()
-{
-	return m_StarupSettings.nSampleQuality;
-}
-
-//---------------------------------------------------------------
-uint32 Renderer_DX11_0::GetBuffersCount()
-{
-	return m_StarupSettings.nBufferCount;
-}
-
-//---------------------------------------------------------------
-Renderer_DX11_0::eDriverMode Renderer_DX11_0::GetDriverMode()
-{
-	return m_StarupSettings.eDriverMode;
-}
-
-//---------------------------------------------------------------
-bool Renderer_DX11_0::GetDebugMode()
-{
-	return m_StarupSettings.bDebugMode;
 }
 
 //---------------------------------------------------------------
@@ -331,12 +284,6 @@ Handle<VertexBuffer> Renderer_DX11_0::CreateVertexBuffer(uint32 _nBufferSize, vo
 
 //---------------------------------------------------------------
 // View Management
-//---------------------------------------------------------------
-bool Renderer_DX11_0::IsFullscreen()
-{
-	return m_bIsFullscreen;
-}
-
 //---------------------------------------------------------------
 void Renderer_DX11_0::SetFullscreen(bool _bFullscreen)
 {
