@@ -9,100 +9,37 @@
 namespace Graphics
 {
 	//---------------------------------------------------------------
-	// ComputeShader
+	// BaseShader
 	//---------------------------------------------------------------
-	class ComputeShader : public Shader
+	template <typename PointerType, Shader::eSHADER_TYPES ShaderType>
+	class BaseShader : public Shader
 	{
-		ID3D11ComputeShader* m_pShader;
+		PointerType* m_pShader;
 
-		ComputeShader();
+		BaseShader();
+		BaseShader(BaseShader const& _That);
+		BaseShader& operator=(BaseShader const& _That);
+		
 	public:
-		ComputeShader(ID3D11ComputeShader* _pShader);
-		virtual ~ComputeShader();
+		BaseShader(PointerType* _pShader);
+		virtual ~BaseShader();
 
 		virtual eSHADER_TYPES	GetShaderType();
 		virtual void			SetShaderActive();
+
+		PointerType*			GetShader();
 	};
 
 	//---------------------------------------------------------------
-	// DomainShader
+	// Shaders
 	//---------------------------------------------------------------
-	class DomainShader : public Shader
-	{
-		ID3D11DomainShader* m_pShader;
+	typedef BaseShader<ID3D11ComputeShader,		Shader::eSHADER_TYPE_COMPUTE>	ComputeShader;
+	typedef BaseShader<ID3D11DomainShader,		Shader::eSHADER_TYPE_DOMAIN>	DomainShader;
+	typedef BaseShader<ID3D11GeometryShader,	Shader::eSHADER_TYPE_GEOMETRY>	GeometryShader;
+	typedef BaseShader<ID3D11HullShader,		Shader::eSHADER_TYPE_HULL>		HullShader;
+	typedef BaseShader<ID3D11PixelShader,		Shader::eSHADER_TYPE_PIXEL>		PixelShader;
+	typedef BaseShader<ID3D11VertexShader,		Shader::eSHADER_TYPE_VERTEX>	VertexShader;
 
-		DomainShader();
-	public:
-		DomainShader(ID3D11DomainShader* _pShader);
-		virtual ~DomainShader();
-
-		virtual eSHADER_TYPES	GetShaderType();
-		virtual void			SetShaderActive();
-	};
-
-	//---------------------------------------------------------------
-	// GeometryShader
-	//---------------------------------------------------------------
-	class GeometryShader : public Shader
-	{		
-		ID3D11GeometryShader* m_pShader;
-
-		GeometryShader();
-	public:
-		GeometryShader(ID3D11GeometryShader* _pShader);
-		virtual ~GeometryShader();
-
-		virtual eSHADER_TYPES	GetShaderType();
-		virtual void			SetShaderActive();
-	};
-
-	//---------------------------------------------------------------
-	// HullShader
-	//---------------------------------------------------------------
-	class HullShader : public Shader
-	{
-		ID3D11HullShader* m_pShader;
-
-		HullShader();
-	public:
-		HullShader(ID3D11HullShader* _pShader);
-		virtual ~HullShader();
-
-		virtual eSHADER_TYPES	GetShaderType();
-		virtual void			SetShaderActive();
-	};
-
-	//---------------------------------------------------------------
-	// PixelShader
-	//---------------------------------------------------------------
-	class PixelShader : public Shader
-	{
-		ID3D11PixelShader* m_pShader;
-
-		PixelShader();
-	public:
-		PixelShader(ID3D11PixelShader* _pShader);
-		virtual ~PixelShader();
-
-		virtual eSHADER_TYPES	GetShaderType();
-		virtual void			SetShaderActive();
-	};
-
-	//---------------------------------------------------------------
-	// VertexShader
-	//---------------------------------------------------------------
-	class VertexShader : public Shader
-	{
-		ID3D11VertexShader* m_pShader;
-
-		VertexShader();
-	public:
-		VertexShader(ID3D11VertexShader* _pShader);
-		virtual ~VertexShader();
-
-		virtual eSHADER_TYPES	GetShaderType();
-		virtual void			SetShaderActive();
-	};
 }
 
 #include "Shader.inl"

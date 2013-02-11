@@ -272,6 +272,50 @@ Handle<Shader> Renderer_DX11_0::CompileFromFile(utf16* _szFile, utf8* _szFunctio
 }
 
 //---------------------------------------------------------------
+void Renderer_DX11_0::SetShaderActive(HShader _hShader)
+{
+	SetShaderActive(_hShader.RetrieveEntry());
+}
+
+//---------------------------------------------------------------
+void Renderer_DX11_0::SetShaderActive(Shader* _pShader)
+{
+	switch(_pShader->GetShaderType())
+	{
+	case Shader::eSHADER_TYPE_COMPUTE:
+		{
+			m_pActiveComputeShader = _pShader;
+			m_pDeviceContext->CSSetShader((_pShader) ? ((ComputeShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
+		} break;
+	case Shader::eSHADER_TYPE_DOMAIN:
+		{
+			m_pActiveDomainShader = _pShader;
+			m_pDeviceContext->DSSetShader((_pShader) ? ((DomainShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
+		} break;
+	case Shader::eSHADER_TYPE_GEOMETRY:
+		{
+			m_pActiveGeometry = _pShader;
+			m_pDeviceContext->GSSetShader((_pShader) ? ((GeometryShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
+		} break;
+	case Shader::eSHADER_TYPE_HULL:
+		{
+			m_pActiveHull = _pShader;
+			m_pDeviceContext->HSSetShader((_pShader) ? ((HullShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
+		} break;
+	case Shader::eSHADER_TYPE_PIXEL:
+		{
+			m_pActivePixel = _pShader;
+			m_pDeviceContext->PSSetShader((_pShader) ? ((PixelShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
+		} break;
+	case Shader::eSHADER_TYPE_VERTEX:
+		{
+			m_pActiveVertex = _pShader;
+			m_pDeviceContext->VSSetShader((_pShader) ? ((VertexShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
+		} break;
+	}
+}
+
+//---------------------------------------------------------------
 // Buffer Management
 //---------------------------------------------------------------
 Handle<VertexFormat> Renderer_DX11_0::CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength)

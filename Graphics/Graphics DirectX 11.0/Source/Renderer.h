@@ -23,9 +23,16 @@ namespace Graphics
 
 		ID3D11RenderTargetView* m_pBackBuffer;
 
-		bool					m_bIsFullscreen;
-
 		Platform::HandleManager m_HandleManager;
+
+		// Current Settings
+		bool					m_bIsFullscreen;
+		Shader*					m_pActiveComputeShader;
+		Shader*					m_pActiveDomainShader;
+		Shader*					m_pActiveGeometry;
+		Shader*					m_pActiveHull;
+		Shader*					m_pActivePixel;
+		Shader*					m_pActiveVertex;
 
 	public:
 		//---------------------------------------------------------------
@@ -76,7 +83,9 @@ namespace Graphics
 		//---------------------------------------------------------------
 		// Shader Management
 		//---------------------------------------------------------------
-		virtual Handle<Shader> CompileFromFile(utf16* _szFile, utf8* _szFunction, Shader::eSHADER_TYPES _eShaderType);
+		virtual HShader CompileFromFile(utf16* _szFile, utf8* _szFunction, Shader::eSHADER_TYPES _eShaderType);
+		virtual void	SetShaderActive(HShader _hShader);
+		void			SetShaderActive(Shader* _pShader);
 
 		//---------------------------------------------------------------
 		// Buffer Management

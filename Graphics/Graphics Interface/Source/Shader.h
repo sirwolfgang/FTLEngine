@@ -3,6 +3,8 @@
 // Purpose: Handle Shader Wrapping
 //===============================================================
 #pragma once
+#include <FTLPlatform.h>
+using Platform::Handle;
 
 namespace Graphics
 {
@@ -24,6 +26,8 @@ namespace Graphics
 		virtual eSHADER_TYPES	GetShaderType() = 0;
 		virtual void			SetShaderActive() = 0;
 	};
+
+	typedef Handle<Shader> HShader;
 }
 
 #include "Shader.inl"

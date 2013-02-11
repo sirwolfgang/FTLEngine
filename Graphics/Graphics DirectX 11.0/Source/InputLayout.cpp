@@ -1,11 +1,17 @@
 //===============================================================
-// File:	Shader.cpp
-// Purpose: Handle Shader Wrapping
+// File:	InputLayout.h
+// Purpose: Handle Vertex Input Layout
 //===============================================================
-#include "Shader.h"
-#include "Renderer.h"
-using namespace Graphics;
+#include "InputLayout.h"
 
 //---------------------------------------------------------------
-// BaseShader
+InputLayout::InputLayout()
+{
+
+}
+
 //---------------------------------------------------------------
+InputLayout::~InputLayout()
+{
+
+}

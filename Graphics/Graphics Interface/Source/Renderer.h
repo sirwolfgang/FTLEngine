@@ -73,7 +73,8 @@ namespace Graphics
 		//---------------------------------------------------------------
 		// Shader Management
 		//---------------------------------------------------------------
-		virtual Handle<Shader> CompileFromFile(utf16* _szFile, utf8* _szFunction, Shader::eSHADER_TYPES _eShaderType)		= 0;
+		virtual HShader CompileFromFile(utf16* _szFile, utf8* _szFunction, Shader::eSHADER_TYPES _eShaderType)	= 0;
+		virtual void	SetShaderActive(HShader _hShader)	= 0;
 
 		//---------------------------------------------------------------
 		// Buffer Management
