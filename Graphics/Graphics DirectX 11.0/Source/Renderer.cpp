@@ -221,8 +221,7 @@ void Renderer_DX11_0::Draw(uint32 _nVertexCount, uint32 _nFirstVertex)
 //---------------------------------------------------------------
 void Renderer_DX11_0::SetPrimitiveTopology(Primitive::eTOPOLOGY _eTopology)
 {
-	// TODO;; Fix Array/Enum Coversion
-	m_pDeviceContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);//(D3D_PRIMITIVE_TOPOLOGY)Primitive::Topology_DX11_0[_eTopology]);
+	m_pDeviceContext->IASetPrimitiveTopology(Primitive::Topology_DX11_0[_eTopology]);
 }
 
 //---------------------------------------------------------------
