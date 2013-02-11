@@ -109,7 +109,7 @@ namespace Graphics
 		typedef void (*CREATERENDERER)(HINSTANCE _hDLL, Renderer** _pInterface);
 
 		void DLLIMPORT ReleaseRenderer(Renderer** _pInterface);
-		typedef void (*RELEASERENDERER)(Renderer** pInterface);
+		typedef void (*RELEASERENDERER)(Renderer** _pInterface);
 	}
 }
 

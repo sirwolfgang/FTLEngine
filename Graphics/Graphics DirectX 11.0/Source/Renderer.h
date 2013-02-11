@@ -18,7 +18,7 @@ namespace Graphics
 	{
 		static Renderer_DX11_0*		sm_pInstance;
 
-		Settings					m_StarupSettings;
+		Settings					m_tStarupSettings;
 
 		ID3D11Device*				m_pDevice;
 		ID3D11DeviceContext*		m_pDeviceContext;

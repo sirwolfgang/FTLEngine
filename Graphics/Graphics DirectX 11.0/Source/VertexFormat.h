@@ -11,8 +11,8 @@ namespace Graphics
 	class VertexFormat_DX11_0 : public VertexFormat
 	{
 		D3D11_INPUT_ELEMENT_DESC	m_VertexFormat[D3D11_VS_INPUT_REGISTER_COUNT];
-		uint32						m_VertexElements;
-		uint32						m_VertexSize;
+		uint32						m_nVertexElements;
+		uint32						m_nVertexSize;
 
 		VertexFormat_DX11_0();
 	public:

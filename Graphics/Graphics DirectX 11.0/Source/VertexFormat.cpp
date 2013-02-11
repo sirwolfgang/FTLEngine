@@ -10,18 +10,18 @@ using namespace Graphics;
 VertexFormat_DX11_0::VertexFormat_DX11_0()
 {
 	memset(m_VertexFormat, NULL, sizeof(m_VertexFormat));
-	m_VertexElements		= NULL;
-	m_VertexSize			= NULL;
+	m_nVertexElements		= NULL;
+	m_nVertexSize			= NULL;
 }
 
 //---------------------------------------------------------------
 VertexFormat_DX11_0::VertexFormat_DX11_0(VertDataPair _VertexFormatArray[], uint32 _nElements)
 {
 	memset(m_VertexFormat, NULL, sizeof(m_VertexFormat));
-	m_VertexElements		= _nElements;
-	m_VertexSize			= NULL;
+	m_nVertexElements		= _nElements;
+	m_nVertexSize			= NULL;
 
-	for(memsize i = 0; i < m_VertexElements; ++i)
+	for(memsize i = 0; i < m_nVertexElements; ++i)
 	{
 		// SemanticName
 		switch (_VertexFormatArray[i].Semantic)
@@ -47,18 +47,18 @@ VertexFormat_DX11_0::VertexFormat_DX11_0(VertDataPair _VertexFormatArray[], uint
 		// Format
 		switch (_VertexFormatArray[i].DataSize)
 		{
-		case eDATASIZES_FLOAT1:		{ m_VertexSize += sizeof(float32)	* 1;	m_VertexFormat[i].Format = DXGI_FORMAT_R32_FLOAT;				} break;
-		case eDATASIZES_FLOAT2:		{ m_VertexSize += sizeof(float32)	* 2;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32_FLOAT;			} break;
-		case eDATASIZES_FLOAT3:		{ m_VertexSize += sizeof(float32)	* 3;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32_FLOAT;			} break;
-		case eDATASIZES_FLOAT4:		{ m_VertexSize += sizeof(float32)	* 4;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;		} break;
-		case eDATASIZES_UINT1:		{ m_VertexSize += sizeof(uint32)	* 1;	m_VertexFormat[i].Format = DXGI_FORMAT_R32_UINT;				} break;
-		case eDATASIZES_UINT2:		{ m_VertexSize += sizeof(uint32)	* 2;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32_UINT;				} break;
-		case eDATASIZES_UINT3:		{ m_VertexSize += sizeof(uint32)	* 3;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32_UINT;			} break;
-		case eDATASIZES_UINT4:		{ m_VertexSize += sizeof(uint32)	* 4;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32A32_UINT;		} break;
-		case eDATASIZES_INT1:		{ m_VertexSize += sizeof(int32)		* 1;	m_VertexFormat[i].Format = DXGI_FORMAT_R32_SINT;				} break;
-		case eDATASIZES_INT2:		{ m_VertexSize += sizeof(int32)		* 2;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32_SINT;				} break;
-		case eDATASIZES_INT3:		{ m_VertexSize += sizeof(int32)		* 3;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32_SINT;			} break;
-		case eDATASIZES_INT4:		{ m_VertexSize += sizeof(int32)		* 4;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32A32_SINT;		} break;
+		case eDATASIZES_FLOAT1:		{ m_nVertexSize += sizeof(float32)	* 1;	m_VertexFormat[i].Format = DXGI_FORMAT_R32_FLOAT;				} break;
+		case eDATASIZES_FLOAT2:		{ m_nVertexSize += sizeof(float32)	* 2;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32_FLOAT;			} break;
+		case eDATASIZES_FLOAT3:		{ m_nVertexSize += sizeof(float32)	* 3;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32_FLOAT;			} break;
+		case eDATASIZES_FLOAT4:		{ m_nVertexSize += sizeof(float32)	* 4;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;		} break;
+		case eDATASIZES_UINT1:		{ m_nVertexSize += sizeof(uint32)	* 1;	m_VertexFormat[i].Format = DXGI_FORMAT_R32_UINT;				} break;
+		case eDATASIZES_UINT2:		{ m_nVertexSize += sizeof(uint32)	* 2;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32_UINT;				} break;
+		case eDATASIZES_UINT3:		{ m_nVertexSize += sizeof(uint32)	* 3;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32_UINT;			} break;
+		case eDATASIZES_UINT4:		{ m_nVertexSize += sizeof(uint32)	* 4;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32A32_UINT;		} break;
+		case eDATASIZES_INT1:		{ m_nVertexSize += sizeof(int32)	* 1;	m_VertexFormat[i].Format = DXGI_FORMAT_R32_SINT;				} break;
+		case eDATASIZES_INT2:		{ m_nVertexSize += sizeof(int32)	* 2;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32_SINT;				} break;
+		case eDATASIZES_INT3:		{ m_nVertexSize += sizeof(int32)	* 3;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32_SINT;			} break;
+		case eDATASIZES_INT4:		{ m_nVertexSize += sizeof(int32)	* 4;	m_VertexFormat[i].Format = DXGI_FORMAT_R32G32B32A32_SINT;		} break;
 		}
 
 		// InputSlot

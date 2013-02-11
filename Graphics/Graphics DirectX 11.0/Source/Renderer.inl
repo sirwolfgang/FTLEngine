@@ -30,49 +30,49 @@ inline ID3D11DeviceContext* Graphics::Renderer_DX11_0::DeviceContext()
 //---------------------------------------------------------------
 inline uint32 Graphics::Renderer_DX11_0::GetWidth()
 {
-	return m_StarupSettings.nWidth;
+	return m_tStarupSettings.nWidth;
 }
 
 //---------------------------------------------------------------
 inline uint32 Graphics::Renderer_DX11_0::GetHeight()
 {
-	return m_StarupSettings.nHeight;
+	return m_tStarupSettings.nHeight;
 }
 
 //---------------------------------------------------------------
 inline uint32 Graphics::Renderer_DX11_0::GetRefreshRate()
 {
-	return m_StarupSettings.nRefreshRate;
+	return m_tStarupSettings.nRefreshRate;
 }
 
 //---------------------------------------------------------------
 inline uint32 Graphics::Renderer_DX11_0::GetMSAASamples()
 {
-	return m_StarupSettings.nMSAASamples;
+	return m_tStarupSettings.nMSAASamples;
 }
 
 //---------------------------------------------------------------
 inline uint32 Graphics::Renderer_DX11_0::GetSampleQuality()
 {
-	return m_StarupSettings.nSampleQuality;
+	return m_tStarupSettings.nSampleQuality;
 }
 
 //---------------------------------------------------------------
 inline uint32 Graphics::Renderer_DX11_0::GetBuffersCount()
 {
-	return m_StarupSettings.nBufferCount;
+	return m_tStarupSettings.nBufferCount;
 }
 
 //---------------------------------------------------------------
 inline Graphics::Renderer_DX11_0::eDriverMode Graphics::Renderer_DX11_0::GetDriverMode()
 {
-	return m_StarupSettings.eDriverMode;
+	return m_tStarupSettings.eDriverMode;
 }
 
 //---------------------------------------------------------------
 inline bool Graphics::Renderer_DX11_0::GetDebugMode()
 {
-	return m_StarupSettings.bDebugMode;
+	return m_tStarupSettings.bDebugMode;
 }
 
 //---------------------------------------------------------------

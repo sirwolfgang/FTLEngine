@@ -86,7 +86,7 @@ Renderer_DX11_0::~Renderer_DX11_0()
 //---------------------------------------------------------------
 void Renderer_DX11_0::Initialize(Settings _tSettings)
 {
-	m_StarupSettings = _tSettings;
+	m_tStarupSettings = _tSettings;
 }
 
 //---------------------------------------------------------------
@@ -95,18 +95,18 @@ void Renderer_DX11_0::Startup()
 	DXGI_SWAP_CHAIN_DESC SwapChainDesc;
 	ZeroMemory(&SwapChainDesc, sizeof(DXGI_SWAP_CHAIN_DESC));
 
-	SwapChainDesc.BufferDesc.Width						= m_StarupSettings.nWidth;					//* Resolution Width
-	SwapChainDesc.BufferDesc.Height						= m_StarupSettings.nHeight;					//* Resolution Height
-	SwapChainDesc.BufferDesc.RefreshRate.Numerator		= m_StarupSettings.nRefreshRate;			//* RefeshRate
+	SwapChainDesc.BufferDesc.Width						= m_tStarupSettings.nWidth;					//* Resolution Width
+	SwapChainDesc.BufferDesc.Height						= m_tStarupSettings.nHeight;				//* Resolution Height
+	SwapChainDesc.BufferDesc.RefreshRate.Numerator		= m_tStarupSettings.nRefreshRate;			//* RefeshRate
 	SwapChainDesc.BufferDesc.RefreshRate.Denominator	= 1000;										//* RefeshRate
 	SwapChainDesc.BufferDesc.Format						= DXGI_FORMAT_R8G8B8A8_UNORM;				//  Format
 	SwapChainDesc.BufferDesc.ScanlineOrdering			= DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;		//  Scan Line Ordering
 	SwapChainDesc.BufferDesc.Scaling					= DXGI_MODE_SCALING_UNSPECIFIED;			//  Scaling Mode
-	SwapChainDesc.SampleDesc.Count						= m_StarupSettings.nMSAASamples;			//* Multisamples Per Pixel
-	SwapChainDesc.SampleDesc.Quality					= m_StarupSettings.nSampleQuality;			//* Quality Level
+	SwapChainDesc.SampleDesc.Count						= m_tStarupSettings.nMSAASamples;			//* Multisamples Per Pixel
+	SwapChainDesc.SampleDesc.Quality					= m_tStarupSettings.nSampleQuality;			//* Quality Level
 	SwapChainDesc.BufferUsage							= DXGI_USAGE_RENDER_TARGET_OUTPUT;			//  Buffer Usage
-	SwapChainDesc.BufferCount							= m_StarupSettings.nBufferCount;			//* Buffer Count
-	SwapChainDesc.OutputWindow							= m_StarupSettings.hOutput;					//+ Handle To Output Window
+	SwapChainDesc.BufferCount							= m_tStarupSettings.nBufferCount;			//* Buffer Count
+	SwapChainDesc.OutputWindow							= m_tStarupSettings.hOutput;				//+ Handle To Output Window
 	SwapChainDesc.Windowed								= true;										//* Windowed Mode
 	SwapChainDesc.SwapEffect							= DXGI_SWAP_EFFECT_DISCARD;					//  Swap Mode
 	SwapChainDesc.Flags									= NULL;										// Flags
@@ -116,7 +116,7 @@ void Renderer_DX11_0::Startup()
 	//------------------------------
 	D3D_DRIVER_TYPE DriverType;
 
-	switch (m_StarupSettings.eDriverMode)
+	switch (m_tStarupSettings.eDriverMode)
 	{
 	case eDriverMode_Hardware:	{	DriverType = D3D_DRIVER_TYPE_HARDWARE;	}	break;
 	case eDriverMode_Software:	{	DriverType = D3D_DRIVER_TYPE_SOFTWARE;	}	break;
@@ -129,7 +129,7 @@ void Renderer_DX11_0::Startup()
 	HRESULT hResult = D3D11CreateDeviceAndSwapChain(NULL,
 		DriverType,
 		NULL,
-		(m_StarupSettings.eDriverMode) ? D3D11_CREATE_DEVICE_DEBUG : NULL,
+		(m_tStarupSettings.eDriverMode) ? D3D11_CREATE_DEVICE_DEBUG : NULL,
 		NULL,
 		NULL,
 		D3D11_SDK_VERSION,
@@ -154,8 +154,8 @@ void Renderer_DX11_0::Startup()
 
 	Viewport.TopLeftX	= 0;
 	Viewport.TopLeftY	= 0;
-	Viewport.Width		= (float)m_StarupSettings.nWidth;
-	Viewport.Height		= (float)m_StarupSettings.nHeight;
+	Viewport.Width		= (float)m_tStarupSettings.nWidth;
+	Viewport.Height		= (float)m_tStarupSettings.nHeight;
 
 	m_pDeviceContext->RSSetViewports(1, &Viewport);
 }

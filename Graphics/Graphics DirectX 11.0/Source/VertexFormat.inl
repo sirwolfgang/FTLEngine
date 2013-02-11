@@ -5,13 +5,13 @@
 
 inline uint32 Graphics::VertexFormat_DX11_0::GetVertexSize()
 {
-	return m_VertexSize;
+	return m_nVertexSize;
 }
 
 //---------------------------------------------------------------
 inline uint32 Graphics::VertexFormat_DX11_0::GetNumberElements()
 {
-	return m_VertexElements;
+	return m_nVertexElements;
 }
 
 //---------------------------------------------------------------
