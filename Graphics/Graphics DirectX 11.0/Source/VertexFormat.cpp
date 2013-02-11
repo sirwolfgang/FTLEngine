@@ -8,18 +8,18 @@ using namespace Graphics;
 
 //---------------------------------------------------------------
 VertexFormat_DX11_0::VertexFormat_DX11_0()
+	: m_nVertexElements(NULL),
+	m_nVertexSize(NULL)
 {
 	memset(m_VertexFormat, NULL, sizeof(m_VertexFormat));
-	m_nVertexElements		= NULL;
-	m_nVertexSize			= NULL;
 }
 
 //---------------------------------------------------------------
 VertexFormat_DX11_0::VertexFormat_DX11_0(VertDataPair _VertexFormatArray[], uint32 _nElements)
+	: m_nVertexElements(_nElements),
+	m_nVertexSize(NULL)
 {
 	memset(m_VertexFormat, NULL, sizeof(m_VertexFormat));
-	m_nVertexElements		= _nElements;
-	m_nVertexSize			= NULL;
 
 	for(memsize i = 0; i < m_nVertexElements; ++i)
 	{
