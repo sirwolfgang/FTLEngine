@@ -112,13 +112,11 @@ namespace Graphics
 		//---------------------------------------------------------------
 		// Buffer Management
 		//---------------------------------------------------------------
-		virtual HVertexFormat	CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength);
-		virtual void			SetVertexFormatActive(HVertexFormat _hVertexFormat);
-		void					SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat);
-
-		virtual HVertexBuffer	CreateVertexBuffer(uint32 _nBufferSize, void* _pData);
+		virtual HVertexFormat	CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nElements);
+		virtual HVertexBuffer	CreateVertexBuffer(uint32 _nVertices, void* _pData, HVertexFormat _hFormat);
 		virtual void			SetVertexBufferActive(HVertexBuffer _hVertexBuffer);
 		void					SetVertexBufferActive(VertexBuffer_DX11_0* _pVertexBuffer);
+		void					SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat);
 
 		//---------------------------------------------------------------
 		// View Management

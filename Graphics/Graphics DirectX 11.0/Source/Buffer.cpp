@@ -43,8 +43,9 @@ BaseBuffer_DX11_0::~BaseBuffer_DX11_0()
 //---------------------------------------------------------------
 // VertexBuffer
 //---------------------------------------------------------------
-VertexBuffer_DX11_0::VertexBuffer_DX11_0(ID3D11Buffer* _pBuffer)
-	: BaseBuffer_DX11_0(_pBuffer)
+VertexBuffer_DX11_0::VertexBuffer_DX11_0(ID3D11Buffer* _pBuffer, VertexFormat_DX11_0* _pVertexFormat)
+	: BaseBuffer_DX11_0(_pBuffer),
+	m_pVertexFormat(_pVertexFormat)
 {
 
 }

@@ -326,35 +326,19 @@ void Renderer_DX11_0::SetShaderActive(Shader* _pShader)
 //---------------------------------------------------------------
 // Buffer Management
 //---------------------------------------------------------------
-Handle<VertexFormat> Renderer_DX11_0::CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength)
+Handle<VertexFormat> Renderer_DX11_0::CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nElements)
 {
-	return m_HandleManager.CreateHandle((VertexFormat*)new VertexFormat_DX11_0(_VertexFormatArray, _nLength));
+	return m_HandleManager.CreateHandle((VertexFormat*)new VertexFormat_DX11_0(_VertexFormatArray, _nElements));
 }
 
 //---------------------------------------------------------------
-void Renderer_DX11_0::SetVertexFormatActive(HVertexFormat _hVertexFormat)
-{
-	SetVertexFormatActive((VertexFormat_DX11_0*)_hVertexFormat.RetrieveEntry());
-}
-
-//---------------------------------------------------------------
-void Renderer_DX11_0::SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat)
-{
-	m_pActiveVertexFormat	= _pVertexFormat;
-	m_pActiveInputLayout	= nullptr;
-
-	//TODO:: Bind InputLayout_DX11_0, based on Actove VertexBuffer && Active Shader Pair 
-	//Renderer_DX11_0::Instance()->DeviceContext()->IASetInputLayout_DX11_0(
-}
-
-//---------------------------------------------------------------
-HVertexBuffer Renderer_DX11_0::CreateVertexBuffer(uint32 _nBufferSize, void* _pData)
+HVertexBuffer Renderer_DX11_0::CreateVertexBuffer(uint32 _nVertices, void* _pData, HVertexFormat _hFormat)
 {
 	// Buffer Description
 	D3D11_BUFFER_DESC BufferDescription;
 
 	BufferDescription.Usage				= D3D11_USAGE_DEFAULT;
-	BufferDescription.ByteWidth			= _nBufferSize;
+	BufferDescription.ByteWidth			= _nVertices * _hFormat->GetVertexSize();
 	BufferDescription.BindFlags			= D3D11_BIND_VERTEX_BUFFER;
 	BufferDescription.CPUAccessFlags	= NULL;
 	BufferDescription.MiscFlags			= NULL;
@@ -370,7 +354,7 @@ HVertexBuffer Renderer_DX11_0::CreateVertexBuffer(uint32 _nBufferSize, void* _pD
 	ID3D11Buffer* pVertexBuffer = nullptr;
 	m_pDevice->CreateBuffer(&BufferDescription, &SubresourceData, &pVertexBuffer);
 
-	return m_HandleManager.CreateHandle((Buffer*)new VertexBuffer_DX11_0(pVertexBuffer));
+	return m_HandleManager.CreateHandle((Buffer*)new VertexBuffer_DX11_0(pVertexBuffer, (VertexFormat_DX11_0*)_hFormat.RetrieveEntry()));
 }
 
 //---------------------------------------------------------------
@@ -384,11 +368,20 @@ void Renderer_DX11_0::SetVertexBufferActive(VertexBuffer_DX11_0* _pVertexBuffer)
 {
 	m_pActiveVertexBuffer = _pVertexBuffer;
 
-	UINT stride = sizeof(float) * (3 + 4);
-	UINT offset = 0;
-	ID3D11Buffer* pBuffer = m_pActiveVertexBuffer->GetBuffer();
+	UINT nStride			= _pVertexBuffer->GetVertexFormat()->GetVertexSize();
+	UINT nOffset			= 0;
+	ID3D11Buffer* pBuffer	= m_pActiveVertexBuffer->GetBuffer();
 
-	m_pDeviceContext->IASetVertexBuffers(0, 1, &pBuffer, &stride, &offset);
+	m_pDeviceContext->IASetVertexBuffers(0, 1, &pBuffer, &nStride, &nOffset);
+
+	SetVertexFormatActive(_pVertexBuffer->GetVertexFormat());
+}
+
+//---------------------------------------------------------------
+void Renderer_DX11_0::SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat)
+{
+	m_pActiveVertexFormat	= _pVertexFormat;
+	m_pActiveInputLayout	= nullptr;
 }
 
 //---------------------------------------------------------------

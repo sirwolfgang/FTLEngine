@@ -16,14 +16,13 @@ namespace Graphics
 
 		VertexFormat_DX11_0();
 	public:
-		VertexFormat_DX11_0(VertDataPair _VertexFormatArray[], uint32 _nLength);
+		VertexFormat_DX11_0(VertDataPair _VertexFormatArray[], uint32 _nElements);
 		virtual ~VertexFormat_DX11_0();
 
-		virtual void	SetVertexFormatActive();
-		virtual uint32	GetVertexSize();
-
+		virtual uint32				GetVertexSize();
 		uint32						GetNumberElements();
 		D3D11_INPUT_ELEMENT_DESC*	GetVertexFormat();
+		void						SetVertexFormatActive();
 	};
 }
 

@@ -18,3 +18,9 @@ inline Graphics::Buffer::eBUFFER_TYPES Graphics::VertexBuffer_DX11_0::GetBufferT
 {
 	return eBUFFER_TYPE_VERTEX;
 }
+
+//---------------------------------------------------------------
+inline Graphics::VertexFormat_DX11_0* Graphics::VertexBuffer_DX11_0::GetVertexFormat()
+{
+	return m_pVertexFormat;
+}

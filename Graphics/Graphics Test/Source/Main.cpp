@@ -66,15 +66,13 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 				{-0.45f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f},
 			};
 
-			Graphics::HVertexBuffer hVertexBuffer = pRenderer->CreateVertexBuffer(hVertexFormat->GetVertexSize() * 3, &VertexBuffer);
+			Graphics::HVertexBuffer hVertexBuffer = pRenderer->CreateVertexBuffer(3, &VertexBuffer, hVertexFormat);
 
 			// Activate Settings
 			VertexShader->SetShaderActive();
 			PixelShader->SetShaderActive();
 
-			hVertexFormat->SetVertexFormatActive();
 			hVertexBuffer->SetBufferActive();
-
 			pRenderer->SetPrimitiveTopology(Graphics::Primitive::eTOPOLOGY_TRIANGLELIST);
 
 			pRenderer->Draw(3, 0);
