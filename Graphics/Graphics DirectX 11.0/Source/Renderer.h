@@ -27,12 +27,15 @@ namespace Graphics
 
 		// Current Settings
 		bool					m_bIsFullscreen;
-		Shader*					m_pActiveComputeShader;
-		Shader*					m_pActiveDomainShader;
-		Shader*					m_pActiveGeometry;
-		Shader*					m_pActiveHull;
-		Shader*					m_pActivePixel;
-		Shader*					m_pActiveVertex;
+
+		ComputeShader*			m_pActiveComputeShader;
+		DomainShader*			m_pActiveDomainShader;
+		GeometryShader*			m_pActiveGeometryShader;
+		HullShader*				m_pActiveHullShader;
+		PixelShader*			m_pActivePixelShader;
+		VertexShader*			m_pActiveVertexShader;
+
+		VertexFormat_DX11_0*	m_pActiveVertexFormat;
 
 	public:
 		//---------------------------------------------------------------
@@ -90,8 +93,11 @@ namespace Graphics
 		//---------------------------------------------------------------
 		// Buffer Management
 		//---------------------------------------------------------------
-		virtual Handle<VertexFormat> CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength);
-		virtual Handle<VertexBuffer> CreateVertexBuffer(uint32 _nBufferSize, void* _pData, VertexFormat* _pFormat);
+		virtual HVertexFormat			CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength);
+		virtual Handle<VertexBuffer>	CreateVertexBuffer(uint32 _nBufferSize, void* _pData, VertexFormat* _pFormat);
+
+		virtual void	SetVertexFormatActive(HVertexFormat _hVertexFormat);
+		void			SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat);
 
 		//---------------------------------------------------------------
 		// View Management

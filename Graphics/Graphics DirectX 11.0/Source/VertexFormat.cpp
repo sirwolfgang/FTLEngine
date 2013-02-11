@@ -85,6 +85,5 @@ VertexFormat_DX11_0::~VertexFormat_DX11_0()
 //---------------------------------------------------------------
 void VertexFormat_DX11_0::SetVertexFormatActive()
 {
-	//TODO:: Bind Inputlayout, based on Actove VertexBuffer && Active Shader Pair 
-	//Renderer_DX11_0::Instance()->DeviceContext()->IASetInputLayout(
+	Renderer_DX11_0::Instance()->SetVertexFormatActive(this);
 }

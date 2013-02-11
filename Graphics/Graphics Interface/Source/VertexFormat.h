@@ -3,6 +3,7 @@
 // Purpose: To Handle Vertex Formats
 //===============================================================
 #pragma once
+#include <FTLPlatform.h>
 
 namespace Graphics
 {
@@ -50,7 +51,11 @@ namespace Graphics
 		};
 
 		virtual ~VertexFormat() = 0;
+
+		virtual void SetVertexFormatActive() = 0;
 	};
+
+	typedef Platform::Handle<VertexFormat> HVertexFormat;
 }
 
 #include "VertexFormat.inl"

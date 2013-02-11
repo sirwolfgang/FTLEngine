@@ -21,10 +21,10 @@ Renderer_DX11_0::Renderer_DX11_0()
 	m_bIsFullscreen(false), 
 	m_pActiveComputeShader(nullptr), 
 	m_pActiveDomainShader(nullptr), 
-	m_pActiveGeometry(nullptr), 
-	m_pActiveHull(nullptr), 
-	m_pActivePixel(nullptr), 
-	m_pActiveVertex(nullptr)
+	m_pActiveGeometryShader(nullptr), 
+	m_pActiveHullShader(nullptr), 
+	m_pActivePixelShader(nullptr), 
+	m_pActiveVertexShader(nullptr)
 {
 	sm_pInstance = this;
 }
@@ -237,32 +237,32 @@ void Renderer_DX11_0::SetShaderActive(Shader* _pShader)
 	{
 	case Shader::eSHADER_TYPE_COMPUTE:
 		{
-			m_pActiveComputeShader = _pShader;
+			m_pActiveComputeShader = (ComputeShader*)_pShader;
 			m_pDeviceContext->CSSetShader((_pShader) ? ((ComputeShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
 		} break;
 	case Shader::eSHADER_TYPE_DOMAIN:
 		{
-			m_pActiveDomainShader = _pShader;
+			m_pActiveDomainShader = (DomainShader*)_pShader;
 			m_pDeviceContext->DSSetShader((_pShader) ? ((DomainShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
 		} break;
 	case Shader::eSHADER_TYPE_GEOMETRY:
 		{
-			m_pActiveGeometry = _pShader;
+			m_pActiveGeometryShader = (GeometryShader*)_pShader;
 			m_pDeviceContext->GSSetShader((_pShader) ? ((GeometryShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
 		} break;
 	case Shader::eSHADER_TYPE_HULL:
 		{
-			m_pActiveHull = _pShader;
+			m_pActiveHullShader = (HullShader*)_pShader;
 			m_pDeviceContext->HSSetShader((_pShader) ? ((HullShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
 		} break;
 	case Shader::eSHADER_TYPE_PIXEL:
 		{
-			m_pActivePixel = _pShader;
+			m_pActivePixelShader = (PixelShader*)_pShader;
 			m_pDeviceContext->PSSetShader((_pShader) ? ((PixelShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
 		} break;
 	case Shader::eSHADER_TYPE_VERTEX:
 		{
-			m_pActiveVertex = _pShader;
+			m_pActiveVertexShader = (VertexShader*)_pShader;
 			m_pDeviceContext->VSSetShader((_pShader) ? ((VertexShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
 		} break;
 	}
@@ -280,6 +280,21 @@ Handle<VertexFormat> Renderer_DX11_0::CreateVertexFormat(VertexFormat::VertDataP
 Handle<VertexBuffer> Renderer_DX11_0::CreateVertexBuffer(uint32 _nBufferSize, void* _pData, VertexFormat* _pFormat)
 {
 	return Handle<VertexBuffer>();
+}
+
+//---------------------------------------------------------------
+void Renderer_DX11_0::SetVertexFormatActive(HVertexFormat _hVertexFormat)
+{
+	SetVertexFormatActive((VertexFormat_DX11_0*)_hVertexFormat.RetrieveEntry());
+}
+
+//---------------------------------------------------------------
+void Renderer_DX11_0::SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat)
+{
+	m_pActiveVertexFormat = _pVertexFormat;
+
+	//TODO:: Bind Inputlayout, based on Actove VertexBuffer && Active Shader Pair 
+	//Renderer_DX11_0::Instance()->DeviceContext()->IASetInputLayout(
 }
 
 //---------------------------------------------------------------

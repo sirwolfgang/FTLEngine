@@ -39,18 +39,20 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 			float Color[4] = {0.33f, 0.33f, 0.33f, 1.00f};
 			pRenderer->ClearBackBuffer(Color);
 
-			Platform::Handle<Graphics::Shader> VertexShader	= pRenderer->CompileFromFile(L"Source/Shader.hlsl", "VShader", Graphics::Shader::eSHADER_TYPE_VERTEX);
-			Platform::Handle<Graphics::Shader> PixelShader	= pRenderer->CompileFromFile(L"Source/Shader.hlsl", "PShader", Graphics::Shader::eSHADER_TYPE_PIXEL);
+			Graphics::HShader VertexShader	= pRenderer->CompileFromFile(L"Source/Shader.hlsl", "VShader", Graphics::Shader::eSHADER_TYPE_VERTEX);
+			Graphics::HShader PixelShader	= pRenderer->CompileFromFile(L"Source/Shader.hlsl", "PShader", Graphics::Shader::eSHADER_TYPE_PIXEL);
 
 			Graphics::VertexFormat::VertDataPair VertFormat[2] = 
 			{
 				{ Graphics::VertexFormat::eSEMANTICS_POSITION,	Graphics::VertexFormat::eDATASIZES_FLOAT3},
 				{ Graphics::VertexFormat::eSEMANTICS_COLOR,		Graphics::VertexFormat::eDATASIZES_FLOAT4},
 			};
-			pRenderer->CreateVertexFormat(VertFormat, 2);
+			
+			Graphics::HVertexFormat hVertexFormat = pRenderer->CreateVertexFormat(VertFormat, 2);
 
 			VertexShader->SetShaderActive();
 			PixelShader->SetShaderActive();
+			hVertexFormat->SetVertexFormatActive();
 
 			pRenderer->Present();
 
