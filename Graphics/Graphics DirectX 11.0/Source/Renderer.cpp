@@ -11,20 +11,57 @@ using namespace Graphics;
 Renderer_DX11_0* Renderer_DX11_0::sm_pInstance = nullptr;
 
 //---------------------------------------------------------------
+void Renderer_DX11_0::SetInputLayout()
+{
+	if(m_pActiveInputLayout 
+		|| !m_pActiveVertexShader 
+		|| !m_pActiveVertexFormat)
+		return;
+
+	// TODO:: Check for collisions, 32/64 bit modes
+	uint32 Hash = (((uint32)m_pActiveVertexShader & (0x0000FFFF)) << 16) + ((uint32)m_pActiveVertexFormat & (0x0000FFFF));
+
+	m_pActiveInputLayout = m_InputLayouts[Hash];
+
+	if(!m_pActiveInputLayout)
+	{
+		// Build Input Layout
+		ID3D11InputLayout* pLayout;
+
+		m_pDevice->CreateInputLayout(m_pActiveVertexFormat->GetVertexFormat(), 
+			m_pActiveVertexFormat->GetNumberElements(), 
+			m_pActiveVertexShader->GetBlob()->GetBufferPointer(), 
+			m_pActiveVertexShader->GetBlob()->GetBufferSize(), 
+			&pLayout);
+
+		m_pActiveInputLayout = new InputLayout_DX11_0(pLayout);
+		m_InputLayouts[Hash] = m_pActiveInputLayout;
+	}
+
+	m_pDeviceContext->IASetInputLayout(m_pActiveInputLayout->GetInputLayout());
+}
+
+//---------------------------------------------------------------
 // Class Construction
 //---------------------------------------------------------------
 Renderer_DX11_0::Renderer_DX11_0() 
 	: m_pDevice(nullptr), 
 	m_pDeviceContext(nullptr), 
 	m_pSwapChain(nullptr), 
-	m_pBackBuffer(nullptr), 
+	m_pBackBuffer(nullptr),
+	m_HandleManager(),
+	m_InputLayouts(),
 	m_bIsFullscreen(false), 
 	m_pActiveComputeShader(nullptr), 
 	m_pActiveDomainShader(nullptr), 
 	m_pActiveGeometryShader(nullptr), 
 	m_pActiveHullShader(nullptr), 
 	m_pActivePixelShader(nullptr), 
-	m_pActiveVertexShader(nullptr)
+	m_pActiveVertexShader(nullptr),
+	m_pActiveVertexFormat(nullptr),
+	m_pActiveVertexBuffer(nullptr),
+	m_pActiveInputLayout(nullptr),
+	m_eActivePrimitiveTopology(Primitive::eTOPOLOGY_UNDEFINED)
 {
 	sm_pInstance = this;
 }
@@ -175,6 +212,7 @@ void Renderer_DX11_0::Present()
 //---------------------------------------------------------------
 void Renderer_DX11_0::Draw(uint32 _nVertexCount, uint32 _nFirstVertex)
 {
+	SetInputLayout();
 	m_pDeviceContext->Draw(_nVertexCount, _nFirstVertex);
 }
 
@@ -183,7 +221,8 @@ void Renderer_DX11_0::Draw(uint32 _nVertexCount, uint32 _nFirstVertex)
 //---------------------------------------------------------------
 void Renderer_DX11_0::SetPrimitiveTopology(Primitive::eTOPOLOGY _eTopology)
 {
-	m_pDeviceContext->IASetPrimitiveTopology((D3D_PRIMITIVE_TOPOLOGY)Primitive::Topology_DX11_0[_eTopology]);
+	// TODO;; Fix Array/Enum Coversion
+	m_pDeviceContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);//(D3D_PRIMITIVE_TOPOLOGY)Primitive::Topology_DX11_0[_eTopology]);
 }
 
 //---------------------------------------------------------------
@@ -201,37 +240,37 @@ Handle<Shader> Renderer_DX11_0::CompileFromFile(utf16* _szFile, utf8* _szFunctio
 		{
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "cs_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreateComputeShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11ComputeShader**) &pShader);
-			return m_HandleManager.CreateHandle((Shader*) new ComputeShader_DX11_0((ID3D11ComputeShader*)pShader));
+			return m_HandleManager.CreateHandle((Shader*) new ComputeShader_DX11_0((ID3D11ComputeShader*)pShader, pCompiledCode));
 		} break;
 	case Shader::eSHADER_TYPE_DOMAIN:
 		{
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "ds_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreateDomainShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11DomainShader**) &pShader);
-			return m_HandleManager.CreateHandle((Shader*) new DomainShader_DX11_0((ID3D11DomainShader*)pShader));
+			return m_HandleManager.CreateHandle((Shader*) new DomainShader_DX11_0((ID3D11DomainShader*)pShader, pCompiledCode));
 		} break;
 	case Shader::eSHADER_TYPE_GEOMETRY:
 		{ 
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "gs_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreateGeometryShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11GeometryShader**) &pShader);
-			return m_HandleManager.CreateHandle((Shader*) new GeometryShader_DX11_0((ID3D11GeometryShader*)pShader));
+			return m_HandleManager.CreateHandle((Shader*) new GeometryShader_DX11_0((ID3D11GeometryShader*)pShader, pCompiledCode));
 		} break;
 	case Shader::eSHADER_TYPE_HULL:
 		{ 		
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "hs_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreateHullShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11HullShader**) &pShader);
-			return m_HandleManager.CreateHandle((Shader*) new HullShader_DX11_0((ID3D11HullShader*)pShader));
+			return m_HandleManager.CreateHandle((Shader*) new HullShader_DX11_0((ID3D11HullShader*)pShader, pCompiledCode));
 		} break;
 	case Shader::eSHADER_TYPE_PIXEL:
 		{
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "ps_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreatePixelShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11PixelShader**) &pShader);
-			return m_HandleManager.CreateHandle((Shader*) new PixelShader_DX11_0((ID3D11PixelShader*)pShader));
+			return m_HandleManager.CreateHandle((Shader*) new PixelShader_DX11_0((ID3D11PixelShader*)pShader, pCompiledCode));
 		} break;
 	case Shader::eSHADER_TYPE_VERTEX:
 		{ 
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "vs_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreateVertexShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11VertexShader**)&pShader);
-			return m_HandleManager.CreateHandle((Shader*) new VertexShader_DX11_0((ID3D11VertexShader*)pShader));
+			return m_HandleManager.CreateHandle((Shader*) new VertexShader_DX11_0((ID3D11VertexShader*)pShader, pCompiledCode));
 		} break;
 	}
 
@@ -247,6 +286,8 @@ void Renderer_DX11_0::SetShaderActive(HShader _hShader)
 //---------------------------------------------------------------
 void Renderer_DX11_0::SetShaderActive(Shader* _pShader)
 {
+	m_pActiveInputLayout = nullptr;
+
 	switch(_pShader->GetShaderType())
 	{
 	case Shader::eSHADER_TYPE_COMPUTE:
@@ -299,7 +340,8 @@ void Renderer_DX11_0::SetVertexFormatActive(HVertexFormat _hVertexFormat)
 //---------------------------------------------------------------
 void Renderer_DX11_0::SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat)
 {
-	m_pActiveVertexFormat = _pVertexFormat;
+	m_pActiveVertexFormat	= _pVertexFormat;
+	m_pActiveInputLayout	= nullptr;
 
 	//TODO:: Bind InputLayout_DX11_0, based on Actove VertexBuffer && Active Shader Pair 
 	//Renderer_DX11_0::Instance()->DeviceContext()->IASetInputLayout_DX11_0(
@@ -342,9 +384,11 @@ void Renderer_DX11_0::SetVertexBufferActive(VertexBuffer_DX11_0* _pVertexBuffer)
 {
 	m_pActiveVertexBuffer = _pVertexBuffer;
 
-	// UINT stride = sizeof(VERTEX);
-	// UINT offset = 0;
-	// devcon->IASetVertexBuffers(0, 1, &pVBuffer, &stride, &offset);
+	UINT stride = sizeof(float) * (3 + 4);
+	UINT offset = 0;
+	ID3D11Buffer* pBuffer = m_pActiveVertexBuffer->GetBuffer();
+
+	m_pDeviceContext->IASetVertexBuffers(0, 1, &pBuffer, &stride, &offset);
 }
 
 //---------------------------------------------------------------

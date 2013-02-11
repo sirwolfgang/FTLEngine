@@ -71,8 +71,13 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 			// Activate Settings
 			VertexShader->SetShaderActive();
 			PixelShader->SetShaderActive();
+
 			hVertexFormat->SetVertexFormatActive();
 			hVertexBuffer->SetBufferActive();
+
+			pRenderer->SetPrimitiveTopology(Graphics::Primitive::eTOPOLOGY_TRIANGLELIST);
+
+			pRenderer->Draw(3, 0);
 
 			pRenderer->Present();
 

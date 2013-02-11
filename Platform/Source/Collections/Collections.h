@@ -7,3 +7,6 @@
 // STL will be used until requirements deemed that a alterative solution be used.
 #include <vector>
 using std::vector;
+
+#include <map>
+using std::map;

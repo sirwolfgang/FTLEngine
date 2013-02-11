@@ -10,37 +10,43 @@
 #include "Buffer.h"
 #include "VertexFormat.h"
 #include "Primitive.h"
+#include "InputLayout.h"
 
 namespace Graphics
 {
 	class Renderer_DX11_0 : public Renderer
 	{
-		static Renderer_DX11_0* sm_pInstance;
+		static Renderer_DX11_0*		sm_pInstance;
 
-		Settings				m_StarupSettings;
+		Settings					m_StarupSettings;
 
-		ID3D11Device*			m_pDevice;
-		ID3D11DeviceContext*	m_pDeviceContext;
-		IDXGISwapChain*			m_pSwapChain;
+		ID3D11Device*				m_pDevice;
+		ID3D11DeviceContext*		m_pDeviceContext;
+		IDXGISwapChain*				m_pSwapChain;
 
-		ID3D11RenderTargetView* m_pBackBuffer;
+		ID3D11RenderTargetView*		m_pBackBuffer;
 
-		Platform::HandleManager m_HandleManager;
+		Platform::HandleManager				m_HandleManager;
+		map<uint32, InputLayout_DX11_0*>	m_InputLayouts;
 
 		// Current Settings
-		bool					m_bIsFullscreen;
+		bool						m_bIsFullscreen;
 
-		ComputeShader_DX11_0*	m_pActiveComputeShader;
-		DomainShader_DX11_0*	m_pActiveDomainShader;
-		GeometryShader_DX11_0*	m_pActiveGeometryShader;
-		HullShader_DX11_0*		m_pActiveHullShader;
-		PixelShader_DX11_0*		m_pActivePixelShader;
-		VertexShader_DX11_0*	m_pActiveVertexShader;
+		ComputeShader_DX11_0*		m_pActiveComputeShader;
+		DomainShader_DX11_0*		m_pActiveDomainShader;
+		GeometryShader_DX11_0*		m_pActiveGeometryShader;
+		HullShader_DX11_0*			m_pActiveHullShader;
+		PixelShader_DX11_0*			m_pActivePixelShader;
 
-		VertexFormat_DX11_0*	m_pActiveVertexFormat;
-		VertexBuffer_DX11_0*	m_pActiveVertexBuffer;
+		VertexShader_DX11_0*		m_pActiveVertexShader;
+		VertexFormat_DX11_0*		m_pActiveVertexFormat;
+		VertexBuffer_DX11_0*		m_pActiveVertexBuffer;
 
-		Primitive::eTOPOLOGY	m_eActivePrimitiveTopology;
+		InputLayout_DX11_0*			m_pActiveInputLayout;
+
+		Primitive::eTOPOLOGY		m_eActivePrimitiveTopology;
+
+		void SetInputLayout();
 
 	public:
 		//---------------------------------------------------------------
@@ -109,7 +115,7 @@ namespace Graphics
 		virtual HVertexFormat	CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength);
 		virtual void			SetVertexFormatActive(HVertexFormat _hVertexFormat);
 		void					SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat);
-		
+
 		virtual HVertexBuffer	CreateVertexBuffer(uint32 _nBufferSize, void* _pData);
 		virtual void			SetVertexBufferActive(HVertexBuffer _hVertexBuffer);
 		void					SetVertexBufferActive(VertexBuffer_DX11_0* _pVertexBuffer);
