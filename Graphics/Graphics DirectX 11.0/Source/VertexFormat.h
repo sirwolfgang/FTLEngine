@@ -19,8 +19,8 @@ namespace Graphics
 		VertexFormat_DX11_0(VertDataPair _VertexFormatArray[], uint32 _nLength);
 		virtual ~VertexFormat_DX11_0();
 
-		virtual void SetVertexFormatActive();
-		uint32	GetVertexSize();
+		virtual void	SetVertexFormatActive();
+		virtual uint32	GetVertexSize();
 	};
 }
 

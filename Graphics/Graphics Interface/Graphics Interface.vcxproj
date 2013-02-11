@@ -20,11 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FTLGraphics.h" />
+    <ClInclude Include="Source\Buffer.h" />
     <ClInclude Include="Source\DLLInterface.h" />
     <ClInclude Include="Source\Graphics.h" />
     <ClInclude Include="Source\Renderer.h" />
     <ClInclude Include="Source\Shader.h" />
-    <ClInclude Include="Source\VertexBuffer.h" />
     <ClInclude Include="Source\VertexFormat.h" />
   </ItemGroup>
   <ItemGroup>
@@ -36,7 +36,7 @@
     <None Include="Source\DLLInterface.inl" />
     <None Include="Source\Renderer.inl" />
     <None Include="Source\Shader.inl" />
-    <None Include="Source\VertexBuffer.inl" />
+    <None Include="Source\Buffer.inl" />
     <None Include="Source\VertexFormat.inl" />
   </ItemGroup>
   <ItemGroup>

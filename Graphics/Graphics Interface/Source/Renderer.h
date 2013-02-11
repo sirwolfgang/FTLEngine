@@ -5,7 +5,8 @@
 #pragma once
 #include <FTLPlatform.h>
 #include "Shader.h"
-#include "VertexBuffer.h"
+#include "Buffer.h"
+#include "VertexFormat.h"
 using Platform::Handle;
 
 namespace Graphics
@@ -79,8 +80,11 @@ namespace Graphics
 		//---------------------------------------------------------------
 		// Buffer Management
 		//---------------------------------------------------------------
-		virtual Handle<VertexFormat> CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength)	= 0;
-		virtual Handle<VertexBuffer> CreateVertexBuffer(uint32 _nBufferSize, void* _pData, VertexFormat* _pFormat)			= 0;
+		virtual HVertexFormat	CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength)	= 0;
+		virtual void			SetVertexFormatActive(HVertexFormat _hVertexFormat)										= 0;
+		
+		virtual HVertexBuffer	CreateVertexBuffer(uint32 _nBufferSize, void* _pData)	= 0;
+		virtual void			SetVertexBufferActive(HVertexBuffer _hVertexBuffer)		= 0;
 
 		//---------------------------------------------------------------
 		// View Management

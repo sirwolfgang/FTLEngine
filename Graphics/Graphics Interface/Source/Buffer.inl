@@ -1,8 +1,8 @@
 //===============================================================
-// File:	VertexBuffer.inl
-// Purpose: Handle Vertex Buffer Functionality
+// File:	Buffer.inl
+// Purpose: Handle Buffer Functionality
 //===============================================================
-inline Graphics::VertexBuffer::~VertexBuffer()
+inline Graphics::Buffer::~Buffer()
 {
 
 }

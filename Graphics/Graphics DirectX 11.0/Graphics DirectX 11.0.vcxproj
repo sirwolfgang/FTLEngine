@@ -20,23 +20,24 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FTLGraphics.h" />
+    <ClInclude Include="Source\Buffer.h" />
     <ClInclude Include="Source\DirectX.h" />
     <ClInclude Include="Source\DLL.h" />
     <ClInclude Include="Source\Graphics.h" />
     <ClInclude Include="Source\InputLayout.h" />
     <ClInclude Include="Source\Renderer.h" />
     <ClInclude Include="Source\Shader.h" />
-    <ClInclude Include="Source\VertexBuffer.h" />
     <ClInclude Include="Source\VertexFormat.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Buffer.cpp" />
     <ClCompile Include="Source\InputLayout.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
-    <ClCompile Include="Source\VertexBuffer.cpp" />
     <ClCompile Include="Source\VertexFormat.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Source\Buffer.inl" />
     <None Include="Source\Renderer.inl" />
     <None Include="Source\Shader.inl" />
     <None Include="Source\VertexFormat.inl" />

@@ -20,7 +20,7 @@ inline Graphics::BaseShader<PointerType, ShaderType>::BaseShader(BaseShader cons
 template <typename PointerType, Graphics::Shader::eSHADER_TYPES ShaderType>
 inline Graphics::BaseShader<PointerType, ShaderType>& Graphics::BaseShader<PointerType, ShaderType>::operator=(BaseShader const& _That)
 {
-
+	return *this;
 }
 
 //---------------------------------------------------------------

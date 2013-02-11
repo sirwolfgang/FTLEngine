@@ -277,12 +277,6 @@ Handle<VertexFormat> Renderer_DX11_0::CreateVertexFormat(VertexFormat::VertDataP
 }
 
 //---------------------------------------------------------------
-Handle<VertexBuffer> Renderer_DX11_0::CreateVertexBuffer(uint32 _nBufferSize, void* _pData, VertexFormat* _pFormat)
-{
-	return Handle<VertexBuffer>();
-}
-
-//---------------------------------------------------------------
 void Renderer_DX11_0::SetVertexFormatActive(HVertexFormat _hVertexFormat)
 {
 	SetVertexFormatActive((VertexFormat_DX11_0*)_hVertexFormat.RetrieveEntry());
@@ -295,6 +289,44 @@ void Renderer_DX11_0::SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat)
 
 	//TODO:: Bind Inputlayout, based on Actove VertexBuffer && Active Shader Pair 
 	//Renderer_DX11_0::Instance()->DeviceContext()->IASetInputLayout(
+}
+
+//---------------------------------------------------------------
+HVertexBuffer Renderer_DX11_0::CreateVertexBuffer(uint32 _nBufferSize, void* _pData)
+{
+	// Buffer Description
+	D3D11_BUFFER_DESC BufferDescription;
+
+	BufferDescription.Usage				= D3D11_USAGE_DEFAULT;
+	BufferDescription.ByteWidth			= _nBufferSize;
+	BufferDescription.BindFlags			= D3D11_BIND_VERTEX_BUFFER;
+	BufferDescription.CPUAccessFlags	= NULL;
+	BufferDescription.MiscFlags			= NULL;
+
+	// Subresource Data
+	D3D11_SUBRESOURCE_DATA SubresourceData;
+
+	SubresourceData.pSysMem				= _pData;
+	SubresourceData.SysMemPitch			= NULL;
+	SubresourceData.SysMemSlicePitch	= NULL; 
+
+	// Create Buffer
+	ID3D11Buffer* pVertexBuffer = nullptr;
+	m_pDevice->CreateBuffer(&BufferDescription, &SubresourceData, &pVertexBuffer);
+
+	return HVertexBuffer();
+}
+
+//---------------------------------------------------------------
+void Renderer_DX11_0::SetVertexBufferActive(HVertexBuffer _hVertexBuffer)
+{
+	SetVertexBufferActive((VertexBuffer_DX11_0*)_hVertexBuffer.RetrieveEntry());
+}
+
+//---------------------------------------------------------------
+void Renderer_DX11_0::SetVertexBufferActive(VertexBuffer_DX11_0* _pVertexBuffer)
+{
+	m_pActiveVertexBuffer = _pVertexBuffer;
 }
 
 //---------------------------------------------------------------

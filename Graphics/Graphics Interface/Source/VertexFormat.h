@@ -52,7 +52,8 @@ namespace Graphics
 
 		virtual ~VertexFormat() = 0;
 
-		virtual void SetVertexFormatActive() = 0;
+		virtual void	SetVertexFormatActive() = 0;
+		virtual uint32	GetVertexSize()			= 0;
 	};
 
 	typedef Platform::Handle<VertexFormat> HVertexFormat;

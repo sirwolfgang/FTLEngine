@@ -27,7 +27,13 @@ namespace Graphics
 		virtual void			SetShaderActive() = 0;
 	};
 
-	typedef Handle<Shader> HShader;
+	typedef Handle<Shader>	HShader;
+	typedef HShader			HComputeShader;
+	typedef HShader			HDomainShader;
+	typedef HShader			HGeometryShader;
+	typedef HShader			HHullShader;
+	typedef HShader			HPixelShader;
+	typedef HShader			HVertexShader;
 }
 
 #include "Shader.inl"

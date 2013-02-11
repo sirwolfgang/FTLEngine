@@ -7,7 +7,8 @@
 #include "DLL.h"
 #include "DirectX.h"
 #include "Shader.h"
-#include "VertexBuffer.h"
+#include "Buffer.h"
+#include "VertexFormat.h"
 
 namespace Graphics
 {
@@ -36,6 +37,7 @@ namespace Graphics
 		VertexShader*			m_pActiveVertexShader;
 
 		VertexFormat_DX11_0*	m_pActiveVertexFormat;
+		VertexBuffer_DX11_0*	m_pActiveVertexBuffer;
 
 	public:
 		//---------------------------------------------------------------
@@ -93,11 +95,13 @@ namespace Graphics
 		//---------------------------------------------------------------
 		// Buffer Management
 		//---------------------------------------------------------------
-		virtual HVertexFormat			CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength);
-		virtual Handle<VertexBuffer>	CreateVertexBuffer(uint32 _nBufferSize, void* _pData, VertexFormat* _pFormat);
-
-		virtual void	SetVertexFormatActive(HVertexFormat _hVertexFormat);
-		void			SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat);
+		virtual HVertexFormat	CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nLength);
+		virtual void			SetVertexFormatActive(HVertexFormat _hVertexFormat);
+		void					SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat);
+		
+		virtual HVertexBuffer	CreateVertexBuffer(uint32 _nBufferSize, void* _pData);
+		virtual void			SetVertexBufferActive(HVertexBuffer _hVertexBuffer);
+		void					SetVertexBufferActive(VertexBuffer_DX11_0* _pVertexBuffer);
 
 		//---------------------------------------------------------------
 		// View Management

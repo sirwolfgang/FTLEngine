@@ -27,10 +27,10 @@
     <ClInclude Include="Source\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\VertexBuffer.h">
+    <ClInclude Include="Source\VertexFormat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\VertexFormat.h">
+    <ClInclude Include="Source\Buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,10 +44,10 @@
     <None Include="Source\Shader.inl">
       <Filter>Inline Files</Filter>
     </None>
-    <None Include="Source\VertexBuffer.inl">
+    <None Include="Source\VertexFormat.inl">
       <Filter>Inline Files</Filter>
     </None>
-    <None Include="Source\VertexFormat.inl">
+    <None Include="Source\Buffer.inl">
       <Filter>Inline Files</Filter>
     </None>
   </ItemGroup>
