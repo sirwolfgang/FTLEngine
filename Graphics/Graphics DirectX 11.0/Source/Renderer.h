@@ -29,12 +29,12 @@ namespace Graphics
 		// Current Settings
 		bool					m_bIsFullscreen;
 
-		ComputeShader*			m_pActiveComputeShader;
-		DomainShader*			m_pActiveDomainShader;
-		GeometryShader*			m_pActiveGeometryShader;
-		HullShader*				m_pActiveHullShader;
-		PixelShader*			m_pActivePixelShader;
-		VertexShader*			m_pActiveVertexShader;
+		ComputeShader_DX11_0*	m_pActiveComputeShader;
+		DomainShader_DX11_0*	m_pActiveDomainShader;
+		GeometryShader_DX11_0*	m_pActiveGeometryShader;
+		HullShader_DX11_0*		m_pActiveHullShader;
+		PixelShader_DX11_0*		m_pActivePixelShader;
+		VertexShader_DX11_0*	m_pActiveVertexShader;
 
 		VertexFormat_DX11_0*	m_pActiveVertexFormat;
 		VertexBuffer_DX11_0*	m_pActiveVertexBuffer;

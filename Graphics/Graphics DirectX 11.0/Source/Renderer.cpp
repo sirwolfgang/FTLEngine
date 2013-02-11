@@ -187,37 +187,37 @@ Handle<Shader> Renderer_DX11_0::CompileFromFile(utf16* _szFile, utf8* _szFunctio
 		{
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "cs_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreateComputeShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11ComputeShader**) &pShader);
-			return m_HandleManager.CreateHandle((Shader*) new ComputeShader((ID3D11ComputeShader*)pShader));
+			return m_HandleManager.CreateHandle((Shader*) new ComputeShader_DX11_0((ID3D11ComputeShader*)pShader));
 		} break;
 	case Shader::eSHADER_TYPE_DOMAIN:
 		{
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "ds_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreateDomainShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11DomainShader**) &pShader);
-			return m_HandleManager.CreateHandle((Shader*) new DomainShader((ID3D11DomainShader*)pShader));
+			return m_HandleManager.CreateHandle((Shader*) new DomainShader_DX11_0((ID3D11DomainShader*)pShader));
 		} break;
 	case Shader::eSHADER_TYPE_GEOMETRY:
 		{ 
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "gs_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreateGeometryShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11GeometryShader**) &pShader);
-			return m_HandleManager.CreateHandle((Shader*) new GeometryShader((ID3D11GeometryShader*)pShader));
+			return m_HandleManager.CreateHandle((Shader*) new GeometryShader_DX11_0((ID3D11GeometryShader*)pShader));
 		} break;
 	case Shader::eSHADER_TYPE_HULL:
 		{ 		
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "hs_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreateHullShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11HullShader**) &pShader);
-			return m_HandleManager.CreateHandle((Shader*) new HullShader((ID3D11HullShader*)pShader));
+			return m_HandleManager.CreateHandle((Shader*) new HullShader_DX11_0((ID3D11HullShader*)pShader));
 		} break;
 	case Shader::eSHADER_TYPE_PIXEL:
 		{
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "ps_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreatePixelShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11PixelShader**) &pShader);
-			return m_HandleManager.CreateHandle((Shader*) new PixelShader((ID3D11PixelShader*)pShader));
+			return m_HandleManager.CreateHandle((Shader*) new PixelShader_DX11_0((ID3D11PixelShader*)pShader));
 		} break;
 	case Shader::eSHADER_TYPE_VERTEX:
 		{ 
 			D3DCompileFromFile(_szFile, NULL, NULL, _szFunction, "vs_5_0", NULL, NULL, &pCompiledCode, &pErrorMessage);
 			m_pDevice->CreateVertexShader(pCompiledCode->GetBufferPointer(), pCompiledCode->GetBufferSize(), NULL, (ID3D11VertexShader**)&pShader);
-			return m_HandleManager.CreateHandle((Shader*) new VertexShader((ID3D11VertexShader*)pShader));
+			return m_HandleManager.CreateHandle((Shader*) new VertexShader_DX11_0((ID3D11VertexShader*)pShader));
 		} break;
 	}
 
@@ -237,33 +237,33 @@ void Renderer_DX11_0::SetShaderActive(Shader* _pShader)
 	{
 	case Shader::eSHADER_TYPE_COMPUTE:
 		{
-			m_pActiveComputeShader = (ComputeShader*)_pShader;
-			m_pDeviceContext->CSSetShader((_pShader) ? ((ComputeShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
+			m_pActiveComputeShader = (ComputeShader_DX11_0*)_pShader;
+			m_pDeviceContext->CSSetShader((_pShader) ? ((ComputeShader_DX11_0*)_pShader)->GetShader() : nullptr, nullptr, NULL);
 		} break;
 	case Shader::eSHADER_TYPE_DOMAIN:
 		{
-			m_pActiveDomainShader = (DomainShader*)_pShader;
-			m_pDeviceContext->DSSetShader((_pShader) ? ((DomainShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
+			m_pActiveDomainShader = (DomainShader_DX11_0*)_pShader;
+			m_pDeviceContext->DSSetShader((_pShader) ? ((DomainShader_DX11_0*)_pShader)->GetShader() : nullptr, nullptr, NULL);
 		} break;
 	case Shader::eSHADER_TYPE_GEOMETRY:
 		{
-			m_pActiveGeometryShader = (GeometryShader*)_pShader;
-			m_pDeviceContext->GSSetShader((_pShader) ? ((GeometryShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
+			m_pActiveGeometryShader = (GeometryShader_DX11_0*)_pShader;
+			m_pDeviceContext->GSSetShader((_pShader) ? ((GeometryShader_DX11_0*)_pShader)->GetShader() : nullptr, nullptr, NULL);
 		} break;
 	case Shader::eSHADER_TYPE_HULL:
 		{
-			m_pActiveHullShader = (HullShader*)_pShader;
-			m_pDeviceContext->HSSetShader((_pShader) ? ((HullShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
+			m_pActiveHullShader = (HullShader_DX11_0*)_pShader;
+			m_pDeviceContext->HSSetShader((_pShader) ? ((HullShader_DX11_0*)_pShader)->GetShader() : nullptr, nullptr, NULL);
 		} break;
 	case Shader::eSHADER_TYPE_PIXEL:
 		{
-			m_pActivePixelShader = (PixelShader*)_pShader;
-			m_pDeviceContext->PSSetShader((_pShader) ? ((PixelShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
+			m_pActivePixelShader = (PixelShader_DX11_0*)_pShader;
+			m_pDeviceContext->PSSetShader((_pShader) ? ((PixelShader_DX11_0*)_pShader)->GetShader() : nullptr, nullptr, NULL);
 		} break;
 	case Shader::eSHADER_TYPE_VERTEX:
 		{
-			m_pActiveVertexShader = (VertexShader*)_pShader;
-			m_pDeviceContext->VSSetShader((_pShader) ? ((VertexShader*)_pShader)->GetShader() : nullptr, nullptr, NULL);
+			m_pActiveVertexShader = (VertexShader_DX11_0*)_pShader;
+			m_pDeviceContext->VSSetShader((_pShader) ? ((VertexShader_DX11_0*)_pShader)->GetShader() : nullptr, nullptr, NULL);
 		} break;
 	}
 }
@@ -287,8 +287,8 @@ void Renderer_DX11_0::SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat)
 {
 	m_pActiveVertexFormat = _pVertexFormat;
 
-	//TODO:: Bind Inputlayout, based on Actove VertexBuffer && Active Shader Pair 
-	//Renderer_DX11_0::Instance()->DeviceContext()->IASetInputLayout(
+	//TODO:: Bind InputLayout_DX11_0, based on Actove VertexBuffer && Active Shader Pair 
+	//Renderer_DX11_0::Instance()->DeviceContext()->IASetInputLayout_DX11_0(
 }
 
 //---------------------------------------------------------------

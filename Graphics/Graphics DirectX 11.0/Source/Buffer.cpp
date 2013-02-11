@@ -6,35 +6,35 @@
 using namespace Graphics;
 
 //---------------------------------------------------------------
-// BaseBuffer
+// BaseBuffer_DX11_0
 //---------------------------------------------------------------
-BaseBuffer::BaseBuffer()
+BaseBuffer_DX11_0::BaseBuffer_DX11_0()
 	: m_pBuffer(nullptr)
 {
 
 }
 
 //---------------------------------------------------------------
-BaseBuffer::BaseBuffer(BaseBuffer const& _That)
+BaseBuffer_DX11_0::BaseBuffer_DX11_0(BaseBuffer_DX11_0 const& _That)
 {
 
 }
 
 //---------------------------------------------------------------
-BaseBuffer& BaseBuffer::operator=(BaseBuffer const& _That)
+BaseBuffer_DX11_0& BaseBuffer_DX11_0::operator=(BaseBuffer_DX11_0 const& _That)
 {
 	return *this;
 }
 
 //---------------------------------------------------------------
-BaseBuffer::BaseBuffer(ID3D11Buffer* _pBuffer)
+BaseBuffer_DX11_0::BaseBuffer_DX11_0(ID3D11Buffer* _pBuffer)
 	: m_pBuffer(_pBuffer)
 {
 
 }
 
 //---------------------------------------------------------------
-BaseBuffer::~BaseBuffer()
+BaseBuffer_DX11_0::~BaseBuffer_DX11_0()
 {
 	RELEASE_COM(m_pBuffer);
 }
@@ -43,7 +43,7 @@ BaseBuffer::~BaseBuffer()
 // VertexBuffer
 //---------------------------------------------------------------
 VertexBuffer_DX11_0::VertexBuffer_DX11_0(ID3D11Buffer* _pBuffer)
-	: BaseBuffer(_pBuffer)
+	: BaseBuffer_DX11_0(_pBuffer)
 {
 
 }

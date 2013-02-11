@@ -4,9 +4,9 @@
 //===============================================================
 #pragma once
 
-class InputLayout
+class InputLayout_DX11_0
 {
 public:
-	InputLayout();
-	~InputLayout();
+	InputLayout_DX11_0();
+	~InputLayout_DX11_0();
 };

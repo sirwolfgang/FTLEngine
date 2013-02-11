@@ -9,19 +9,19 @@
 namespace Graphics
 {
 	//---------------------------------------------------------------
-	// BaseBuffer
+	// BaseBuffer_DX11_0
 	//---------------------------------------------------------------
-	class BaseBuffer : public Buffer
+	class BaseBuffer_DX11_0 : public Buffer
 	{
 		ID3D11Buffer* m_pBuffer;
 	
-		BaseBuffer();
-		BaseBuffer(BaseBuffer const& _That);
-		BaseBuffer& operator=(BaseBuffer const& _That);
+		BaseBuffer_DX11_0();
+		BaseBuffer_DX11_0(BaseBuffer_DX11_0 const& _That);
+		BaseBuffer_DX11_0& operator=(BaseBuffer_DX11_0 const& _That);
 		
 	public:
-		BaseBuffer(ID3D11Buffer* _pBuffer);
-		virtual ~BaseBuffer();
+		BaseBuffer_DX11_0(ID3D11Buffer* _pBuffer);
+		virtual ~BaseBuffer_DX11_0();
 	
 		virtual eBUFFER_TYPES	GetBufferType()		= 0;
 		virtual void			SetBufferActive()	= 0;
@@ -32,7 +32,7 @@ namespace Graphics
 	//---------------------------------------------------------------
 	// VertexBuffer
 	//---------------------------------------------------------------
-	class VertexBuffer_DX11_0 : public BaseBuffer
+	class VertexBuffer_DX11_0 : public BaseBuffer_DX11_0
 	{
 	public:
 		VertexBuffer_DX11_0(ID3D11Buffer* _pBuffer);

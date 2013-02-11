@@ -5,13 +5,13 @@
 #include "InputLayout.h"
 
 //---------------------------------------------------------------
-InputLayout::InputLayout()
+InputLayout_DX11_0::InputLayout_DX11_0()
 {
 
 }
 
 //---------------------------------------------------------------
-InputLayout::~InputLayout()
+InputLayout_DX11_0::~InputLayout_DX11_0()
 {
 
 }

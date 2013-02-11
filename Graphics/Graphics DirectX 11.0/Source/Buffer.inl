@@ -4,9 +4,9 @@
 //===============================================================
 
 //---------------------------------------------------------------
-// BaseBuffer
+// BaseBuffer_DX11_0
 //---------------------------------------------------------------
-inline ID3D11Buffer* Graphics::BaseBuffer::GetBuffer()
+inline ID3D11Buffer* Graphics::BaseBuffer_DX11_0::GetBuffer()
 {
 	return m_pBuffer;
 }
