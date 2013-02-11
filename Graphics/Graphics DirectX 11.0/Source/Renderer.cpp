@@ -32,7 +32,7 @@ Renderer_DX11_0::Renderer_DX11_0()
 //---------------------------------------------------------------
 Renderer_DX11_0::~Renderer_DX11_0()
 {
-	sm_pInstance		= nullptr;
+	sm_pInstance = nullptr;
 
 	// TODO:: Error Not Shutdown properly
 	if(m_pDevice 

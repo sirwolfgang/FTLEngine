@@ -33,7 +33,6 @@
     <ClCompile Include="Source\InputLayout.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
-    <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\VertexBuffer.cpp" />
     <ClCompile Include="Source\VertexFormat.cpp" />
   </ItemGroup>
