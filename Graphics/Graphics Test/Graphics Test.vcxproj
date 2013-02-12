@@ -29,6 +29,11 @@
       <Project>{802b506a-b93d-4a0e-88ce-fa597c6e58cb}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Source\Shader.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{07799624-8355-4331-9692-0CAD3DF9448D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

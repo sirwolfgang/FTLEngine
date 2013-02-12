@@ -20,7 +20,7 @@ VOut VShader(float4 Position : POSITION, float4 Color : COLOR)
 }
 
 //---------------------------------------------------------------
-float4 PShader(float4 Position : SV_POSITION, float4 Color : COLOR) : SV_TARGET
+float4 PShader(VOut In) : SV_TARGET
 {
-	return Color;
+	return In.Color;
 }
