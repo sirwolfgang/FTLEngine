@@ -67,11 +67,20 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 
 			Graphics::HVertexBuffer hVertexBuffer = pRenderer->CreateVertexBuffer(3, &VertexBuffer, hVertexFormat);
 
+			// Index Buffer
+			uint32 IntexBuffer[] =
+			{
+				0, 1, 2,
+			};
+
+			Graphics::HIndexBuffer hIndexBuffer = pRenderer->CreateIndexBuffer(3, IntexBuffer);
+
 			// Activate Settings
 			VertexShader->SetShaderActive();
 			PixelShader->SetShaderActive();
 
 			hVertexBuffer->SetBufferActive();
+			hIndexBuffer->SetBufferActive();
 			pRenderer->SetPrimitiveTopology(Graphics::Primitive::eTOPOLOGY_TRIANGLELIST);
 
 			while(Window.Update())
@@ -79,7 +88,7 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 				float Color[4] = {0.33f, 0.33f, 0.33f, 1.00f};
 
 				pRenderer->ClearBackBuffer(Color);
-				pRenderer->Draw(3, 0);
+				pRenderer->Draw(3, 0, 0);
 				pRenderer->Present();
 			}
 

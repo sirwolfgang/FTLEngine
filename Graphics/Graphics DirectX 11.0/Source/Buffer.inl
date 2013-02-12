@@ -24,3 +24,11 @@ inline Graphics::VertexFormat_DX11_0* Graphics::VertexBuffer_DX11_0::GetVertexFo
 {
 	return m_pVertexFormat;
 }
+
+//---------------------------------------------------------------
+// IndexBuffer
+//---------------------------------------------------------------
+inline Graphics::Buffer::eBUFFER_TYPES Graphics::IndexBuffer_DX11_0::GetBufferType()
+{
+	return eBUFFER_TYPE_INDEX;
+}

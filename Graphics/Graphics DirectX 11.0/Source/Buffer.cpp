@@ -55,3 +55,18 @@ void VertexBuffer_DX11_0::SetBufferActive()
 {
 	Renderer_DX11_0::Instance()->SetVertexBufferActive(this);
 }
+
+//---------------------------------------------------------------
+// IndexBuffer
+//---------------------------------------------------------------
+IndexBuffer_DX11_0::IndexBuffer_DX11_0(ID3D11Buffer* _pBuffer)
+	: BaseBuffer_DX11_0(_pBuffer)
+{
+
+}
+
+//---------------------------------------------------------------
+void IndexBuffer_DX11_0::SetBufferActive()
+{
+	Renderer_DX11_0::Instance()->SetIndexBufferActive(this);
+}

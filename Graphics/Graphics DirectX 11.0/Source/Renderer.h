@@ -37,12 +37,13 @@ namespace Graphics
 		GeometryShader_DX11_0*		m_pActiveGeometryShader;
 		HullShader_DX11_0*			m_pActiveHullShader;
 		PixelShader_DX11_0*			m_pActivePixelShader;
-
 		VertexShader_DX11_0*		m_pActiveVertexShader;
-		VertexFormat_DX11_0*		m_pActiveVertexFormat;
-		VertexBuffer_DX11_0*		m_pActiveVertexBuffer;
 
+		VertexFormat_DX11_0*		m_pActiveVertexFormat;
 		InputLayout_DX11_0*			m_pActiveInputLayout;
+
+		VertexBuffer_DX11_0*		m_pActiveVertexBuffer;
+		IndexBuffer_DX11_0*			m_pActiveIndexBuffer;
 
 		Primitive::eTOPOLOGY		m_eActivePrimitiveTopology;
 
@@ -95,6 +96,7 @@ namespace Graphics
 		virtual void Present();
 
 		virtual void Draw(uint32 _nVertexCount, uint32 _nFirstVertex);
+		virtual void Draw(uint32 _nIndexCount, uint32 _nFirstIndex, uint32 _nFirstVertex);
 
 		//---------------------------------------------------------------
 		// Primitive Management
@@ -113,10 +115,15 @@ namespace Graphics
 		// Buffer Management
 		//---------------------------------------------------------------
 		virtual HVertexFormat	CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nElements);
+		void					SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat);
+
 		virtual HVertexBuffer	CreateVertexBuffer(uint32 _nVertices, void* _pData, HVertexFormat _hFormat);
 		virtual void			SetVertexBufferActive(HVertexBuffer _hVertexBuffer);
 		void					SetVertexBufferActive(VertexBuffer_DX11_0* _pVertexBuffer);
-		void					SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat);
+
+		virtual HIndexBuffer	CreateIndexBuffer(uint32 _nIndices, uint32 _pData[]);
+		virtual void			SetIndexBufferActive(HIndexBuffer _hIndexBuffer);
+		void					SetIndexBufferActive(IndexBuffer_DX11_0* _pIndexBuffer);
 
 		//---------------------------------------------------------------
 		// View Management

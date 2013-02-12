@@ -59,8 +59,9 @@ Renderer_DX11_0::Renderer_DX11_0()
 	m_pActivePixelShader(nullptr), 
 	m_pActiveVertexShader(nullptr),
 	m_pActiveVertexFormat(nullptr),
-	m_pActiveVertexBuffer(nullptr),
 	m_pActiveInputLayout(nullptr),
+	m_pActiveVertexBuffer(nullptr),
+	m_pActiveIndexBuffer(nullptr),
 	m_eActivePrimitiveTopology(Primitive::eTOPOLOGY_UNDEFINED)
 {
 	sm_pInstance = this;
@@ -217,6 +218,13 @@ void Renderer_DX11_0::Draw(uint32 _nVertexCount, uint32 _nFirstVertex)
 }
 
 //---------------------------------------------------------------
+void Renderer_DX11_0::Draw(uint32 _nIndexCount, uint32 _nFirstIndex, uint32 _nFirstVertex)
+{
+	SetInputLayout();
+	m_pDeviceContext->DrawIndexed(_nIndexCount, _nFirstIndex, _nFirstVertex);
+}
+
+//---------------------------------------------------------------
 // Primitive Management
 //---------------------------------------------------------------
 void Renderer_DX11_0::SetPrimitiveTopology(Primitive::eTOPOLOGY _eTopology)
@@ -332,6 +340,13 @@ Handle<VertexFormat> Renderer_DX11_0::CreateVertexFormat(VertexFormat::VertDataP
 }
 
 //---------------------------------------------------------------
+void Renderer_DX11_0::SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat)
+{
+	m_pActiveVertexFormat	= _pVertexFormat;
+	m_pActiveInputLayout	= nullptr;
+}
+
+//---------------------------------------------------------------
 HVertexBuffer Renderer_DX11_0::CreateVertexBuffer(uint32 _nVertices, void* _pData, HVertexFormat _hFormat)
 {
 	// Buffer Description
@@ -378,10 +393,41 @@ void Renderer_DX11_0::SetVertexBufferActive(VertexBuffer_DX11_0* _pVertexBuffer)
 }
 
 //---------------------------------------------------------------
-void Renderer_DX11_0::SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat)
+HIndexBuffer Renderer_DX11_0::CreateIndexBuffer(uint32 _nIndices, uint32 _pData[])
 {
-	m_pActiveVertexFormat	= _pVertexFormat;
-	m_pActiveInputLayout	= nullptr;
+	// Buffer Description
+	D3D11_BUFFER_DESC BufferDescription;
+
+	BufferDescription.Usage				= D3D11_USAGE_DEFAULT;
+	BufferDescription.ByteWidth			= sizeof(uint32) * _nIndices;
+	BufferDescription.BindFlags			= D3D11_BIND_INDEX_BUFFER;
+	BufferDescription.CPUAccessFlags	= NULL;
+	BufferDescription.MiscFlags			= NULL;
+
+	// Subresource Data
+	D3D11_SUBRESOURCE_DATA SubresourceData;
+
+	SubresourceData.pSysMem				= _pData;
+	SubresourceData.SysMemPitch			= NULL;
+	SubresourceData.SysMemSlicePitch	= NULL; 
+
+	// Create Buffer
+	ID3D11Buffer* pIndexBuffer = nullptr;
+	m_pDevice->CreateBuffer(&BufferDescription, &SubresourceData, &pIndexBuffer);
+
+	return m_HandleManager.CreateHandle((Buffer*)new IndexBuffer_DX11_0(pIndexBuffer));
+}
+
+//---------------------------------------------------------------
+void Renderer_DX11_0::SetIndexBufferActive(HIndexBuffer _hIndexBuffer)
+{
+	SetIndexBufferActive((IndexBuffer_DX11_0*)_hIndexBuffer.RetrieveEntry());
+}
+
+//---------------------------------------------------------------
+void Renderer_DX11_0::SetIndexBufferActive(IndexBuffer_DX11_0* _pIndexBuffer)
+{
+	m_pDeviceContext->IASetIndexBuffer(_pIndexBuffer->GetBuffer(), DXGI_FORMAT_R32_UINT, NULL);
 }
 
 //---------------------------------------------------------------

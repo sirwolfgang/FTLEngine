@@ -44,6 +44,18 @@ namespace Graphics
 		virtual eBUFFER_TYPES	GetBufferType();
 		virtual void			SetBufferActive();
 	};
+
+	//---------------------------------------------------------------
+	// IndexBuffer
+	//---------------------------------------------------------------
+	class IndexBuffer_DX11_0 : public BaseBuffer_DX11_0
+	{
+	public:
+		IndexBuffer_DX11_0(ID3D11Buffer* _pBuffer);
+
+		virtual eBUFFER_TYPES	GetBufferType();
+		virtual void			SetBufferActive();
+	};
 };
 
 #include "Buffer.inl"
