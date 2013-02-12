@@ -15,18 +15,19 @@ namespace Graphics
 	class BaseBuffer_DX11_0 : public Buffer
 	{
 		ID3D11Buffer* m_pBuffer;
-	
+
 		BaseBuffer_DX11_0();
 		BaseBuffer_DX11_0(BaseBuffer_DX11_0 const& _That);
 		BaseBuffer_DX11_0& operator=(BaseBuffer_DX11_0 const& _That);
-		
+
 	public:
 		BaseBuffer_DX11_0(ID3D11Buffer* _pBuffer);
 		virtual ~BaseBuffer_DX11_0();
-	
-		virtual eBUFFER_TYPES	GetBufferType()		= 0;
-		virtual void			SetBufferActive()	= 0;
-	
+
+		virtual eBUFFER_TYPES	GetBufferType()				= 0;
+		virtual void			SetBufferActive()			= 0;
+		virtual void			UpdateBuffer(void* _pData);
+
 		ID3D11Buffer*			GetBuffer();
 	};
 
@@ -52,6 +53,18 @@ namespace Graphics
 	{
 	public:
 		IndexBuffer_DX11_0(ID3D11Buffer* _pBuffer);
+
+		virtual eBUFFER_TYPES	GetBufferType();
+		virtual void			SetBufferActive();
+	};
+
+	//---------------------------------------------------------------
+	// ConstantBuffer
+	//---------------------------------------------------------------
+	class ConstantBuffer_DX11_0 : public BaseBuffer_DX11_0
+	{
+	public:
+		ConstantBuffer_DX11_0(ID3D11Buffer* _pBuffer);
 
 		virtual eBUFFER_TYPES	GetBufferType();
 		virtual void			SetBufferActive();

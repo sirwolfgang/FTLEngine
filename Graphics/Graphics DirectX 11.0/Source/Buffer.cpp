@@ -41,6 +41,12 @@ BaseBuffer_DX11_0::~BaseBuffer_DX11_0()
 }
 
 //---------------------------------------------------------------
+void BaseBuffer_DX11_0::UpdateBuffer(void* _pData)
+{
+	Renderer_DX11_0::Instance()->UpdateBuffer(this, _pData);
+}
+
+//---------------------------------------------------------------
 // VertexBuffer
 //---------------------------------------------------------------
 VertexBuffer_DX11_0::VertexBuffer_DX11_0(ID3D11Buffer* _pBuffer, VertexFormat_DX11_0* _pVertexFormat)

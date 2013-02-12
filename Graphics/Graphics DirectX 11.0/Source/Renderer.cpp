@@ -431,6 +431,18 @@ void Renderer_DX11_0::SetIndexBufferActive(IndexBuffer_DX11_0* _pIndexBuffer)
 }
 
 //---------------------------------------------------------------
+void Renderer_DX11_0::UpdateBuffer(HBuffer _hBuffer, void* _pData)
+{
+	UpdateBuffer((BaseBuffer_DX11_0*)_hBuffer.RetrieveEntry(), _pData);
+}
+
+//---------------------------------------------------------------
+void Renderer_DX11_0::UpdateBuffer(BaseBuffer_DX11_0* _pBuffer, void* _pData)
+{
+	m_pDeviceContext->UpdateSubresource(_pBuffer->GetBuffer(), NULL, NULL, _pData, NULL, NULL);
+}
+
+//---------------------------------------------------------------
 // View Management
 //---------------------------------------------------------------
 void Renderer_DX11_0::SetFullscreen(bool _bFullscreen)

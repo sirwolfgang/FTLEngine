@@ -119,6 +119,9 @@ namespace Graphics
 		virtual void			SetIndexBufferActive(HIndexBuffer _hIndexBuffer);
 		void					SetIndexBufferActive(IndexBuffer_DX11_0* _pIndexBuffer);
 
+		virtual void			UpdateBuffer(HBuffer _hBuffer, void* _pData);
+		void					UpdateBuffer(BaseBuffer_DX11_0* _pBuffer, void* _pData);
+
 		//---------------------------------------------------------------
 		// View Management
 		//---------------------------------------------------------------

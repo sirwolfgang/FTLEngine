@@ -32,3 +32,11 @@ inline Graphics::Buffer::eBUFFER_TYPES Graphics::IndexBuffer_DX11_0::GetBufferTy
 {
 	return eBUFFER_TYPE_INDEX;
 }
+
+//---------------------------------------------------------------
+// ConstantBuffer
+//---------------------------------------------------------------
+inline Graphics::Buffer::eBUFFER_TYPES Graphics::ConstantBuffer_DX11_0::GetBufferType()
+{
+	return eBUFFER_TYPE_CONSTANT;
+}
