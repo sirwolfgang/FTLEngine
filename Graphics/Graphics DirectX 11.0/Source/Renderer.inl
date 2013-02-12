@@ -12,20 +12,6 @@ inline Graphics::Renderer_DX11_0* Graphics::Renderer_DX11_0::Instance()
 }
 
 //---------------------------------------------------------------
-// Device Access
-//---------------------------------------------------------------
-inline ID3D11Device* Graphics::Renderer_DX11_0::Device()
-{
-	return m_pDevice;
-}
-
-//---------------------------------------------------------------
-inline ID3D11DeviceContext* Graphics::Renderer_DX11_0::DeviceContext()
-{
-	return m_pDeviceContext;
-}
-
-//---------------------------------------------------------------
 // Rendering Settings
 //---------------------------------------------------------------
 inline uint32 Graphics::Renderer_DX11_0::GetWidth()
