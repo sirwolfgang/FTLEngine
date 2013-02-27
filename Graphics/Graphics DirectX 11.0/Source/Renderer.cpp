@@ -193,18 +193,6 @@ void Renderer_DX11_0::ClearBackBuffer(float _fARGB[4])
 }
 
 //---------------------------------------------------------------
-void Renderer_DX11_0::PreDraw()
-{
-
-}
-
-//---------------------------------------------------------------
-void Renderer_DX11_0::PostDraw()
-{
-
-}
-
-//---------------------------------------------------------------
 void Renderer_DX11_0::Present()
 {
 	m_pSwapChain->Present(0, 0);

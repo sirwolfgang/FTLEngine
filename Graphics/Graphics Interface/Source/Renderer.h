@@ -68,8 +68,6 @@ namespace Graphics
 		// Draw Management
 		//---------------------------------------------------------------
 		virtual void ClearBackBuffer(float _fRGBA[4])	= 0; 
-		virtual void PreDraw()							= 0;
-		virtual void PostDraw()							= 0;
 		virtual void Present()							= 0;
 
 		virtual void Draw(uint32 _nVertexCount, uint32 _nFirstVertex)						= 0;
