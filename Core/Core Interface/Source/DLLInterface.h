@@ -5,21 +5,21 @@
 #pragma once
 #include "Core.h"
 
-namespace Engine
+namespace Core
 {
 	class CoreDLL
 	{
-		Core*		m_pCore;
-		HMODULE		m_hDLL;
+		CoreInterface*		m_pCoreInterface;
+		HMODULE				m_hDLL;
 
 	public:
 		CoreDLL();
 		~CoreDLL();
 
-		Core*	GetCore();
-		HMODULE	GetModule();
+		CoreInterface*	GetCoreInterface();
+		HMODULE			GetModule();
 
-		void Create(Core** _pCore);
+		void Create(CoreInterface** _pCore);
 		void Release();
 	};
 }

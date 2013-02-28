@@ -4,17 +4,20 @@
 //===============================================================
 #pragma once
 #include <FTLCore.h>
+#include "Engine.h"
 
-namespace Engine
+namespace Core
 {
 	//---------------------------------------------------------------
 	// DLL Component
 	//---------------------------------------------------------------
-	class Core_Library : public Core
+	class CoreInterface_DLL : public CoreInterface
 	{
 	public:
-		Core_Library();
-		virtual ~Core_Library();
+		CoreInterface_DLL();
+		virtual ~CoreInterface_DLL();
+
+		virtual Engine* InitializeEngine(Engine::InitializationData& _InitializationData);
 	};
 
 

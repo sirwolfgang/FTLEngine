@@ -22,6 +22,7 @@
     <ClInclude Include="FTLCore.h" />
     <ClInclude Include="Source\Core.h" />
     <ClInclude Include="Source\DLLInterface.h" />
+    <ClInclude Include="Source\Engine.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\DLLInterface.inl" />

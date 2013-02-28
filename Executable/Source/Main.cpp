@@ -9,10 +9,10 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 					 LPSTR _lpCmdLine, 
 					 int _nCmdShow)
 {
-	Engine::CoreDLL		CoreDLL;
-	Engine::Core*		pCore;
+	Core::CoreDLL			CoreDLL;
+	Core::CoreInterface*	pCoreInterface;
 
-	CoreDLL.Create(&pCore);
+	CoreDLL.Create(&pCoreInterface);
 	{
 
 	}

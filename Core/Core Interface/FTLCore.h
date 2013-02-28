@@ -4,4 +4,3 @@
 //===============================================================
 #pragma once
 #include "Source\Core.h"
-#include "Source\DLLInterface.h"

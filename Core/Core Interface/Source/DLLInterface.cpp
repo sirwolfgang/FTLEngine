@@ -3,13 +3,13 @@
 // Purpose: Handle DLL Interfacing
 //===============================================================
 #include "DLLInterface.h"
-using namespace Engine;
+using namespace Core;
 
 //---------------------------------------------------------------
 CoreDLL::CoreDLL()
 {
-	m_pCore	= nullptr;
-	m_hDLL	= NULL;
+	m_pCoreInterface	= nullptr;
+	m_hDLL				= NULL;
 }
 
 //---------------------------------------------------------------
@@ -19,26 +19,26 @@ CoreDLL::~CoreDLL()
 }
 
 //---------------------------------------------------------------
-void CoreDLL::Create(Core** _pCore)
+void CoreDLL::Create(CoreInterface** _pCoreInterface)
 {
 	// Load DLL
 	m_hDLL = LoadLibraryEx(L"Core.dll", NULL, 0);
 
 	// Find Function & Call Function
-	CREATECORE CreateRendererFunc = (CREATECORE)GetProcAddress(m_hDLL, "CreateCore");
+	CREATECOREINTERFACE CreateRendererFunc = (CREATECOREINTERFACE)GetProcAddress(m_hDLL, "CreateCore");
 	DWORD Err = GetLastError();
 
-	CreateRendererFunc(m_hDLL, &m_pCore);
-	(*_pCore) = m_pCore;
+	CreateRendererFunc(m_hDLL, &m_pCoreInterface);
+	(*_pCoreInterface) = m_pCoreInterface;
 }
 
 //---------------------------------------------------------------
 void CoreDLL::Release()
 {
 	// Find Function & Call Function
-	RELEASECORE ReleaseRendererFunc = (RELEASECORE)GetProcAddress(m_hDLL, "ReleaseCore");
-	ReleaseRendererFunc(&m_pCore);
-	m_pCore = nullptr;
+	RELEASECOREINTERFACE ReleaseRendererFunc = (RELEASECOREINTERFACE)GetProcAddress(m_hDLL, "ReleaseCore");
+	ReleaseRendererFunc(&m_pCoreInterface);
+	m_pCoreInterface = nullptr;
 
 	// Unload DLL
 	FreeLibrary(m_hDLL);

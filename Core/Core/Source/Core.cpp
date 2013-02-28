@@ -3,18 +3,24 @@
 // Purpose: Act as the class and interface for the DLL
 //===============================================================
 #include "Core.h"
-using namespace Engine;
+using namespace Core;
 
 //---------------------------------------------------------------
-Core_Library::Core_Library()
+CoreInterface_DLL::CoreInterface_DLL()
 {
 
 }
 
 //---------------------------------------------------------------
-Core_Library::~Core_Library()
+CoreInterface_DLL::~CoreInterface_DLL()
 {
 
+}
+
+//---------------------------------------------------------------
+Engine* CoreInterface_DLL::InitializeEngine(Engine::InitializationData& _InitializationData)
+{
+	return nullptr;
 }
 
 //===============================================================
@@ -22,16 +28,16 @@ Core_Library::~Core_Library()
 //===============================================================
 extern "C"
 {
-	void __declspec(dllexport) CreateCore(HINSTANCE _hDLL, Core** _pInterface)
+	void __declspec(dllexport) CreateCoreInterface(HINSTANCE _hDLL, CoreInterface** _pInterface)
 	{
 		if(!(*_pInterface))
 		{
-			(*_pInterface) = new Core_Library();
+			(*_pInterface) = new CoreInterface_DLL();
 		}
 	}
 
 	//---------------------------------------------------------------
-	void __declspec(dllexport) ReleaseCore(Core** _pInterface)
+	void __declspec(dllexport) ReleaseCoreInterface(CoreInterface** _pInterface)
 	{
 		if((*_pInterface))
 		{

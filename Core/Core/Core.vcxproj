@@ -21,9 +21,11 @@
   <ItemGroup>
     <ClCompile Include="Source\Core.cpp" />
     <ClCompile Include="Source\DLLMain.cpp" />
+    <ClCompile Include="Source\Engine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core.h" />
+    <ClInclude Include="Source\Engine.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Platform\Platform.vcxproj">

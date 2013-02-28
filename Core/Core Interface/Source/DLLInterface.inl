@@ -2,13 +2,13 @@
 // File:	DLLInterface.inl
 // Purpose: Handle DLL Interfacing
 //===============================================================
-inline Engine::Core* Engine::CoreDLL::GetCore()
+inline Core::CoreInterface* Core::CoreDLL::GetCoreInterface()
 {
-	return m_pCore;
+	return m_pCoreInterface;
 }
 
 //---------------------------------------------------------------
-inline HMODULE Engine::CoreDLL::GetModule()
+inline HMODULE Core::CoreDLL::GetModule()
 {
 	return m_hDLL;
 }

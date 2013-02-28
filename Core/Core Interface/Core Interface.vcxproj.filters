@@ -20,7 +20,8 @@
     <ClInclude Include="Source\Core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTLCore.h">
+    <ClInclude Include="FTLCore.h" />
+    <ClInclude Include="Source\Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
