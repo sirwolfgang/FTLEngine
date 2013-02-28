@@ -187,6 +187,12 @@ void Renderer_DX11_0::Shutdown()
 		m_HandleManager.RemoveEntry(m_hBuffers[i]);
 	}
 
+	for(memsize i = m_hVertexFormats.size() - 1; i >= 0 && i < (memsize)-1; --i)
+	{
+		delete m_hVertexFormats[i].RetrieveEntry();
+		m_HandleManager.RemoveEntry(m_hVertexFormats[i]);
+	}
+
 	// Shaders
 	m_pActiveComputeShader		= nullptr;
 	m_pActiveDomainShader		= nullptr;
@@ -365,7 +371,9 @@ void Renderer_DX11_0::SetShaderActive(Shader* _pShader)
 //---------------------------------------------------------------
 Handle<VertexFormat> Renderer_DX11_0::CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nElements)
 {
-	return m_HandleManager.CreateHandle((VertexFormat*)new VertexFormat_DX11_0(_VertexFormatArray, _nElements));
+	HVertexFormat hVertexBuffer = m_HandleManager.CreateHandle((VertexFormat*)new VertexFormat_DX11_0(_VertexFormatArray, _nElements));
+	m_hVertexFormats.push_back(hVertexBuffer);
+	return hVertexBuffer;
 }
 
 //---------------------------------------------------------------

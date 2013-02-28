@@ -35,6 +35,7 @@ namespace Graphics
 		// Memory
 		vector<HShader>				m_hShaders;
 		vector<HBuffer>				m_hBuffers;
+		vector<HVertexFormat>		m_hVertexFormats;
 
 		// Shaders
 		ComputeShader_DX11_0*		m_pActiveComputeShader;
