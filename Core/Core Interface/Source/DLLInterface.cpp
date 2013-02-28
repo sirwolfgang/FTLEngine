@@ -25,10 +25,10 @@ void CoreDLL::Create(CoreInterface** _pCoreInterface)
 	m_hDLL = LoadLibraryEx(L"Core.dll", NULL, 0);
 
 	// Find Function & Call Function
-	CREATECOREINTERFACE CreateRendererFunc = (CREATECOREINTERFACE)GetProcAddress(m_hDLL, "CreateCore");
+	CREATECOREINTERFACE CreateCoreInterface = (CREATECOREINTERFACE)GetProcAddress(m_hDLL, "CreateCoreInterface");
 	DWORD Err = GetLastError();
 
-	CreateRendererFunc(m_hDLL, &m_pCoreInterface);
+	CreateCoreInterface(m_hDLL, &m_pCoreInterface);
 	(*_pCoreInterface) = m_pCoreInterface;
 }
 
@@ -36,8 +36,8 @@ void CoreDLL::Create(CoreInterface** _pCoreInterface)
 void CoreDLL::Release()
 {
 	// Find Function & Call Function
-	RELEASECOREINTERFACE ReleaseRendererFunc = (RELEASECOREINTERFACE)GetProcAddress(m_hDLL, "ReleaseCore");
-	ReleaseRendererFunc(&m_pCoreInterface);
+	RELEASECOREINTERFACE ReleaseCoreInterface = (RELEASECOREINTERFACE)GetProcAddress(m_hDLL, "ReleaseCoreInterface");
+	ReleaseCoreInterface(&m_pCoreInterface);
 	m_pCoreInterface = nullptr;
 
 	// Unload DLL

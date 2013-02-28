@@ -12,11 +12,13 @@ namespace Core
 	public:
 		struct InitializationData
 		{
-			HINSTANCE	m_hInstance;
-			LPSTR		m_lpCmdLine;
-			int32		m_nCmdShow;
+			HINSTANCE	hInstance;
+			LPSTR		lpCmdLine;
+			int32		nCmdShow;
 		};
 
 		virtual ~Engine(){}
+
+		virtual int32 Run() = 0;
 	};
 }
