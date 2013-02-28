@@ -25,7 +25,7 @@ void CoreDLL::Create(Core** _pCore)
 	m_hDLL = LoadLibraryEx(L"Core.dll", NULL, 0);
 
 	// Find Function & Call Function
-	CREATECORE CreateRendererFunc = (CREATECORE)GetProcAddress(m_hDLL, "CreateComponent");
+	CREATECORE CreateRendererFunc = (CREATECORE)GetProcAddress(m_hDLL, "CreateCore");
 	DWORD Err = GetLastError();
 
 	CreateRendererFunc(m_hDLL, &m_pCore);
@@ -36,7 +36,7 @@ void CoreDLL::Create(Core** _pCore)
 void CoreDLL::Release()
 {
 	// Find Function & Call Function
-	RELEASECORE ReleaseRendererFunc = (RELEASECORE)GetProcAddress(m_hDLL, "ReleaseComponent");
+	RELEASECORE ReleaseRendererFunc = (RELEASECORE)GetProcAddress(m_hDLL, "ReleaseCore");
 	ReleaseRendererFunc(&m_pCore);
 	m_pCore = nullptr;
 
