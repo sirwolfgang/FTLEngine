@@ -1,8 +1,7 @@
 //===============================================================
-// File:	Core.h
-// Purpose: Core Technology Layer Entry Point
+// File:	FTLCore.h
+// Purpose: Core Layer, Lib Include
 //===============================================================
 #pragma once
-
-#include "Engine.h"
-#include "Module\ModuleManager.h"
+#include "Source\Core.h"
+#include "Source\DLLInterface.h"

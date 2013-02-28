@@ -1,8 +1,8 @@
 //===============================================================
-// File:	Main.cpp
-// Purpose: To Handle DLL Function
+// File:	DLLMain.cpp
+// Purpose: Defines the entry point for the DLL application.
 //===============================================================
-#include <FTLPlatform.h>
+#include <Windows.h>
 
 bool APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
@@ -16,4 +16,3 @@ bool APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 	}
 	return true;
 }
-
