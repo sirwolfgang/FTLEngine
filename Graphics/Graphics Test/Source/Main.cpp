@@ -83,7 +83,8 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 			hIndexBuffer->SetBufferActive();
 			pRenderer->SetPrimitiveTopology(Graphics::Primitive::eTOPOLOGY_TRIANGLELIST);
 
-			while(Window.Update())
+			//while(Window.Update())
+			Window.Update();
 			{
 				float Color[4] = {0.33f, 0.33f, 0.33f, 1.00f};
 
@@ -91,7 +92,7 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 				pRenderer->Draw(3, 0, 0);
 				pRenderer->Present();
 			}
-
+			Window.Update();
 		}
 		pRenderer->Shutdown();
 	}

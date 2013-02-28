@@ -16,22 +16,27 @@ namespace Graphics
 {
 	class Renderer_DX11_0 : public Renderer
 	{
+		// Instances
 		static Renderer_DX11_0*		sm_pInstance;
 
+		// Settings
 		Settings					m_tStarupSettings;
+		bool						m_bIsFullscreen;
 
+		// D3D
 		ID3D11Device*				m_pDevice;
 		ID3D11DeviceContext*		m_pDeviceContext;
 		IDXGISwapChain*				m_pSwapChain;
 
-		ID3D11RenderTargetView*		m_pBackBuffer;
-
+		// Utility
 		Platform::HandleManager				m_HandleManager;
 		map<uint32, InputLayout_DX11_0*>	m_InputLayouts;
 
-		// Current Settings
-		bool						m_bIsFullscreen;
+		// Memory
+		vector<HShader>				m_hShaders;
+		vector<HBuffer>				m_hBuffers;
 
+		// Shaders
 		ComputeShader_DX11_0*		m_pActiveComputeShader;
 		DomainShader_DX11_0*		m_pActiveDomainShader;
 		GeometryShader_DX11_0*		m_pActiveGeometryShader;
@@ -39,13 +44,17 @@ namespace Graphics
 		PixelShader_DX11_0*			m_pActivePixelShader;
 		VertexShader_DX11_0*		m_pActiveVertexShader;
 
+		// Layouts/Formats
 		VertexFormat_DX11_0*		m_pActiveVertexFormat;
 		InputLayout_DX11_0*			m_pActiveInputLayout;
 
+		Primitive::eTOPOLOGY		m_eActivePrimitiveTopology;
+
+		// Buffers
 		VertexBuffer_DX11_0*		m_pActiveVertexBuffer;
 		IndexBuffer_DX11_0*			m_pActiveIndexBuffer;
 
-		Primitive::eTOPOLOGY		m_eActivePrimitiveTopology;
+		ID3D11RenderTargetView*		m_pBackBuffer;
 
 		void SetInputLayout();
 
