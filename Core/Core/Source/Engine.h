@@ -13,13 +13,6 @@ namespace Core
 
 		Engine_DLL();
 	public:
-		struct InitializationData
-		{
-			HINSTANCE	m_hInstance;
-			LPSTR		m_lpCmdLine;
-			int32		m_nCmdShow;
-		};
-
 		Engine_DLL(InitializationData& _InitializationData);
 		virtual ~Engine_DLL();
 	};

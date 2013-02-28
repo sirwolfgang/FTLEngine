@@ -20,7 +20,7 @@ CoreInterface_DLL::~CoreInterface_DLL()
 //---------------------------------------------------------------
 Engine* CoreInterface_DLL::InitializeEngine(Engine::InitializationData& _InitializationData)
 {
-	return nullptr;
+	return new Engine_DLL(_InitializationData);
 }
 
 //===============================================================
