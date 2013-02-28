@@ -180,18 +180,21 @@ void Renderer_DX11_0::Shutdown()
 		delete m_hShaders[i].RetrieveEntry();
 		m_HandleManager.RemoveEntry(m_hShaders[i]);
 	}
+	m_hShaders.clear();
 
 	for(memsize i = m_hBuffers.size() - 1; i >= 0 && i < (memsize)-1; --i)
 	{
 		delete m_hBuffers[i].RetrieveEntry();
 		m_HandleManager.RemoveEntry(m_hBuffers[i]);
 	}
+	m_hBuffers.clear();
 
 	for(memsize i = m_hVertexFormats.size() - 1; i >= 0 && i < (memsize)-1; --i)
 	{
 		delete m_hVertexFormats[i].RetrieveEntry();
 		m_HandleManager.RemoveEntry(m_hVertexFormats[i]);
 	}
+	m_hVertexFormats.clear();
 
 	// Shaders
 	m_pActiveComputeShader		= nullptr;
