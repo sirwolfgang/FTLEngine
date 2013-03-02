@@ -27,5 +27,9 @@ namespace Core
 		virtual void Startup();
 		virtual void Shutdown();
 		virtual void Update(float32 _fTime);
+
+		HWND GetHandle();
 	};
 }
+
+#include "WindowModule.inl"

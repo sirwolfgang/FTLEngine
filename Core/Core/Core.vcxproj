@@ -35,12 +35,21 @@
     <ClInclude Include="Source\Modules\ModuleManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Graphics\Graphics DirectX 11.0\Graphics DirectX 11.0.vcxproj">
+      <Project>{bff11bf9-b603-4fe9-a1c7-a4c1cc3f4195}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Graphics\Graphics Interface\Graphics Interface.vcxproj">
+      <Project>{802b506a-b93d-4a0e-88ce-fa597c6e58cb}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\Platform\Platform.vcxproj">
       <Project>{78624e3f-3cb8-4afa-9886-2ac60cbb423b}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Core Interface\Core Interface.vcxproj">
       <Project>{040930c6-9eb0-4f2e-b6fb-a877368f3d7b}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\Modules\Graphics\WindowModule.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{980BA84C-FF6A-4F35-8448-23FE791BCEB1}</ProjectGuid>
@@ -93,20 +102,20 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Core\Core Interface;$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Core\Core Interface;$(SolutionDir)Platform\;$(SolutionDir)Graphics\Graphics Interface;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Core\Core Interface;$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Core\Core Interface;$(SolutionDir)Platform\;$(SolutionDir)Graphics\Graphics Interface;$(IncludePath)</IncludePath>
     <TargetName>Core</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Core\Core Interface;$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Core\Core Interface;$(SolutionDir)Platform\;$(SolutionDir)Graphics\Graphics Interface;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Core\Core Interface;$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Core\Core Interface;$(SolutionDir)Platform\;$(SolutionDir)Graphics\Graphics Interface;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

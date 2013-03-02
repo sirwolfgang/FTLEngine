@@ -6,15 +6,16 @@
 using namespace Core;
 
 //---------------------------------------------------------------
-GraphicsModule::GraphicsModule()
+GraphicsModule::GraphicsModule() 
+	: m_RendererDLL(), m_pRenderer(nullptr)
 {
-
+	m_RendererDLL.Create(&m_pRenderer);
 }
 
 //---------------------------------------------------------------
 GraphicsModule::~GraphicsModule()
 {
-
+	m_RendererDLL.Release();
 }
 
 //---------------------------------------------------------------
@@ -26,18 +27,37 @@ void GraphicsModule::Initialize(InitializationData& _InitializationData)
 	WindowInitData.nCmdShow		= _InitializationData.nCmdShow;
 
 	m_windowModule.Initialize(WindowInitData);
+	m_windowModule.Startup();
+
+	// Renderer
+	Graphics::Renderer::Settings Settings;
+
+	Settings.nWidth			= 1024;
+	Settings.nHeight		= 768;
+	Settings.nRefreshRate	= 0;
+	Settings.nMSAASamples	= 1;
+	Settings.nSampleQuality = 0;
+	Settings.nBufferCount	= 1;
+	Settings.eDriverMode	= Graphics::Renderer::eDriverMode_Hardware;
+	Settings.hOutput		= m_windowModule.GetHandle();
+	Settings.bDebugMode		= true;
+
+	m_pRenderer->Initialize(Settings);
 }
 
 //---------------------------------------------------------------
 void GraphicsModule::Startup()
 {
-	// Window
-	m_windowModule.Startup();
+	// Renderer
+	m_pRenderer->Startup();
 }
 
 //---------------------------------------------------------------
 void GraphicsModule::Shutdown()
 {
+	// Renderer
+	m_pRenderer->Shutdown();
+
 	// Window
 	m_windowModule.Shutdown();
 }
@@ -47,4 +67,10 @@ void GraphicsModule::Update(float32 _fTime)
 {
 	// Window
 	m_windowModule.Update(_fTime);
+
+	// Renderer
+	float Color[4] = {0.33f, 0.33f, 0.33f, 1.00f};
+
+	m_pRenderer->ClearBackBuffer(Color);
+	m_pRenderer->Present();
 }

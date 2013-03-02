@@ -5,6 +5,7 @@
 #pragma once
 #include "../IModule.h"
 #include "WindowModule.h"
+#include <FTLGraphics.h>
 
 namespace Core
 {
@@ -19,6 +20,9 @@ namespace Core
 
 	protected:
 		WindowModule m_windowModule;
+
+		Graphics::RendererDLL	m_RendererDLL;
+		Graphics::Renderer*		m_pRenderer;
 
 	public:
 		GraphicsModule();
