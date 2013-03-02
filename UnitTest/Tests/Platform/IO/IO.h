@@ -1,12 +1,7 @@
 //===============================================================
 // File:	Platform.h
-// Purpose: Inclusion for all the Platform Unit Tests
+// Purpose: Inclusion for all the Platform/IO Unit Tests
 //===============================================================
 #pragma once
 
-#include <FTLPlatform.h>
-
-#include "Timer.h"
-#include "DataTypes.h"
-#include "Handles.h"
-#include "IO\IO.h"
+#include "File.h"

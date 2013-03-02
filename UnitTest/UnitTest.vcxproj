@@ -158,6 +158,8 @@
   <ItemGroup>
     <ClInclude Include="Tests\Platform\DataTypes.h" />
     <ClInclude Include="Tests\Platform\Handles.h" />
+    <ClInclude Include="Tests\Platform\IO\File.h" />
+    <ClInclude Include="Tests\Platform\IO\IO.h" />
     <ClInclude Include="Tests\Platform\Platform.h" />
     <ClInclude Include="Tests\Platform\Timer.h" />
   </ItemGroup>

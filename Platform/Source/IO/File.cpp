@@ -17,18 +17,7 @@ File::File(const utf8 _szFilename[], EOpen _eOpen, EData _eData, EPermissions _e
 	: m_eOpen(_eOpen), m_eData(_eData), m_ePermissions(_ePermissons)
 {
 	strcpy_s(m_szFilename, sizeof(utf8) * FILENAME_MAX, _szFilename);
-}
 
-//---------------------------------------------------------------
-File::~File()
-{
-	if(m_file.is_open())
-		Close();
-}
-
-//---------------------------------------------------------------
-void File::Open()
-{
 	std::ios_base::openmode Mode = NULL;
 	Mode |= (m_eOpen == EOPEN_APPEND)				? std::ios_base::app	: NULL;
 	Mode |= (m_eOpen == EOPEN_TRUNCATE)				? std::ios_base::trunc	: NULL;
@@ -36,88 +25,72 @@ void File::Open()
 	Mode |= (m_ePermissions & EPERMISSION_READ)		? std::ios_base::in		: NULL;
 	Mode |= (m_ePermissions & EPERMISSION_WRITE)	? std::ios_base::out	: NULL;
 
-	m_file = std::fstream(m_szFilename, Mode);
+	m_file.open(m_szFilename, Mode);
+
+	//TODO:: Handle Error
 }
 
 //---------------------------------------------------------------
-void File::Close()
+File::~File()
 {
+	//if(m_file.is_open()) TODO:: ASSERT
+	m_file.flush();
 	m_file.close();
-	m_file = std::fstream();
 }
 
 //---------------------------------------------------------------
 void File::Read(memsize_u _nSize, void* _pData)
 {
-	if(m_file.is_open())
-		m_file.read((char*)_pData, _nSize);
+	//if(m_file.is_open()) TODO:: ASSERT
+	m_file.read((char*)_pData, _nSize);
 }
 
 //---------------------------------------------------------------
 void File::Write(memsize_u _nSize, void* _pData)
 {
-	if(m_file.is_open())
-		m_file.write((char*)_pData, _nSize);
+	//if(m_file.is_open()) TODO:: ASSERT
+	m_file.write((char*)_pData, _nSize);
 }
 
 //---------------------------------------------------------------
-void File::MoveReadHead(EPositions _ePosition, memsize_s _nOffset)
+void File::Commit()
 {
+	//if(m_file.is_open()) TODO:: ASSERT
+	m_file.flush();
+}
+
+//---------------------------------------------------------------
+void File::MoveHead(EPositions _ePosition, memsize_s _nOffset)
+{
+	//if(m_file.is_open()) TODO:: ASSERT
 	m_file.seekg(_nOffset, (_ePosition == EPOSITION_BEGIN) ? std::ios_base::beg : ((_ePosition == EPOSITION_END) ? std::ios_base::end : std::ios_base::cur));
 }
 
 //---------------------------------------------------------------
-void File::MoveReadHead(memsize_s _nOffset, EPositions _ePosition)
+void File::MoveHead(memsize_s _nOffset, EPositions _ePosition)
 {
-	MoveReadHead(_ePosition, _nOffset);
+	MoveHead(_ePosition, _nOffset);
 }
 
 //---------------------------------------------------------------
-void File::MoveWriteHead(EPositions _ePosition, memsize_s _nOffset)
+memsize_s File::GetHeadPosition()
 {
-	m_file.seekp(_nOffset, (_ePosition == EPOSITION_BEGIN) ? std::ios_base::beg : ((_ePosition == EPOSITION_END) ? std::ios_base::end : std::ios_base::cur));
-}
-
-//---------------------------------------------------------------
-void File::MoveWriteHead(memsize_s _nOffset, EPositions _ePosition)
-{
-	MoveWriteHead(_ePosition, _nOffset);
-}
-
-//---------------------------------------------------------------
-void File::MoveReadToWrite()
-{
-	MoveReadHead(GetWriteHead(), EPOSITION_BEGIN);
-}
-
-//---------------------------------------------------------------
-void File::MoveWriteToRead()
-{
-	MoveWriteHead(GetReadHead(), EPOSITION_BEGIN);
-}
-
-//---------------------------------------------------------------
-memsize_u File::GetReadHead()
-{
-	return m_file.tellg();
-}
-
-//---------------------------------------------------------------
-memsize_u File::GetWriteHead()
-{
+	//if(m_file.is_open()) TODO:: ASSERT
 	return m_file.tellp();
 }
 
 //---------------------------------------------------------------
-memsize_u File::GetFileSize()
+memsize_s File::GetFileSize()
 {
+	//if(m_file.is_open()) TODO:: ASSERT
+
 	// Cache Current Read Position
-	memsize_u Cache = GetReadHead();
+	memsize_u Cache = GetHeadPosition();
 	memsize_u Size	= NULL;
 
-	MoveReadHead(EPOSITION_END);
-	Size = GetReadHead();
-	MoveReadHead(EPOSITION_BEGIN, Cache);
+	MoveHead(EPOSITION_END);
+	Size = GetHeadPosition();
+	MoveHead(EPOSITION_BEGIN, Cache);
 
 	return Size;
 }

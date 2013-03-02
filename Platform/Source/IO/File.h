@@ -50,23 +50,15 @@ namespace Platform
 		File(const utf8 _szFilename[], EOpen _eOpen, EData _eData, EPermissions _ePermissons);
 		virtual ~File();
 
-		void Open();
-		void Close();
-
 		void Read(memsize_u _nSize, void* _pData);
 		void Write(memsize_u _nSize, void* _pData);
 
-		void MoveReadHead(EPositions _ePosition, memsize_s _nOffset = NULL);
-		void MoveReadHead(memsize_s _nOffset, EPositions _ePosition = EPOSITION_CURRENT);
+		void Commit();
 
-		void MoveWriteHead(EPositions _ePosition, memsize_s _nOffset = NULL);
-		void MoveWriteHead(memsize_s _nOffset, EPositions _ePosition = EPOSITION_CURRENT);
+		void MoveHead(EPositions _ePosition, memsize_s _nOffset = NULL);
+		void MoveHead(memsize_s _nOffset, EPositions _ePosition = EPOSITION_CURRENT);
 
-		void MoveReadToWrite();
-		void MoveWriteToRead();
-
-		memsize_u GetReadHead();
-		memsize_u GetWriteHead();
-		memsize_u GetFileSize();
+		memsize_s GetHeadPosition();
+		memsize_s GetFileSize();
 	};
 }
