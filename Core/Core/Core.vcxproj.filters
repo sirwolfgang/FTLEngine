@@ -5,30 +5,29 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Header Files\Modules">
-      <UniqueIdentifier>{60a9e7c1-6dbd-45ba-a920-09b0ba32c954}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Modules">
+    <Filter Include="Modules">
       <UniqueIdentifier>{516145a4-bc71-42aa-a9ba-41c83f1019cc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Modules\Graphics">
-      <UniqueIdentifier>{51ed3a52-1624-4ef7-abb7-d709cdd9c255}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Modules\Graphics">
+    <Filter Include="Modules\Graphics">
       <UniqueIdentifier>{eb23bcb1-a998-4a3e-abfb-67456154d302}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Inline Files">
-      <UniqueIdentifier>{9c5c21ca-afa8-4c5a-bfb8-8e598ab295eb}</UniqueIdentifier>
+    <Filter Include="Modules\Header Files">
+      <UniqueIdentifier>{a0d6b5bd-9a4a-4fe6-bb52-37d72ff6fb05}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Inline Files\Modules">
-      <UniqueIdentifier>{ec9e7f66-4587-47db-99bd-bd0cd23b4a54}</UniqueIdentifier>
+    <Filter Include="Modules\Source Files">
+      <UniqueIdentifier>{c3263147-6c0a-4757-9278-7259a5b61a26}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Inline Files\Modules\Graphics">
-      <UniqueIdentifier>{ab635f06-10d0-4aec-8d74-5286bac5f01b}</UniqueIdentifier>
+    <Filter Include="Modules\Graphics\Header Files">
+      <UniqueIdentifier>{195d8d94-d19c-43c9-92f7-8ae1181248fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Graphics\Inline Files">
+      <UniqueIdentifier>{c8350e79-bd32-4233-8712-77d752ce0b3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Graphics\Source Files">
+      <UniqueIdentifier>{e7b81139-2c3c-41c4-a7fc-e04e9c772f2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{ad6e0c98-f210-422d-a596-706a7dfd742d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,38 +41,38 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Modules\ModuleManager.cpp">
-      <Filter>Source Files\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Modules\Graphics\WindowModule.cpp">
-      <Filter>Source Files\Modules\Graphics</Filter>
+      <Filter>Modules\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Modules\Graphics\GraphicsModule.cpp">
-      <Filter>Source Files\Modules\Graphics</Filter>
+      <Filter>Modules\Graphics\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Modules\Graphics\WindowModule.cpp">
+      <Filter>Modules\Graphics\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Modules\IModule.h">
+      <Filter>Modules\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Modules\ModuleManager.h">
+      <Filter>Modules\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Modules\Graphics\WindowModule.h">
+      <Filter>Modules\Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Modules\Graphics\GraphicsModule.h">
+      <Filter>Modules\Graphics\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Modules\ModuleManager.h">
-      <Filter>Header Files\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Modules\IModule.h">
-      <Filter>Header Files\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Modules\Graphics\WindowModule.h">
-      <Filter>Header Files\Modules\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Modules\Graphics\GraphicsModule.h">
-      <Filter>Header Files\Modules\Graphics</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Modules\Graphics\WindowModule.inl">
-      <Filter>Inline Files\Modules\Graphics</Filter>
+      <Filter>Modules\Graphics\Inline Files</Filter>
     </None>
   </ItemGroup>
 </Project>
