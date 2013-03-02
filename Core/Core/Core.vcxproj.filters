@@ -15,6 +15,12 @@
     <Filter Include="Source Files\Modules">
       <UniqueIdentifier>{516145a4-bc71-42aa-a9ba-41c83f1019cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Modules\Graphics">
+      <UniqueIdentifier>{51ed3a52-1624-4ef7-abb7-d709cdd9c255}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Graphics">
+      <UniqueIdentifier>{eb23bcb1-a998-4a3e-abfb-67456154d302}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\DLLMain.cpp">
@@ -38,6 +44,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Modules\ModuleManager.h">
+      <Filter>Header Files\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Modules\IModule.h">
       <Filter>Header Files\Modules</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,16 +3,16 @@
 // Purpose: To Handle the base module managment interface
 //===============================================================
 #pragma once
-#include <FTLPlatform.h>
+#include "IModule.h"
 
 namespace Core
 {
-	class ModuleManager
+	class ModuleManager : public IModule
 	{
 
 	public:
 		ModuleManager();
-		~ModuleManager();
+		virtual ~ModuleManager();
 
 		virtual void Initialize();
 		virtual void Startup();

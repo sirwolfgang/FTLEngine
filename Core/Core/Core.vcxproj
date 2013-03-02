@@ -27,6 +27,7 @@
   <ItemGroup>
     <ClInclude Include="Source\Core.h" />
     <ClInclude Include="Source\Engine.h" />
+    <ClInclude Include="Source\Modules\IModule.h" />
     <ClInclude Include="Source\Modules\ModuleManager.h" />
   </ItemGroup>
   <ItemGroup>
