@@ -22,14 +22,19 @@
     <ClCompile Include="Source\Core.cpp" />
     <ClCompile Include="Source\DLLMain.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
+    <ClCompile Include="Source\Modules\ModuleManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core.h" />
     <ClInclude Include="Source\Engine.h" />
+    <ClInclude Include="Source\Modules\ModuleManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Platform\Platform.vcxproj">
       <Project>{78624e3f-3cb8-4afa-9886-2ac60cbb423b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Core Interface\Core Interface.vcxproj">
+      <Project>{040930c6-9eb0-4f2e-b6fb-a877368f3d7b}</Project>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">

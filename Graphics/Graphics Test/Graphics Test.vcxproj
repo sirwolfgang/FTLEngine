@@ -25,6 +25,9 @@
     <ProjectReference Include="..\..\Platform\Platform.vcxproj">
       <Project>{78624e3f-3cb8-4afa-9886-2ac60cbb423b}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\Graphics DirectX 11.0\Graphics DirectX 11.0.vcxproj">
+      <Project>{bff11bf9-b603-4fe9-a1c7-a4c1cc3f4195}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Graphics Interface\Graphics Interface.vcxproj">
       <Project>{802b506a-b93d-4a0e-88ce-fa597c6e58cb}</Project>
     </ProjectReference>

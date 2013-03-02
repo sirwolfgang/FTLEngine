@@ -132,6 +132,9 @@
     <ProjectReference Include="..\Core\Core Interface\Core Interface.vcxproj">
       <Project>{040930c6-9eb0-4f2e-b6fb-a877368f3d7b}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\Core\Core\Core.vcxproj">
+      <Project>{980ba84c-ff6a-4f35-8448-23fe791bceb1}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Platform\Platform.vcxproj">
       <Project>{78624e3f-3cb8-4afa-9886-2ac60cbb423b}</Project>
     </ProjectReference>

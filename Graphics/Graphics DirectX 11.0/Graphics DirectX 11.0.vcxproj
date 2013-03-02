@@ -47,6 +47,9 @@
     <ProjectReference Include="..\..\Platform\Platform.vcxproj">
       <Project>{78624e3f-3cb8-4afa-9886-2ac60cbb423b}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\Graphics Interface\Graphics Interface.vcxproj">
+      <Project>{802b506a-b93d-4a0e-88ce-fa597c6e58cb}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BFF11BF9-B603-4FE9-A1C7-A4C1CC3F4195}</ProjectGuid>

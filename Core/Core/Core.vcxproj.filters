@@ -9,6 +9,12 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="Header Files\Modules">
+      <UniqueIdentifier>{60a9e7c1-6dbd-45ba-a920-09b0ba32c954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules">
+      <UniqueIdentifier>{516145a4-bc71-42aa-a9ba-41c83f1019cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\DLLMain.cpp">
@@ -20,6 +26,9 @@
     <ClCompile Include="Source\Engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Modules\ModuleManager.cpp">
+      <Filter>Source Files\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core.h">
@@ -27,6 +36,9 @@
     </ClInclude>
     <ClInclude Include="Source\Engine.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Modules\ModuleManager.h">
+      <Filter>Header Files\Modules</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
