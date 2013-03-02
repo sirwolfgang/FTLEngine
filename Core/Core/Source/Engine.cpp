@@ -34,7 +34,11 @@ int32 Engine_DLL::Run()
 	ModuleManager moduleManager;
 
 	// Init
-	moduleManager.Initialize();
+	ModuleManager::InitializationData InitData;
+	InitData.hInstance	= m_hInstance;
+	InitData.nCmdShow	= m_nCmdShow;
+
+	moduleManager.Initialize(InitData);
 
 	// Startup
 	moduleManager.Startup();

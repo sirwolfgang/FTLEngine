@@ -19,7 +19,8 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 					 LPSTR _lpCmdLine, 
 					 int _nCmdShow)
 {
-	Window Window(_hInstance, _nCmdShow);
+	Window Window;
+	Window.Initialize(_hInstance, _nCmdShow);
 	Window.Create(Platform::Window::eWindow_Mode_Normal, L"FTL Engine", 0, 0, 1024, 768);
 
 	RendererDLL		rendererDLL;

@@ -35,6 +35,9 @@
     <ClCompile Include="Source\Modules\ModuleManager.cpp">
       <Filter>Source Files\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Modules\Graphics\WindowModule.cpp">
+      <Filter>Source Files\Modules\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core.h">
@@ -48,6 +51,9 @@
     </ClInclude>
     <ClInclude Include="Source\Modules\IModule.h">
       <Filter>Header Files\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Modules\Graphics\WindowModule.h">
+      <Filter>Header Files\Modules\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

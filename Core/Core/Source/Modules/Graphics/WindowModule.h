@@ -1,15 +1,13 @@
 //===============================================================
-// File:	ModuleManager.h
-// Purpose: To Handle the base module managment interface
+// File:	WindowModule.h
+// Purpose: To Handle the Platform Layer Window Rendering
 //===============================================================
 #pragma once
-#include "IModule.h"
-
-#include "Graphics\WindowModule.h"
+#include "../IModule.h"
 
 namespace Core
 {
-	class ModuleManager : public IModule
+	class WindowModule : public IModule
 	{
 	public:
 		struct InitializationData
@@ -19,11 +17,11 @@ namespace Core
 		};
 
 	protected:
-		WindowModule m_windowModule;
+		Platform::Window m_Window;
 
 	public:
-		ModuleManager();
-		virtual ~ModuleManager();
+		WindowModule();
+		virtual ~WindowModule();
 
 		virtual void Initialize(InitializationData& _InitializationData);
 		virtual void Startup();

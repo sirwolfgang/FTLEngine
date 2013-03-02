@@ -14,7 +14,34 @@ Window::Window()
 }
 
 //---------------------------------------------------------------
-Window::Window(HINSTANCE _hInstance, int32 _nCmdShow)
+Window::Window(Window const& _That)
+{
+	*this = _That;
+}
+
+//---------------------------------------------------------------
+Window::~Window()
+{
+	if(m_hWnd)
+		Destroy();
+
+	if(m_hWnd || m_hInstance || m_nCmdShow)
+		UnregisterClass(L"FTLWindowClass", m_hInstance);
+}
+
+//---------------------------------------------------------------
+Window& Window::operator=(Window const& _That)
+{
+	m_hWnd		= _That.m_hWnd;
+	m_hInstance	= _That.m_hInstance;
+	m_nCmdShow	= _That.m_nCmdShow;
+	m_msg		= _That.m_msg;
+
+	return *this;
+}
+
+//---------------------------------------------------------------
+void Window::Initialize(HINSTANCE _hInstance, int32 _nCmdShow)
 {
 	m_hWnd		= NULL;
 	m_hInstance = _hInstance;
@@ -31,15 +58,6 @@ Window::Window(HINSTANCE _hInstance, int32 _nCmdShow)
 	wc.lpszClassName	= L"FTLWindowClass";
 
 	RegisterClassEx(&wc);
-}
-
-//---------------------------------------------------------------
-Window::~Window()
-{
-	if(m_hWnd)
-		Destroy();
-
-	UnregisterClass(L"FTLWindowClass", m_hInstance);
 }
 
 //---------------------------------------------------------------

@@ -24,11 +24,14 @@ namespace Platform
 		int32		m_nCmdShow;
 		MSG			m_msg;
 
-		Window();
 	public:
-		Window(HINSTANCE _hInstance, int32 _nCmdShow);
+		Window();
+		Window(Window const& _That);
 		~Window();
 
+		Window& operator=(Window const& _That);
+
+		void Initialize(HINSTANCE _hInstance, int32 _nCmdShow);
 		void Create(eWINDOW_MODE _eMode, utf16* _szTitle, int32 _nPosX, int32 _nPosY, int32 _nWidth, int32 _nHeight);
 		void Destroy();
 		void Show(int32 _nCmdShow);
