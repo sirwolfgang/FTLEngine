@@ -27,6 +27,12 @@
     <Filter Include="Handles\Source Files">
       <UniqueIdentifier>{ca3e6e68-63c3-443d-adc5-9bec98197a3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\IO">
+      <UniqueIdentifier>{d0f069cc-e343-4a90-b55f-f5c3b861d21a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IO">
+      <UniqueIdentifier>{cc8bcdc7-6922-4dec-a82d-61416283896e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DataTypes.h">
@@ -60,6 +66,12 @@
     <ClInclude Include="Source\Handles\HandleManager.h">
       <Filter>Handles\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\IO\IO.h">
+      <Filter>Header Files\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\IO\File.h">
+      <Filter>Header Files\IO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Timer.cpp">
@@ -70,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="Source\Handles\HandleManager.cpp">
       <Filter>Handles\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\IO\File.cpp">
+      <Filter>Source Files\IO</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
