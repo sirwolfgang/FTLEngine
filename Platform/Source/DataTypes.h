@@ -24,9 +24,11 @@ typedef	double				float64;
 // 32 bit to 64 bit Compatibility
 //		memsize: can store sizes of pointers or indexes of the largest arrays per architecture
 #ifdef PLATFORM_32_BIT
-typedef uint32				memsize;
+typedef uint32				memsize_u;
+typedef int32				memsize_s;
 #endif
 
 #ifdef PLATFORM_64_BIT
-typedef uint64				memsize;
+typedef uint64				memsize_u;
+typedef int64				memsize_s;
 #endif

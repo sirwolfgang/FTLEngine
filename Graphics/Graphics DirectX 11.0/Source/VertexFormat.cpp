@@ -21,7 +21,7 @@ VertexFormat_DX11_0::VertexFormat_DX11_0(VertDataPair _VertexFormatArray[], uint
 {
 	memset(m_VertexFormat, NULL, sizeof(m_VertexFormat));
 
-	for(memsize i = 0; i < m_nVertexElements; ++i)
+	for(memsize_s i = 0; i < m_nVertexElements; ++i)
 	{
 		// SemanticName
 		switch (_VertexFormatArray[i].Semantic)

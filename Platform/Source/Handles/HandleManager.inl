@@ -5,16 +5,16 @@
 template<typename Type>
 inline Platform::Handle<Type> Platform::HandleManager::CreateHandle(Type* _pEntry)
 {
-	Handle<Type> hHandle;
-	memsize Index;
+	Handle<Type>	hHandle;
+	memsize_s		nIndex;
 
 	if(m_FreeList.size() > 0)
 	{
-		Index = m_FreeList.back();
+		nIndex = m_FreeList.back();
 		m_FreeList.pop_back();
 
-		m_Handles[Index].m_nReferenceCount	= 1;
-		m_Handles[Index].m_pEntry			= _pEntry;	
+		m_Handles[nIndex].m_nReferenceCount	= 1;
+		m_Handles[nIndex].m_pEntry			= _pEntry;	
 	}
 	else
 	{
@@ -24,11 +24,11 @@ inline Platform::Handle<Type> Platform::HandleManager::CreateHandle(Type* _pEntr
 		Entry.m_pEntry			= _pEntry;
 
 		m_Handles.push_back(Entry);
-		Index = m_Handles.size() - 1;
+		nIndex = m_Handles.size() - 1;
 	}
 
-	hHandle.m_nIndex	= Index;
-	hHandle.m_nUsageID	= m_Handles[Index].m_nUsageID;
+	hHandle.m_nIndex	= nIndex;
+	hHandle.m_nUsageID	= m_Handles[nIndex].m_nUsageID;
 	hHandle.m_pManager	= this;
 
 	return hHandle;

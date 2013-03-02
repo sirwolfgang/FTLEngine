@@ -19,10 +19,12 @@ TEST(Platform_DataTypes, Is_Correct_Size)
 	ASSERT_EQ(sizeof(float64), 8);
 
 #ifdef PLATFORM_32_BIT
-	ASSERT_EQ(sizeof(memsize), 4);
+	ASSERT_EQ(sizeof(memsize_u), 4);
+	ASSERT_EQ(sizeof(memsize_s), 4);
 #endif
 
 #ifdef PLATFORM_64_BIT
-	ASSERT_EQ(sizeof(memsize), 8);
+	ASSERT_EQ(sizeof(memsize_u), 8);
+	ASSERT_EQ(sizeof(memsize_s), 8);
 #endif
 }

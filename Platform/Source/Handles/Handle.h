@@ -11,7 +11,7 @@ namespace Platform
 	{
 		friend class HandleManager;
 		HandleManager*	m_pManager;
-		memsize			m_nIndex;
+		memsize_u		m_nIndex;
 		uint32			m_nUsageID;
 
 	public:

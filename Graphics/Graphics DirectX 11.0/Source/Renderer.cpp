@@ -164,9 +164,6 @@ void Renderer_DX11_0::Startup()
 //---------------------------------------------------------------
 void Renderer_DX11_0::Shutdown()
 {
-	// TODO:: Clean up Memory, Handles
-	//Platform::HandleManager m_HandleManager;
-
 	// Memory
 	for(map<uint32, InputLayout_DX11_0*>::iterator Iterator = m_InputLayouts.begin(); Iterator != m_InputLayouts.end(); ++Iterator)
 	{
@@ -175,21 +172,21 @@ void Renderer_DX11_0::Shutdown()
 	}
 	m_InputLayouts.clear();
 
-	for(memsize i = m_hShaders.size() - 1; i >= 0 && i < (memsize)-1; --i)
+	for(memsize_s i = m_hShaders.size() - 1; i >= 0; --i)
 	{
 		delete m_hShaders[i].RetrieveEntry();
 		m_HandleManager.RemoveEntry(m_hShaders[i]);
 	}
 	m_hShaders.clear();
 
-	for(memsize i = m_hBuffers.size() - 1; i >= 0 && i < (memsize)-1; --i)
+	for(memsize_s i = m_hBuffers.size() - 1; i >= 0; --i)
 	{
 		delete m_hBuffers[i].RetrieveEntry();
 		m_HandleManager.RemoveEntry(m_hBuffers[i]);
 	}
 	m_hBuffers.clear();
 
-	for(memsize i = m_hVertexFormats.size() - 1; i >= 0 && i < (memsize)-1; --i)
+	for(memsize_s i = m_hVertexFormats.size() - 1; i >= 0; --i)
 	{
 		delete m_hVertexFormats[i].RetrieveEntry();
 		m_HandleManager.RemoveEntry(m_hVertexFormats[i]);

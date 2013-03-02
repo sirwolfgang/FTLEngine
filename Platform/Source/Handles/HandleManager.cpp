@@ -30,7 +30,7 @@ HandleManager& HandleManager::operator=(HandleManager const& _That)
 }
 
 //---------------------------------------------------------------
-void* HandleManager::RetrieveEntry(memsize _nIndex, uint32 _nUsageID)
+void* HandleManager::RetrieveEntry(memsize_u _nIndex, uint32 _nUsageID)
 {
 	if(m_Handles[_nIndex].m_nUsageID == _nUsageID)
 	{
@@ -40,7 +40,7 @@ void* HandleManager::RetrieveEntry(memsize _nIndex, uint32 _nUsageID)
 }
 
 //---------------------------------------------------------------
-void HandleManager::AddReference(memsize _nIndex, uint32 _nUsageID)
+void HandleManager::AddReference(memsize_u _nIndex, uint32 _nUsageID)
 {
 	if(m_Handles[_nIndex].m_nUsageID == _nUsageID)
 	{
@@ -49,7 +49,7 @@ void HandleManager::AddReference(memsize _nIndex, uint32 _nUsageID)
 }
 
 //---------------------------------------------------------------
-uint32 HandleManager::GetReferenceCount(memsize _nIndex, uint32 _nUsageID)
+uint32 HandleManager::GetReferenceCount(memsize_u _nIndex, uint32 _nUsageID)
 {
 	if(m_Handles[_nIndex].m_nUsageID == _nUsageID)
 	{
@@ -59,7 +59,7 @@ uint32 HandleManager::GetReferenceCount(memsize _nIndex, uint32 _nUsageID)
 }
 
 //---------------------------------------------------------------
-void HandleManager::ReleaseReference(memsize _nIndex, uint32 _nUsageID)
+void HandleManager::ReleaseReference(memsize_u _nIndex, uint32 _nUsageID)
 {
 	if(m_Handles[_nIndex].m_nUsageID == _nUsageID)
 	{

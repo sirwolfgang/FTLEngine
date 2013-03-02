@@ -18,14 +18,14 @@ namespace Platform
 		};
 
 		std::vector<HandleEntry>	m_Handles;
-		std::vector<memsize>		m_FreeList;
+		std::vector<memsize_u>		m_FreeList;
 
 		template<typename Type>
 		friend class Handle;
-		void*	RetrieveEntry		(memsize _nIndex, uint32 _nUsageID);
-		void	AddReference		(memsize _nIndex, uint32 _nUsageID);
-		uint32	GetReferenceCount	(memsize _nIndex, uint32 _nUsageID);
-		void	ReleaseReference	(memsize _nIndex, uint32 _nUsageID);
+		void*	RetrieveEntry		(memsize_u _nIndex, uint32 _nUsageID);
+		void	AddReference		(memsize_u _nIndex, uint32 _nUsageID);
+		uint32	GetReferenceCount	(memsize_u _nIndex, uint32 _nUsageID);
+		void	ReleaseReference	(memsize_u _nIndex, uint32 _nUsageID);
 
 	public:
 		HandleManager();
