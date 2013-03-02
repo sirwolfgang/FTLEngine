@@ -38,6 +38,9 @@
     <ClCompile Include="Source\Modules\Graphics\WindowModule.cpp">
       <Filter>Source Files\Modules\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Modules\Graphics\GraphicsModule.cpp">
+      <Filter>Source Files\Modules\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core.h">
@@ -53,6 +56,9 @@
       <Filter>Header Files\Modules</Filter>
     </ClInclude>
     <ClInclude Include="Source\Modules\Graphics\WindowModule.h">
+      <Filter>Header Files\Modules\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Modules\Graphics\GraphicsModule.h">
       <Filter>Header Files\Modules\Graphics</Filter>
     </ClInclude>
   </ItemGroup>

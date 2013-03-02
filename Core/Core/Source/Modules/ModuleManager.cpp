@@ -22,30 +22,30 @@ void ModuleManager::Initialize(InitializationData& _InitializationData)
 {
 	// TODO:: Handle Module Initialization and Settings
 
-	WindowModule::InitializationData WindowInitData;
-	WindowInitData.hInstance	= _InitializationData.hInstance;
-	WindowInitData.nCmdShow		= _InitializationData.nCmdShow;
+	GraphicsModule::InitializationData GraphicsInitData;
+	GraphicsInitData.hInstance	= _InitializationData.hInstance;
+	GraphicsInitData.nCmdShow	= _InitializationData.nCmdShow;
 
-	m_windowModule.Initialize(WindowInitData);
+	m_graphicsModule.Initialize(GraphicsInitData);
 }
 
 //---------------------------------------------------------------
 void ModuleManager::Startup()
 {
 	// TODO:: Starup Modules
-	m_windowModule.Startup();
+	m_graphicsModule.Startup();
 }
 
 //---------------------------------------------------------------
 void ModuleManager::Shutdown()
 {
 	// TODO:: Shutdown Modules
-	m_windowModule.Shutdown();
+	m_graphicsModule.Shutdown();
 }
 
 //---------------------------------------------------------------
 void ModuleManager::Update(float32 _fTime)
 {
 	// TODO:: Updates Modules
-	m_windowModule.Update(_fTime);
+	m_graphicsModule.Update(_fTime);
 }

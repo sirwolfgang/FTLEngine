@@ -1,15 +1,14 @@
 //===============================================================
-// File:	ModuleManager.h
-// Purpose: To Handle the base module managment interface
+// File:	GraphicsModule.h
+// Purpose: To Handle the Game Graphics
 //===============================================================
 #pragma once
-#include "IModule.h"
-
-#include "Graphics\GraphicsModule.h"
+#include "../IModule.h"
+#include "WindowModule.h"
 
 namespace Core
 {
-	class ModuleManager : public IModule
+	class GraphicsModule : public IModule
 	{
 	public:
 		struct InitializationData
@@ -19,11 +18,11 @@ namespace Core
 		};
 
 	protected:
-		GraphicsModule m_graphicsModule;
+		WindowModule m_windowModule;
 
 	public:
-		ModuleManager();
-		virtual ~ModuleManager();
+		GraphicsModule();
+		virtual ~GraphicsModule();
 
 		virtual void Initialize(InitializationData& _InitializationData);
 		virtual void Startup();
