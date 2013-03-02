@@ -53,8 +53,6 @@ namespace Platform
 		void Read(memsize_u _nSize, void* _pData);
 		void Write(memsize_u _nSize, void* _pData);
 
-		void Commit();
-
 		void MoveHead(EPositions _ePosition, memsize_s _nOffset = NULL);
 		void MoveHead(memsize_s _nOffset, EPositions _ePosition = EPOSITION_CURRENT);
 

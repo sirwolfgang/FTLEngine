@@ -34,7 +34,6 @@ File::File(const utf8 _szFilename[], EOpen _eOpen, EData _eData, EPermissions _e
 File::~File()
 {
 	//if(m_file.is_open()) TODO:: ASSERT
-	m_file.flush();
 	m_file.close();
 }
 
@@ -50,13 +49,6 @@ void File::Write(memsize_u _nSize, void* _pData)
 {
 	//if(m_file.is_open()) TODO:: ASSERT
 	m_file.write((char*)_pData, _nSize);
-}
-
-//---------------------------------------------------------------
-void File::Commit()
-{
-	//if(m_file.is_open()) TODO:: ASSERT
-	m_file.flush();
 }
 
 //---------------------------------------------------------------
