@@ -12,9 +12,6 @@
     <Filter Include="Inline Files">
       <UniqueIdentifier>{111491a8-8d88-4415-be2c-da7fddb59c02}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Collections">
-      <UniqueIdentifier>{39002e1a-b838-4f14-aa56-267484de82d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Handles">
       <UniqueIdentifier>{0ac1c2d9-1295-44e9-af4d-9385132e2db5}</UniqueIdentifier>
     </Filter>
@@ -27,11 +24,17 @@
     <Filter Include="Handles\Source Files">
       <UniqueIdentifier>{ca3e6e68-63c3-443d-adc5-9bec98197a3f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\IO">
+    <Filter Include="Collections">
+      <UniqueIdentifier>{39002e1a-b838-4f14-aa56-267484de82d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO">
       <UniqueIdentifier>{d0f069cc-e343-4a90-b55f-f5c3b861d21a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\IO">
-      <UniqueIdentifier>{cc8bcdc7-6922-4dec-a82d-61416283896e}</UniqueIdentifier>
+    <Filter Include="IO\Header Files">
+      <UniqueIdentifier>{0ed93ac8-ed17-41ab-8144-2fadb12bf413}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO\Source Files">
+      <UniqueIdentifier>{48625131-1d96-409b-9850-5d16426a7a6a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -55,7 +58,7 @@
     </ClInclude>
     <ClInclude Include="FTLPlatform.h" />
     <ClInclude Include="Source\Collections\Collections.h">
-      <Filter>Header Files\Collections</Filter>
+      <Filter>Collections</Filter>
     </ClInclude>
     <ClInclude Include="Source\Handles\Handle.h">
       <Filter>Handles\Header Files</Filter>
@@ -67,10 +70,10 @@
       <Filter>Handles\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\IO\IO.h">
-      <Filter>Header Files\IO</Filter>
+      <Filter>IO\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\IO\File.h">
-      <Filter>Header Files\IO</Filter>
+      <Filter>IO\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -84,7 +87,7 @@
       <Filter>Handles\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\IO\File.cpp">
-      <Filter>Source Files\IO</Filter>
+      <Filter>IO\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
