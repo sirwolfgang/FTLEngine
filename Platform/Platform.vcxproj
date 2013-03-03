@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FTLPlatform.h" />
+    <ClInclude Include="Source\Assert.h" />
     <ClInclude Include="Source\Collections\Collections.h" />
     <ClInclude Include="Source\DataTypes.h" />
     <ClInclude Include="Source\Handles\Handle.h" />

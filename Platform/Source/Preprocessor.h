@@ -38,3 +38,5 @@
 #ifndef DLLEXPORT
 #define DLLEXPORT __declspec(dllexport)
 #endif
+
+#include "Assert.h"

@@ -75,6 +75,9 @@
     <ClInclude Include="Source\IO\File.h">
       <Filter>IO\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Assert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Timer.cpp">

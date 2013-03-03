@@ -26,35 +26,34 @@ File::File(const utf8 _szFilename[], EOpen _eOpen, EData _eData, EPermissions _e
 	Mode |= (m_ePermissions & EPERMISSION_WRITE)	? std::ios_base::out	: NULL;
 
 	m_file.open(m_szFilename, Mode);
-
-	//TODO:: Handle Error
+	assert(m_file.is_open());
 }
 
 //---------------------------------------------------------------
 File::~File()
 {
-	//if(m_file.is_open()) TODO:: ASSERT
+	assert(m_file.is_open());
 	m_file.close();
 }
 
 //---------------------------------------------------------------
 void File::Read(memsize_u _nSize, void* _pData)
 {
-	//if(m_file.is_open()) TODO:: ASSERT
+	assert(m_file.is_open());
 	m_file.read((char*)_pData, _nSize);
 }
 
 //---------------------------------------------------------------
 void File::Write(memsize_u _nSize, void* _pData)
 {
-	//if(m_file.is_open()) TODO:: ASSERT
+	assert(m_file.is_open());
 	m_file.write((char*)_pData, _nSize);
 }
 
 //---------------------------------------------------------------
 void File::MoveHead(EPositions _ePosition, memsize_s _nOffset)
 {
-	//if(m_file.is_open()) TODO:: ASSERT
+	assert(m_file.is_open());
 	m_file.seekg(_nOffset, (_ePosition == EPOSITION_BEGIN) ? std::ios_base::beg : ((_ePosition == EPOSITION_END) ? std::ios_base::end : std::ios_base::cur));
 }
 
@@ -67,15 +66,13 @@ void File::MoveHead(memsize_s _nOffset, EPositions _ePosition)
 //---------------------------------------------------------------
 memsize_s File::GetHeadPosition()
 {
-	//if(m_file.is_open()) TODO:: ASSERT
+	assert(m_file.is_open());
 	return m_file.tellp();
 }
 
 //---------------------------------------------------------------
 memsize_s File::GetFileSize()
 {
-	//if(m_file.is_open()) TODO:: ASSERT
-
 	// Cache Current Read Position
 	memsize_u Cache = GetHeadPosition();
 	memsize_u Size	= NULL;
