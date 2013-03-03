@@ -4,6 +4,7 @@
 //===============================================================
 #pragma once
 #include "Preprocessor.h"
+#include <cstdlib>
 
 #undef  assert
 

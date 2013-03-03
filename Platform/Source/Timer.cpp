@@ -11,7 +11,10 @@ float64 Platform::GetCurrentTime_Milliseconds(void)
 	LARGE_INTEGER Tick;
 
 	QueryPerformanceFrequency(&TicksPerSecond);
+	assert(GetLastError() == 0);
+
 	QueryPerformanceCounter(&Tick);
+	assert(GetLastError() == 0);
 
 	return Tick.QuadPart * 1000.0 / TicksPerSecond.QuadPart;
 #endif

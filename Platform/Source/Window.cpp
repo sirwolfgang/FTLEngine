@@ -3,6 +3,7 @@
 // Purpose: To handle window managment
 //===============================================================
 #include "Window.h"
+#include "Assert.h"
 using namespace Platform;
 
 //---------------------------------------------------------------
@@ -26,7 +27,10 @@ Window::~Window()
 		Destroy();
 
 	if(m_hWnd || m_hInstance || m_nCmdShow)
+	{
 		UnregisterClass(L"FTLWindowClass", m_hInstance);
+		assert(GetLastError() == 0);
+	}
 }
 
 //---------------------------------------------------------------
@@ -58,6 +62,7 @@ void Window::Initialize(HINSTANCE _hInstance, int32 _nCmdShow)
 	wc.lpszClassName	= L"FTLWindowClass";
 
 	RegisterClassEx(&wc);
+	assert(GetLastError() == 0);
 }
 
 //---------------------------------------------------------------
@@ -71,6 +76,7 @@ void Window::Create(eWINDOW_MODE _eMode, utf16* _szTitle, int32 _nPosX, int32 _n
 	// Adjust Window to be true res size on with client window
 	RECT windowRect = {0, 0, _nWidth, _nHeight};
 	AdjustWindowRectEx(&windowRect, windowStyle, false, NULL);
+	assert(GetLastError() == 0);
 
 	m_hWnd = CreateWindowEx(NULL,
 		L"FTLWindowClass",					// Name of the window class
@@ -84,21 +90,27 @@ void Window::Create(eWINDOW_MODE _eMode, utf16* _szTitle, int32 _nPosX, int32 _n
 		NULL,								// Menus
 		m_hInstance,						// Application handle
 		NULL);								// Multiple windows
+	assert(GetLastError() == 0);
 
 	ShowWindow(m_hWnd, m_nCmdShow);
+	assert(GetLastError() == 0);
 }
 
 //---------------------------------------------------------------
 void Window::Destroy()
 {
 	if(DestroyWindow(m_hWnd))
+	{
 		m_hWnd = NULL;
+		assert(GetLastError() == 0);
+	}
 }
 
 //---------------------------------------------------------------
 void Window::Show(int32 _nCmdShow)
 {
 	ShowWindow(m_hWnd, _nCmdShow);
+	assert(GetLastError() == 0);
 }
 
 //---------------------------------------------------------------
