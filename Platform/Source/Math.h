@@ -10,3 +10,5 @@
 #include <DirectXPackedVector.h>
 #include <DirectXColors.h>
 #include <DirectXCollision.h>
+
+using namespace DirectX;
