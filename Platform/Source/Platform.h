@@ -7,6 +7,7 @@
 #include "Preprocessor.h"
 #include "Information.h"
 #include "DataTypes.h"
+#include "Math.h"
 #include "Timer.h"
 #include "Collections\Collections.h"
 #include "Window.h"

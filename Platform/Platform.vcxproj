@@ -29,6 +29,7 @@
     <ClInclude Include="Source\Information.h" />
     <ClInclude Include="Source\IO\File.h" />
     <ClInclude Include="Source\IO\IO.h" />
+    <ClInclude Include="Source\Math.h" />
     <ClInclude Include="Source\Platform.h" />
     <ClInclude Include="Source\Preprocessor.h" />
     <ClInclude Include="Source\Timer.h" />
