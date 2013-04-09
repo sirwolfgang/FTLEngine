@@ -51,6 +51,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Source\Modules\Graphics\Camera.inl" />
     <None Include="Source\Modules\Graphics\WindowModule.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

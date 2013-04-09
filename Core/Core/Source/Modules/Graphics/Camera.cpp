@@ -4,12 +4,27 @@
 //			 view management
 //===============================================================
 #include "Camera.h"
+using namespace Core::Graphics;
 
 //---------------------------------------------------------------
 Camera::Camera()
 {
 	m_viewMatrix		= XMMatrixIdentity();
 	m_perspectiveMatrix = XMMatrixIdentity();
+}
+
+//---------------------------------------------------------------
+Camera::Camera(Settings _tSettings)
+{
+	m_viewMatrix = XMMatrixIdentity();
+
+	switch(_tSettings.eMode)
+	{
+	case EMODE_PERSPECTIVE: m_perspectiveMatrix = XMMatrixPerspectiveFovLH( _tSettings.fFOV, _tSettings.fWidth / _tSettings.fHeight, _tSettings.fNear, _tSettings.fFar);
+	case EMODE_ORTHOGONAL:	m_perspectiveMatrix = XMMatrixOrthographicLH(_tSettings.fWidth, _tSettings.fHeight, _tSettings.fNear, _tSettings.fFar);
+	default:				m_perspectiveMatrix = XMMatrixIdentity(); 
+		// TODO:: Throw Error
+	}
 }
 
 //---------------------------------------------------------------

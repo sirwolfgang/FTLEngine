@@ -80,5 +80,8 @@
     <None Include="Source\Modules\Graphics\WindowModule.inl">
       <Filter>Modules\Graphics\Inline Files</Filter>
     </None>
+    <None Include="Source\Modules\Graphics\Camera.inl">
+      <Filter>Modules\Graphics\Inline Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

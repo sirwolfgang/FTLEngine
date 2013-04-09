@@ -6,15 +6,47 @@
 #pragma once
 #include <FTLPlatform.h>
 
-class Camera
+namespace Core
 {
-	XMMATRIX m_viewMatrix;
-	XMMATRIX m_perspectiveMatrix;
+	namespace Graphics
+	{
+		class Camera
+		{
+			XMMATRIX m_viewMatrix;
+			XMMATRIX m_perspectiveMatrix;
 
-public:
-	Camera();
-	Camera(Camera const& _That);
-	~Camera();
+		public:
+			enum EMode
+			{
+				EMODE_PERSPECTIVE,
+				EMODE_ORTHOGONAL,
+			};
 
-	Camera& operator=(Camera const& _That);
-};
+			struct Settings
+			{
+				EMode eMode;
+				float fWidth;
+				float fHeight;
+				float fNear;
+				float fFar;
+				float fFOV;
+			};
+
+		private:
+			Camera();
+
+		public:
+			Camera(Settings _tSettings);
+			Camera(Camera const& _That);
+			~Camera();
+
+			Camera& operator=(Camera const& _That);
+
+			XMMATRIX& GetViewMatrix();
+			XMMATRIX& GetPerspectiveMatrix();
+		};
+
+	}
+}
+
+#include "Camera.inl"
