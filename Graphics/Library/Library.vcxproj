@@ -171,6 +171,10 @@
       <Project>{78624e3f-3cb8-4afa-9886-2ac60cbb423b}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FTLGraphics.h" />
+    <ClInclude Include="Source\Graphics.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

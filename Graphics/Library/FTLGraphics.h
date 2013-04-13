@@ -1,6 +1,6 @@
 //===============================================================
-// File:	FTLGraphicsAPI.h
-// Purpose: Graphics API Layer, Lib Include
+// File:	FTLGraphics.h
+// Purpose: Graphics Layer, Lib Include
 //===============================================================
 #pragma once
-#include "Source\GraphicsAPI.h"
+#include "Source\Graphics.h"
