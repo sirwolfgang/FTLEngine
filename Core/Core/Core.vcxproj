@@ -22,7 +22,6 @@
     <ClCompile Include="Source\Core.cpp" />
     <ClCompile Include="Source\DLLMain.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
-    <ClCompile Include="Source\Modules\Graphics\Camera.cpp" />
     <ClCompile Include="Source\Modules\Graphics\GraphicsModule.cpp" />
     <ClCompile Include="Source\Modules\Graphics\WindowModule.cpp" />
     <ClCompile Include="Source\Modules\ModuleManager.cpp" />
@@ -30,7 +29,6 @@
   <ItemGroup>
     <ClInclude Include="Source\Core.h" />
     <ClInclude Include="Source\Engine.h" />
-    <ClInclude Include="Source\Modules\Graphics\Camera.h" />
     <ClInclude Include="Source\Modules\Graphics\GraphicsModule.h" />
     <ClInclude Include="Source\Modules\Graphics\WindowModule.h" />
     <ClInclude Include="Source\Modules\IModule.h" />
@@ -48,7 +46,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\Modules\Graphics\Camera.inl" />
     <None Include="Source\Modules\Graphics\WindowModule.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

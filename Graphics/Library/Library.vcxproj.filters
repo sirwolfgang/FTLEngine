@@ -17,11 +17,22 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FTLGraphics.h" />
+    <ClInclude Include="Source\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\Camera.inl">
+      <Filter>Inline Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

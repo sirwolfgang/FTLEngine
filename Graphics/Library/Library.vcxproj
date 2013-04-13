@@ -165,6 +165,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Source\Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Platform\Platform.vcxproj">
@@ -173,7 +174,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FTLGraphics.h" />
+    <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\Graphics.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\Camera.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
