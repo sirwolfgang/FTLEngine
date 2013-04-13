@@ -4,7 +4,6 @@
 //===============================================================
 #pragma once
 #include <FTLGraphicsAPI.h>
-#include "DLL.h"
 #include "DirectX.h"
 #include "Shader.h"
 #include "Buffer.h"
