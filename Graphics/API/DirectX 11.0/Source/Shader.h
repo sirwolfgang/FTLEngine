@@ -3,7 +3,7 @@
 // Purpose: Handle Shader Wrapping
 //===============================================================
 #pragma once
-#include <FTLGraphics.h>
+#include <FTLGraphicsAPI.h>
 #include "DirectX.h"
 
 namespace Graphics

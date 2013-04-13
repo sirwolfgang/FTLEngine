@@ -22,7 +22,7 @@ RendererDLL::~RendererDLL()
 void RendererDLL::Create(Renderer** _pRenderer)
 {
 	// Load DLL
-	m_hDLL = LoadLibraryEx(L"Graphics DirectX 11.0.dll", NULL, 0);
+	m_hDLL = LoadLibraryEx(L"DirectX 11.0.dll", NULL, 0);
 
 	// Find Function & Call Function
 	CREATERENDERER CreateRendererFunc = (CREATERENDERER)GetProcAddress(m_hDLL, "CreateRenderer");

@@ -5,7 +5,7 @@
 #pragma once
 #include "../IModule.h"
 #include "WindowModule.h"
-#include <FTLGraphics.h>
+#include <FTLGraphicsAPI.h>
 
 namespace Core
 {

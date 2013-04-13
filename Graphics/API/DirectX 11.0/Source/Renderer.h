@@ -3,7 +3,7 @@
 // Purpose: Act as the direct Rendering Interface
 //===============================================================
 #pragma once
-#include <FTLGraphics.h>
+#include <FTLGraphicsAPI.h>
 #include "DLL.h"
 #include "DirectX.h"
 #include "Shader.h"
