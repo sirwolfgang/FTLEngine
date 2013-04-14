@@ -18,41 +18,10 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Source\Core.cpp" />
-    <ClCompile Include="Source\DLLMain.cpp" />
-    <ClCompile Include="Source\Engine.cpp" />
-    <ClCompile Include="Source\Modules\Graphics\GraphicsModule.cpp" />
-    <ClCompile Include="Source\Modules\Graphics\WindowModule.cpp" />
-    <ClCompile Include="Source\Modules\ModuleManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\Core.h" />
-    <ClInclude Include="Source\Engine.h" />
-    <ClInclude Include="Source\Modules\Graphics\GraphicsModule.h" />
-    <ClInclude Include="Source\Modules\Graphics\WindowModule.h" />
-    <ClInclude Include="Source\Modules\IModule.h" />
-    <ClInclude Include="Source\Modules\ModuleManager.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Graphics\API\Interface\Interface.vcxproj">
-      <Project>{802b506a-b93d-4a0e-88ce-fa597c6e58cb}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Platform\Platform.vcxproj">
-      <Project>{78624e3f-3cb8-4afa-9886-2ac60cbb423b}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Core Interface\Core Interface.vcxproj">
-      <Project>{040930c6-9eb0-4f2e-b6fb-a877368f3d7b}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Source\Modules\Graphics\WindowModule.inl" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{980BA84C-FF6A-4F35-8448-23FE791BCEB1}</ProjectGuid>
+    <ProjectGuid>{1EAB1232-FA22-4E69-AAA7-8E893831157E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Core</RootNamespace>
-    <ProjectName>Core Library</ProjectName>
+    <RootNamespace>Library</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -99,30 +68,30 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Core\Core Interface;$(SolutionDir)Platform\;$(SolutionDir)Graphics\API\Interface;$(IncludePath)</IncludePath>
-    <TargetName>Core</TargetName>
+    <TargetName>Graphics</TargetName>
+    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Core\Core Interface;$(SolutionDir)Platform\;$(SolutionDir)Graphics\API\Interface;$(IncludePath)</IncludePath>
-    <TargetName>Core</TargetName>
+    <TargetName>Graphics</TargetName>
+    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Core\Core Interface;$(SolutionDir)Platform\;$(SolutionDir)Graphics\API\Interface;$(IncludePath)</IncludePath>
-    <TargetName>Core</TargetName>
+    <TargetName>Graphics</TargetName>
+    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Core\Core Interface;$(SolutionDir)Platform\;$(SolutionDir)Graphics\API\Interface;$(IncludePath)</IncludePath>
-    <TargetName>Core</TargetName>
+    <TargetName>Graphics</TargetName>
+    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBRARY_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile />
     </ClCompile>
@@ -136,10 +105,9 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBRARY_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
+      <PrecompiledHeaderFile />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -153,7 +121,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBRARY_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile />
     </ClCompile>
@@ -171,10 +139,9 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBRARY_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
+      <PrecompiledHeaderFile />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -183,6 +150,36 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Source\Camera.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Platform\Platform.vcxproj">
+      <Project>{78624e3f-3cb8-4afa-9886-2ac60cbb423b}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FTLGraphics.h" />
+    <ClInclude Include="Source\Camera.h" />
+    <ClInclude Include="Source\Graphics.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\Camera.inl" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

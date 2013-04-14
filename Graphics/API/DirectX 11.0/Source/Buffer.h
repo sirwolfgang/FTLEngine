@@ -63,9 +63,12 @@ namespace Graphics
 	//---------------------------------------------------------------
 	class ConstantBuffer_DX11_0 : public BaseBuffer_DX11_0
 	{
-	public:
-		ConstantBuffer_DX11_0(ID3D11Buffer* _pBuffer);
+		Shader::eSHADER_TYPES m_eShaderType;
 
+	public:
+		ConstantBuffer_DX11_0(ID3D11Buffer* _pBuffer, Shader::eSHADER_TYPES _eShaderType);
+
+		Shader::eSHADER_TYPES	GetShaderType();
 		virtual eBUFFER_TYPES	GetBufferType();
 		virtual void			SetBufferActive();
 	};

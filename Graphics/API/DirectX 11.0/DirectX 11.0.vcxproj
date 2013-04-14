@@ -22,7 +22,6 @@
     <ClInclude Include="FTLGraphicsAPI.h" />
     <ClInclude Include="Source\Buffer.h" />
     <ClInclude Include="Source\DirectX.h" />
-    <ClInclude Include="Source\DLL.h" />
     <ClInclude Include="Source\GraphicsAPI.h" />
     <ClInclude Include="Source\InputLayout.h" />
     <ClInclude Include="Source\Primitive.h" />

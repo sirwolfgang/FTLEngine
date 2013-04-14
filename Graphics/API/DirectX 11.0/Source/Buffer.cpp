@@ -76,3 +76,18 @@ void IndexBuffer_DX11_0::SetBufferActive()
 {
 	Renderer_DX11_0::Instance()->SetIndexBufferActive(this);
 }
+
+//---------------------------------------------------------------
+// ConstantBuffer
+//---------------------------------------------------------------
+ConstantBuffer_DX11_0::ConstantBuffer_DX11_0(ID3D11Buffer* _pBuffer, Shader::eSHADER_TYPES _eShaderType)
+	: BaseBuffer_DX11_0(_pBuffer), m_eShaderType(_eShaderType)
+{
+
+}
+
+//---------------------------------------------------------------
+void ConstantBuffer_DX11_0::SetBufferActive()
+{
+	Renderer_DX11_0::Instance()->SetConstantBufferActive(this);
+}

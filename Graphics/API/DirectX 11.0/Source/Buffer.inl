@@ -36,6 +36,12 @@ inline Graphics::Buffer::eBUFFER_TYPES Graphics::IndexBuffer_DX11_0::GetBufferTy
 //---------------------------------------------------------------
 // ConstantBuffer
 //---------------------------------------------------------------
+inline Graphics::Shader::eSHADER_TYPES Graphics::ConstantBuffer_DX11_0::GetShaderType()
+{
+	return m_eShaderType;
+}
+
+//---------------------------------------------------------------
 inline Graphics::Buffer::eBUFFER_TYPES Graphics::ConstantBuffer_DX11_0::GetBufferType()
 {
 	return eBUFFER_TYPE_CONSTANT;

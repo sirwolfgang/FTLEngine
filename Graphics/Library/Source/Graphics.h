@@ -1,6 +1,5 @@
 //===============================================================
-// File:	FTLGraphicsAPI.h
-// Purpose: Graphics API Layer, Lib Include
+// File:	Graphics.h
+// Purpose: Graphics Library Entry Point
 //===============================================================
 #pragma once
-#include "Source\GraphicsAPI.h"
