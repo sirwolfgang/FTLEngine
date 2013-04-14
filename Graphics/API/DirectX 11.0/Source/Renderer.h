@@ -126,6 +126,10 @@ namespace Graphics
 		virtual void			SetIndexBufferActive(HIndexBuffer _hIndexBuffer);
 		void					SetIndexBufferActive(IndexBuffer_DX11_0* _pIndexBuffer);
 
+		virtual HConstantBuffer CreateConstantBuffer(uint32 _sizeOf_a16, void* _pData, Shader::eSHADER_TYPES _eShaderType);
+		virtual void			SetConstantBufferActive(HConstantBuffer _hConstantBuffer);
+		void					SetConstantBufferActive(ConstantBuffer_DX11_0* _pConstantBuffer);
+
 		virtual void			UpdateBuffer(HBuffer _hBuffer, void* _pData);
 		void					UpdateBuffer(BaseBuffer_DX11_0* _pBuffer, void* _pData);
 

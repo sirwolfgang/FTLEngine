@@ -475,6 +475,74 @@ void Renderer_DX11_0::SetIndexBufferActive(IndexBuffer_DX11_0* _pIndexBuffer)
 }
 
 //---------------------------------------------------------------
+HConstantBuffer Renderer_DX11_0::CreateConstantBuffer(uint32 _sizeOf_a16, void* _pData, Shader::eSHADER_TYPES _eShaderType)
+{
+	// TODO:: Throw Error, SizeOf Must be 16 bytes aligned
+	assert(_sizeOf_a16 % 16 == 0);
+
+	HBuffer hBuffer;
+
+	// Buffer Description
+	D3D11_BUFFER_DESC BufferDescription;
+
+	BufferDescription.Usage				= D3D11_USAGE_DEFAULT;
+	BufferDescription.ByteWidth			= _sizeOf_a16;
+	BufferDescription.BindFlags			= D3D11_BIND_CONSTANT_BUFFER;
+	BufferDescription.CPUAccessFlags	= NULL;
+	BufferDescription.MiscFlags			= NULL;
+
+	// Subresource Data
+	D3D11_SUBRESOURCE_DATA SubresourceData;
+
+	SubresourceData.pSysMem				= _pData;
+	SubresourceData.SysMemPitch			= NULL;
+	SubresourceData.SysMemSlicePitch	= NULL; 
+
+	// Create Buffer
+	ID3D11Buffer* pConstantBuffer = nullptr;
+	m_pDevice->CreateBuffer(&BufferDescription, &SubresourceData, &pConstantBuffer);
+
+	hBuffer = m_HandleManager.CreateHandle((Buffer*)new ConstantBuffer_DX11_0(pConstantBuffer, _eShaderType));
+	m_hBuffers.push_back(hBuffer);
+	return hBuffer;
+}
+
+//---------------------------------------------------------------
+void Renderer_DX11_0::SetConstantBufferActive(HConstantBuffer _hConstantBuffer)
+{
+	SetConstantBufferActive((ConstantBuffer_DX11_0*)_hConstantBuffer.RetrieveEntry());
+}
+
+//---------------------------------------------------------------
+void Renderer_DX11_0::SetConstantBufferActive(ConstantBuffer_DX11_0* _pConstantBuffer)
+{
+	// TODO:: Handle Multiable Buffers
+	// Note: Group based on update frequency 
+
+	ID3D11Buffer* pBuffer = _pConstantBuffer->GetBuffer();
+
+	switch(_pConstantBuffer->GetShaderType())
+	{
+	case Shader::eSHADER_TYPE_VERTEX:
+		{
+			m_pDeviceContext->VSSetConstantBuffers(0, 1, &pBuffer);
+		} break;
+	case Shader::eSHADER_TYPE_PIXEL:
+		{
+			m_pDeviceContext->PSSetConstantBuffers(0, 1, &pBuffer);
+		} break;
+	case Shader::eSHADER_TYPE_COMPUTE:
+	case Shader::eSHADER_TYPE_DOMAIN:
+	case Shader::eSHADER_TYPE_GEOMETRY:
+	case Shader::eSHADER_TYPE_HULL:
+	default:
+		{
+		// TODO:: Throw Error
+		} break;
+	}
+}
+
+//---------------------------------------------------------------
 void Renderer_DX11_0::UpdateBuffer(HBuffer _hBuffer, void* _pData)
 {
 	UpdateBuffer((BaseBuffer_DX11_0*)_hBuffer.RetrieveEntry(), _pData);

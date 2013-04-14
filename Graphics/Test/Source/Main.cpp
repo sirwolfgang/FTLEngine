@@ -4,6 +4,7 @@
 //===============================================================
 #include <FTLPlatform.h>
 #include <FTLGraphicsAPI.h>
+#include <FTLGraphics.h>
 using Platform::Window;
 using Graphics::Renderer;
 using Graphics::RendererDLL;
@@ -76,12 +77,21 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 
 			Graphics::HIndexBuffer hIndexBuffer = pRenderer->CreateIndexBuffer(3, IntexBuffer);
 
+			// Constant Buffer
+			float32 ConstantBuffer[] = 
+			{
+				0.25f, 0.50f, 0.75f,
+			};
+
+			Graphics::HConstantBuffer hConstantBuffer = pRenderer->CreateConstantBuffer(16, ConstantBuffer, Graphics::Shader::eSHADER_TYPE_VERTEX);
+
 			// Activate Settings
 			VertexShader->SetShaderActive();
 			PixelShader->SetShaderActive();
 
 			hVertexBuffer->SetBufferActive();
 			hIndexBuffer->SetBufferActive();
+			hConstantBuffer->SetBufferActive();
 			pRenderer->SetPrimitiveTopology(Graphics::Primitive::eTOPOLOGY_TRIANGLELIST);
 
 			//while(Window.Update())
