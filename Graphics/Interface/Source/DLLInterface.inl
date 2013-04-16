@@ -2,7 +2,7 @@
 // File:	DLLInterface.inl
 // Purpose: Handle DLL Interfacing
 //===============================================================
-inline Graphics::Renderer* Graphics::RendererDLL::GetRenderer()
+inline Graphics::IRenderer* Graphics::RendererDLL::GetRenderer()
 {
 	return m_pRenderer;
 }

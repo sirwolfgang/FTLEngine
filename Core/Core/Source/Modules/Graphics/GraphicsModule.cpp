@@ -30,7 +30,7 @@ void GraphicsModule::Initialize(InitializationData& _InitializationData)
 	m_windowModule.Startup();
 
 	// Renderer
-	Graphics::Renderer::Settings Settings;
+	Graphics::IRenderer::Settings Settings;
 
 	Settings.nWidth			= 1024;
 	Settings.nHeight		= 768;
@@ -38,7 +38,7 @@ void GraphicsModule::Initialize(InitializationData& _InitializationData)
 	Settings.nMSAASamples	= 1;
 	Settings.nSampleQuality = 0;
 	Settings.nBufferCount	= 1;
-	Settings.eDriverMode	= Graphics::Renderer::eDriverMode_Hardware;
+	Settings.eDriverMode	= Graphics::IRenderer::eDriverMode_Hardware;
 	Settings.hOutput		= m_windowModule.GetHandle();
 	Settings.bDebugMode		= true;
 

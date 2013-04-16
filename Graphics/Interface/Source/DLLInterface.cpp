@@ -19,7 +19,7 @@ RendererDLL::~RendererDLL()
 }
 
 //---------------------------------------------------------------
-void RendererDLL::Create(Renderer** _pRenderer)
+void RendererDLL::Create(IRenderer** _pRenderer)
 {
 	// Load DLL
 	m_hDLL = LoadLibraryEx(L"DirectX 11.0.dll", NULL, 0);

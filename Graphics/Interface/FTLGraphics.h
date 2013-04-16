@@ -1,8 +1,6 @@
 //===============================================================
-// File:	Renderer.inl
-// Purpose: Act as the direct Rendering Interface
+// File:	FTLGraphics.h
+// Purpose: Graphics API Layer, Lib Include
 //===============================================================
-inline Graphics::Renderer::~Renderer()
-{
-
-}
+#pragma once
+#include "Source\Graphics.h"

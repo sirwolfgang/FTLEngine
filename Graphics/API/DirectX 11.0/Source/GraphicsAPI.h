@@ -1,5 +1,5 @@
 //===============================================================
-// File:	GraphicsAPI.h
+// File:	Graphics.h
 // Purpose: Graphics API Layer Entry Point
 //===============================================================
 #pragma once

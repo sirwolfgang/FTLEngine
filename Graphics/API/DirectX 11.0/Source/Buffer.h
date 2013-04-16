@@ -3,7 +3,7 @@
 // Purpose: Handle Buffer Functionality
 //===============================================================
 #pragma once
-#include <FTLGraphicsAPI.h>
+#include <FTLGraphicsLibrary.h>
 #include "DirectX.h"
 #include "VertexFormat.h"
 

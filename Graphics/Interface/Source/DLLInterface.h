@@ -9,17 +9,17 @@ namespace Graphics
 {
 	class RendererDLL
 	{
-		Renderer*	m_pRenderer;
+		IRenderer*	m_pRenderer;
 		HMODULE		m_hDLL;
 
 	public:
 		RendererDLL();
 		~RendererDLL();
 
-		Renderer*	GetRenderer();
+		IRenderer*	GetRenderer();
 		HMODULE		GetModule();
 
-		void Create(Renderer** _pRenderer);
+		void Create(IRenderer** _pRenderer);
 		void Release();
 	};
 }

@@ -12,7 +12,7 @@ using Platform::Handle;
 
 namespace Graphics
 {
-	class Renderer
+	class IRenderer
 	{
 	public:
 		enum eDriverMode
@@ -42,7 +42,7 @@ namespace Graphics
 		//---------------------------------------------------------------
 		// Class Destruction
 		//---------------------------------------------------------------
-		virtual ~Renderer()								= 0;
+		virtual ~IRenderer()							= 0;
 
 		//---------------------------------------------------------------
 		// Rendering System Managment
@@ -113,11 +113,11 @@ namespace Graphics
 	//---------------------------------------------------------------
 	extern "C"
 	{
-		void DLLIMPORT CreateRenderer(HINSTANCE _hDLL, Renderer** _pInterface);
-		typedef void (*CREATERENDERER)(HINSTANCE _hDLL, Renderer** _pInterface);
+		void DLLIMPORT CreateRenderer(HINSTANCE _hDLL, IRenderer** _pInterface);
+		typedef void (*CREATERENDERER)(HINSTANCE _hDLL, IRenderer** _pInterface);
 
-		void DLLIMPORT ReleaseRenderer(Renderer** _pInterface);
-		typedef void (*RELEASERENDERER)(Renderer** _pInterface);
+		void DLLIMPORT ReleaseRenderer(IRenderer** _pInterface);
+		typedef void (*RELEASERENDERER)(IRenderer** _pInterface);
 	}
 }
 
