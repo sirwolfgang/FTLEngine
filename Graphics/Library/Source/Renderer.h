@@ -10,10 +10,8 @@ namespace Graphics
 	class Renderer : public IRenderer
 	{
 	public:
-		//---------------------------------------------------------------
-		// Class Destruction
-		//---------------------------------------------------------------
-		virtual ~Renderer()								= 0;
+		Renderer();
+		virtual ~Renderer();
 
 		//---------------------------------------------------------------
 		// Rendering System Managment

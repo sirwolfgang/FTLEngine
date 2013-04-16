@@ -165,6 +165,7 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\Camera.cpp" />
+    <ClCompile Include="Source\Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Platform\Platform.vcxproj">
