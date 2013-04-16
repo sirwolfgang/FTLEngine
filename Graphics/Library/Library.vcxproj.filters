@@ -25,16 +25,19 @@
     <ClInclude Include="Source\Graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTLGraphics.h" />
     <ClInclude Include="Source\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FTLGraphicsLibrary.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Camera.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="Source\Renderer.inl">
       <Filter>Inline Files</Filter>
     </None>
   </ItemGroup>

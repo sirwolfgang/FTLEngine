@@ -32,10 +32,10 @@
     <ClInclude Include="Source\Primitive.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FTLGraphicsAPI.h" />
-    <ClInclude Include="Source\GraphicsAPI.h">
+    <ClInclude Include="Source\Graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FTLGraphics.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Renderer.inl">

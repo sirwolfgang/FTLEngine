@@ -1,6 +1,9 @@
 //===============================================================
-// File:	FTLGraphics.h
-// Purpose: Graphics Layer, Lib Include
+// File:	Graphics.h
+// Purpose: Graphics API Layer Entry Point
 //===============================================================
 #pragma once
-#include "Source\Graphics.h"
+
+#include "Renderer.h"
+#include "DLLInterface.h"
+#include "Shader.h"

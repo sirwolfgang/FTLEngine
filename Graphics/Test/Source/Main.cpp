@@ -3,7 +3,7 @@
 // Purpose: Entry Point for Graphics Test
 //===============================================================
 #include <FTLPlatform.h>
-#include <FTLGraphicsAPI.h>
+#include <FTLGraphics.h>
 #include <FTLGraphics.h>
 using Platform::Window;
 using Graphics::IRenderer;

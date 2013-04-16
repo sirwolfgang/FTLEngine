@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FTLGraphicsAPI.h" />
+    <ClInclude Include="FTLGraphics.h" />
     <ClInclude Include="Source\Buffer.h" />
     <ClInclude Include="Source\DLLInterface.h" />
-    <ClInclude Include="Source\GraphicsAPI.h" />
+    <ClInclude Include="Source\Graphics.h" />
     <ClInclude Include="Source\Primitive.h" />
     <ClInclude Include="Source\Renderer.h" />
     <ClInclude Include="Source\Shader.h" />

@@ -1,7 +1,8 @@
 //===============================================================
-// File:	Graphics.h
-// Purpose: Graphics Library Entry Point
+// File:	Renderer.inl
+// Purpose: Act as the direct Rendering Interface
 //===============================================================
-#pragma once
+inline Graphics::Renderer::~Renderer()
+{
 
-#include "Renderer.h"
+}

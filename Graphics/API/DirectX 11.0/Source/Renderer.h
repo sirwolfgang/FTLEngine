@@ -3,7 +3,7 @@
 // Purpose: Act as the direct Rendering Interface
 //===============================================================
 #pragma once
-#include <FTLGraphicsAPI.h>
+#include <FTLGraphicsLibrary.h>
 #include "DirectX.h"
 #include "Shader.h"
 #include "Buffer.h"
@@ -13,7 +13,7 @@
 
 namespace Graphics
 {
-	class Renderer_DX11_0 : public IRenderer
+	class Renderer_DX11_0 : public Renderer
 	{
 		// Instances
 		static Renderer_DX11_0*		sm_pInstance;
