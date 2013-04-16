@@ -69,22 +69,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <TargetName>Graphics</TargetName>
-    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\;$(SolutionDir)Graphics\API\Interface;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <TargetName>Graphics</TargetName>
-    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\;$(SolutionDir)Graphics\API\Interface;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <TargetName>Graphics</TargetName>
-    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\;$(SolutionDir)Graphics\API\Interface;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <TargetName>Graphics</TargetName>
-    <IncludePath>$(SolutionDir)Platform\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Platform\;$(SolutionDir)Graphics\API\Interface;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -171,11 +171,15 @@
     <ProjectReference Include="..\..\Platform\Platform.vcxproj">
       <Project>{78624e3f-3cb8-4afa-9886-2ac60cbb423b}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\API\Interface\Interface.vcxproj">
+      <Project>{802b506a-b93d-4a0e-88ce-fa597c6e58cb}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FTLGraphics.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\Graphics.h" />
+    <ClInclude Include="Source\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Camera.inl" />

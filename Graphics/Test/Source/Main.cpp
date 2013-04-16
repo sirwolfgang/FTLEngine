@@ -6,7 +6,7 @@
 #include <FTLGraphicsAPI.h>
 #include <FTLGraphics.h>
 using Platform::Window;
-using Graphics::Renderer;
+using Graphics::IRenderer;
 using Graphics::RendererDLL;
 
 struct Vertex
@@ -25,11 +25,11 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 	Window.Create(Platform::Window::eWindow_Mode_Normal, L"FTL Engine", 0, 0, 1024, 768);
 
 	RendererDLL		rendererDLL;
-	Renderer*		pRenderer;
+	IRenderer*		pRenderer;
 
 	rendererDLL.Create(&pRenderer);
 	{
-		Graphics::Renderer::Settings Settings;
+		Graphics::IRenderer::Settings Settings;
 
 		Settings.nWidth			= 1024;
 		Settings.nHeight		= 768;
@@ -37,7 +37,7 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 		Settings.nMSAASamples	= 1;
 		Settings.nSampleQuality = 0;
 		Settings.nBufferCount	= 1;
-		Settings.eDriverMode	= Graphics::Renderer::eDriverMode_Hardware;
+		Settings.eDriverMode	= Graphics::IRenderer::eDriverMode_Hardware;
 		Settings.hOutput		= Window.GetHandle();
 		Settings.bDebugMode		= true;
 

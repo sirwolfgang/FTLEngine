@@ -1,8 +1,15 @@
 //===============================================================
-// File:	Renderer.inl
+// File:	Renderer.h
 // Purpose: Act as the direct Rendering Interface
 //===============================================================
-inline Graphics::IRenderer::~IRenderer()
-{
+#pragma once
+#include <FTLGraphicsAPI.h>
 
+namespace Graphics
+{
+	class Renderer : public IRenderer
+	{
+	public:
+	
+	};
 }

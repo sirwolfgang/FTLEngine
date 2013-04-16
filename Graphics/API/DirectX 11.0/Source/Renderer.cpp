@@ -567,7 +567,7 @@ void Renderer_DX11_0::SetFullscreen(bool _bFullscreen)
 //---------------------------------------------------------------
 extern "C"
 {
-	void DLLEXPORT CreateRenderer(HINSTANCE _hDLL, Renderer** _pInterface)
+	void DLLEXPORT CreateRenderer(HINSTANCE _hDLL, IRenderer** _pInterface)
 	{
 		if(!(*_pInterface))
 		{
@@ -576,7 +576,7 @@ extern "C"
 	}
 
 	//---------------------------------------------------------------
-	void DLLEXPORT ReleaseRenderer(Renderer** _pInterface)
+	void DLLEXPORT ReleaseRenderer(IRenderer** _pInterface)
 	{
 		if((*_pInterface))
 		{

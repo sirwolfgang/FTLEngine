@@ -22,7 +22,7 @@ namespace Core
 		WindowModule m_windowModule;
 
 		Graphics::RendererDLL	m_RendererDLL;
-		Graphics::Renderer*		m_pRenderer;
+		Graphics::IRenderer*	m_pRenderer;
 
 	public:
 		GraphicsModule();

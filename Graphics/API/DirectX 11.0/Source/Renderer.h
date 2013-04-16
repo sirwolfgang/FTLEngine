@@ -13,7 +13,7 @@
 
 namespace Graphics
 {
-	class Renderer_DX11_0 : public Renderer
+	class Renderer_DX11_0 : public IRenderer
 	{
 		// Instances
 		static Renderer_DX11_0*		sm_pInstance;
