@@ -39,7 +39,7 @@
     <ClCompile Include="Source\DLLInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Platform\Platform.vcxproj">
+    <ProjectReference Include="..\..\Platform\Platform.vcxproj">
       <Project>{78624e3f-3cb8-4afa-9886-2ac60cbb423b}</Project>
     </ProjectReference>
   </ItemGroup>
