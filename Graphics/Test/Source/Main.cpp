@@ -67,7 +67,7 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 				{-0.45f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f},
 			};
 
-			Graphics::HVertexBuffer hVertexBuffer = pRenderer->CreateVertexBuffer(3, &VertexBuffer, hVertexFormat);
+			Graphics::HVertexBuffer hVertexBuffer = pRenderer->CreateVertexBuffer(3, hVertexFormat, &VertexBuffer);
 
 			// Index Buffer
 			uint32 IntexBuffer[] =
@@ -94,8 +94,7 @@ int CALLBACK WinMain(HINSTANCE _hInstance,
 			hConstantBuffer->SetBufferActive();
 			pRenderer->SetPrimitiveTopology(Graphics::Primitive::eTOPOLOGY_TRIANGLELIST);
 
-			//while(Window.Update())
-			Window.Update();
+			while(Window.Update())
 			{
 				float Color[4] = {0.33f, 0.33f, 0.33f, 1.00f};
 
