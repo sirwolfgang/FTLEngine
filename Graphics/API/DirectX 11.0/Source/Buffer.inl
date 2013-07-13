@@ -14,7 +14,7 @@ inline ID3D11Buffer* Graphics::BaseBuffer_DX11_0::GetBuffer()
 //---------------------------------------------------------------
 // VertexBuffer
 //---------------------------------------------------------------
-inline Graphics::Buffer::eBUFFER_TYPES Graphics::VertexBuffer_DX11_0::GetBufferType()
+inline Graphics::VertexBuffer_DX11_0::eBUFFER_TYPES Graphics::VertexBuffer_DX11_0::GetBufferType()
 {
 	return eBUFFER_TYPE_VERTEX;
 }
@@ -28,7 +28,7 @@ inline Graphics::VertexFormat_DX11_0* Graphics::VertexBuffer_DX11_0::GetVertexFo
 //---------------------------------------------------------------
 // IndexBuffer
 //---------------------------------------------------------------
-inline Graphics::Buffer::eBUFFER_TYPES Graphics::IndexBuffer_DX11_0::GetBufferType()
+inline Graphics::IndexBuffer_DX11_0::eBUFFER_TYPES Graphics::IndexBuffer_DX11_0::GetBufferType()
 {
 	return eBUFFER_TYPE_INDEX;
 }
@@ -42,7 +42,7 @@ inline Graphics::Shader::eSHADER_TYPES Graphics::ConstantBuffer_DX11_0::GetShade
 }
 
 //---------------------------------------------------------------
-inline Graphics::Buffer::eBUFFER_TYPES Graphics::ConstantBuffer_DX11_0::GetBufferType()
+inline Graphics::ConstantBuffer_DX11_0::eBUFFER_TYPES Graphics::ConstantBuffer_DX11_0::GetBufferType()
 {
 	return eBUFFER_TYPE_CONSTANT;
 }

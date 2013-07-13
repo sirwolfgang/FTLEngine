@@ -11,7 +11,7 @@ namespace Graphics
 	//---------------------------------------------------------------
 	// Buffer
 	//---------------------------------------------------------------
-	class Buffer
+	class IBuffer
 	{
 	public:
 		enum eBUFFER_TYPES
@@ -21,17 +21,48 @@ namespace Graphics
 			eBUFFER_TYPE_CONSTANT,
 		};
 
-		virtual ~Buffer() = 0;
+		virtual ~IBuffer() = 0;
 
 		virtual eBUFFER_TYPES	GetBufferType()				= 0;
-		virtual void			SetBufferActive()			= 0;
 		virtual void			UpdateBuffer(void* _pData)	= 0;
 	};
 
-	typedef Handle<Buffer>	HBuffer;
-	typedef HBuffer			HVertexBuffer;
-	typedef HBuffer			HIndexBuffer;
-	typedef HBuffer			HConstantBuffer;
+	//---------------------------------------------------------------
+	// VertexBuffer
+	//---------------------------------------------------------------
+	class VertexBuffer : public virtual IBuffer
+	{
+	public:
+		virtual ~VertexBuffer()			= 0;
+		virtual void SetBufferActive()	= 0;
+	};
+
+	//---------------------------------------------------------------
+	// IndexBuffer
+	//---------------------------------------------------------------
+	class IndexBuffer : public virtual IBuffer
+	{
+	public:
+		virtual ~IndexBuffer()			= 0;
+		virtual void SetBufferActive()	= 0;
+	};
+
+	//---------------------------------------------------------------
+	// ConstantBuffer
+	//---------------------------------------------------------------
+	class ConstantBuffer : public virtual IBuffer
+	{
+	public:
+		virtual ~ConstantBuffer()		= 0;
+		virtual void SetBufferActive()	= 0;
+	};
+
+	//---------------------------------------------------------------
+	// Handles
+	//---------------------------------------------------------------
+	typedef Handle<VertexBuffer>	HVertexBuffer;
+	typedef Handle<IndexBuffer>		HIndexBuffer;
+	typedef Handle<ConstantBuffer>	HConstantBuffer;
 };
 
 #include "Buffer.inl"

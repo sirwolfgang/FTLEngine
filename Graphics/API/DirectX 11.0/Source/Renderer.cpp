@@ -179,19 +179,33 @@ void Renderer_DX11_0::Shutdown()
 	}
 	m_hShaders.clear();
 
-	for(memsize_s i = m_hBuffers.size() - 1; i >= 0; --i)
-	{
-		delete m_hBuffers[i].RetrieveEntry();
-		m_HandleManager.RemoveEntry(m_hBuffers[i]);
-	}
-	m_hBuffers.clear();
-
 	for(memsize_s i = m_hVertexFormats.size() - 1; i >= 0; --i)
 	{
 		delete m_hVertexFormats[i].RetrieveEntry();
 		m_HandleManager.RemoveEntry(m_hVertexFormats[i]);
 	}
 	m_hVertexFormats.clear();
+
+	for(memsize_s i = m_hVertexBuffers.size() - 1; i >= 0; --i)
+	{
+		delete m_hVertexBuffers[i].RetrieveEntry();
+		m_HandleManager.RemoveEntry(m_hVertexBuffers[i]);
+	}
+	m_hVertexBuffers.clear();
+
+	for(memsize_s i = m_hIndexBuffers.size() - 1; i >= 0; --i)
+	{
+		delete m_hIndexBuffers[i].RetrieveEntry();
+		m_HandleManager.RemoveEntry(m_hIndexBuffers[i]);
+	}
+	m_hIndexBuffers.clear();
+
+	for(memsize_s i = m_hConstantBuffers.size() - 1; i >= 0; --i)
+	{
+		delete m_hConstantBuffers[i].RetrieveEntry();
+		m_HandleManager.RemoveEntry(m_hConstantBuffers[i]);
+	}
+	m_hConstantBuffers.clear();
 
 	// Shaders
 	m_pActiveComputeShader		= nullptr;
@@ -377,16 +391,10 @@ Handle<VertexFormat> Renderer_DX11_0::CreateVertexFormat(VertexFormat::VertDataP
 }
 
 //---------------------------------------------------------------
-void Renderer_DX11_0::SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat)
+HVertexBuffer Renderer_DX11_0::CreateVertexBuffer(uint32 _nVertices, HVertexFormat _hFormat, void* _pData)
 {
-	m_pActiveVertexFormat	= _pVertexFormat;
-	m_pActiveInputLayout	= nullptr;
-}
-
-//---------------------------------------------------------------
-HVertexBuffer Renderer_DX11_0::CreateVertexBuffer(uint32 _nVertices, void* _pData, HVertexFormat _hFormat)
-{
-	HBuffer hBuffer;
+	HVertexBuffer hVertexBuffer;
+	ID3D11Buffer* pVertexBuffer = nullptr;
 
 	// Buffer Description
 	D3D11_BUFFER_DESC BufferDescription;
@@ -397,46 +405,33 @@ HVertexBuffer Renderer_DX11_0::CreateVertexBuffer(uint32 _nVertices, void* _pDat
 	BufferDescription.CPUAccessFlags	= NULL;
 	BufferDescription.MiscFlags			= NULL;
 
-	// Subresource Data
-	D3D11_SUBRESOURCE_DATA SubresourceData;
+	if(_pData)
+	{
+		// Subresource Data
+		D3D11_SUBRESOURCE_DATA SubresourceData;
 
-	SubresourceData.pSysMem				= _pData;
-	SubresourceData.SysMemPitch			= NULL;
-	SubresourceData.SysMemSlicePitch	= NULL; 
+		SubresourceData.pSysMem				= _pData;
+		SubresourceData.SysMemPitch			= NULL;
+		SubresourceData.SysMemSlicePitch	= NULL; 
 
-	// Create Buffer
-	ID3D11Buffer* pVertexBuffer = nullptr;
-	m_pDevice->CreateBuffer(&BufferDescription, &SubresourceData, &pVertexBuffer);
-
-	hBuffer = m_HandleManager.CreateHandle((Buffer*)new VertexBuffer_DX11_0(pVertexBuffer, (VertexFormat_DX11_0*)_hFormat.RetrieveEntry()));
-	m_hBuffers.push_back(hBuffer);
-	return hBuffer;
-}
-
-//---------------------------------------------------------------
-void Renderer_DX11_0::SetVertexBufferActive(HVertexBuffer _hVertexBuffer)
-{
-	SetVertexBufferActive((VertexBuffer_DX11_0*)_hVertexBuffer.RetrieveEntry());
-}
-
-//---------------------------------------------------------------
-void Renderer_DX11_0::SetVertexBufferActive(VertexBuffer_DX11_0* _pVertexBuffer)
-{
-	m_pActiveVertexBuffer = _pVertexBuffer;
-
-	UINT nStride			= _pVertexBuffer->GetVertexFormat()->GetVertexSize();
-	UINT nOffset			= 0;
-	ID3D11Buffer* pBuffer	= m_pActiveVertexBuffer->GetBuffer();
-
-	m_pDeviceContext->IASetVertexBuffers(0, 1, &pBuffer, &nStride, &nOffset);
-
-	SetVertexFormatActive(_pVertexBuffer->GetVertexFormat());
+		// Create Buffer
+		m_pDevice->CreateBuffer(&BufferDescription, &SubresourceData, &pVertexBuffer);
+	}
+	else
+	{
+		// Create Buffer
+		m_pDevice->CreateBuffer(&BufferDescription, nullptr, &pVertexBuffer);
+	}
+	
+	hVertexBuffer = m_HandleManager.CreateHandle((VertexBuffer*)new VertexBuffer_DX11_0(pVertexBuffer, (VertexFormat_DX11_0*)_hFormat.RetrieveEntry()));
+	m_hVertexBuffers.push_back(hVertexBuffer);
+	return hVertexBuffer;
 }
 
 //---------------------------------------------------------------
 HIndexBuffer Renderer_DX11_0::CreateIndexBuffer(uint32 _nIndices, uint32 _pData[])
 {
-	HBuffer hBuffer;
+	HIndexBuffer hIndexBuffer;
 	// Buffer Description
 	D3D11_BUFFER_DESC BufferDescription;
 
@@ -457,21 +452,9 @@ HIndexBuffer Renderer_DX11_0::CreateIndexBuffer(uint32 _nIndices, uint32 _pData[
 	ID3D11Buffer* pIndexBuffer = nullptr;
 	m_pDevice->CreateBuffer(&BufferDescription, &SubresourceData, &pIndexBuffer);
 
-	hBuffer = m_HandleManager.CreateHandle((Buffer*)new IndexBuffer_DX11_0(pIndexBuffer));
-	m_hBuffers.push_back(hBuffer);
-	return hBuffer;
-}
-
-//---------------------------------------------------------------
-void Renderer_DX11_0::SetIndexBufferActive(HIndexBuffer _hIndexBuffer)
-{
-	SetIndexBufferActive((IndexBuffer_DX11_0*)_hIndexBuffer.RetrieveEntry());
-}
-
-//---------------------------------------------------------------
-void Renderer_DX11_0::SetIndexBufferActive(IndexBuffer_DX11_0* _pIndexBuffer)
-{
-	m_pDeviceContext->IASetIndexBuffer(_pIndexBuffer->GetBuffer(), DXGI_FORMAT_R32_UINT, NULL);
+	hIndexBuffer = m_HandleManager.CreateHandle((IndexBuffer*)new IndexBuffer_DX11_0(pIndexBuffer));
+	m_hIndexBuffers.push_back(hIndexBuffer);
+	return hIndexBuffer;
 }
 
 //---------------------------------------------------------------
@@ -480,7 +463,7 @@ HConstantBuffer Renderer_DX11_0::CreateConstantBuffer(uint32 _sizeOf_a16, void* 
 	// TODO:: Throw Error, SizeOf Must be 16 bytes aligned
 	assert(_sizeOf_a16 % 16 == 0);
 
-	HBuffer hBuffer;
+	HConstantBuffer hConstantBuffer;
 
 	// Buffer Description
 	D3D11_BUFFER_DESC BufferDescription;
@@ -502,15 +485,36 @@ HConstantBuffer Renderer_DX11_0::CreateConstantBuffer(uint32 _sizeOf_a16, void* 
 	ID3D11Buffer* pConstantBuffer = nullptr;
 	m_pDevice->CreateBuffer(&BufferDescription, &SubresourceData, &pConstantBuffer);
 
-	hBuffer = m_HandleManager.CreateHandle((Buffer*)new ConstantBuffer_DX11_0(pConstantBuffer, _eShaderType));
-	m_hBuffers.push_back(hBuffer);
-	return hBuffer;
+	hConstantBuffer = m_HandleManager.CreateHandle((ConstantBuffer*)new ConstantBuffer_DX11_0(pConstantBuffer, _eShaderType));
+	m_hConstantBuffers.push_back(hConstantBuffer);
+	return hConstantBuffer;
 }
 
 //---------------------------------------------------------------
-void Renderer_DX11_0::SetConstantBufferActive(HConstantBuffer _hConstantBuffer)
+void Renderer_DX11_0::SetVertexFormatActive(VertexFormat_DX11_0* _pVertexFormat)
 {
-	SetConstantBufferActive((ConstantBuffer_DX11_0*)_hConstantBuffer.RetrieveEntry());
+	m_pActiveVertexFormat	= _pVertexFormat;
+	m_pActiveInputLayout	= nullptr;
+}
+
+//---------------------------------------------------------------
+void Renderer_DX11_0::SetVertexBufferActive(VertexBuffer_DX11_0* _pVertexBuffer, uint32 _nStartSlot, uint32 _nBuffers)
+{
+	m_pActiveVertexBuffer = _pVertexBuffer;
+
+	UINT nStride			= _pVertexBuffer->GetVertexFormat()->GetVertexSize();
+	UINT nOffset			= 0;
+	ID3D11Buffer* pBuffer	= m_pActiveVertexBuffer->GetBuffer();
+
+	m_pDeviceContext->IASetVertexBuffers(_nStartSlot, _nBuffers, &pBuffer, &nStride, &nOffset);
+
+	SetVertexFormatActive(_pVertexBuffer->GetVertexFormat());
+}
+
+//---------------------------------------------------------------
+void Renderer_DX11_0::SetIndexBufferActive(IndexBuffer_DX11_0* _pIndexBuffer)
+{
+	m_pDeviceContext->IASetIndexBuffer(_pIndexBuffer->GetBuffer(), DXGI_FORMAT_R32_UINT, NULL);
 }
 
 //---------------------------------------------------------------
@@ -540,12 +544,6 @@ void Renderer_DX11_0::SetConstantBufferActive(ConstantBuffer_DX11_0* _pConstantB
 		// TODO:: Throw Error
 		} break;
 	}
-}
-
-//---------------------------------------------------------------
-void Renderer_DX11_0::UpdateBuffer(HBuffer _hBuffer, void* _pData)
-{
-	UpdateBuffer((BaseBuffer_DX11_0*)_hBuffer.RetrieveEntry(), _pData);
 }
 
 //---------------------------------------------------------------

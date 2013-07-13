@@ -88,18 +88,10 @@ namespace Graphics
 		//---------------------------------------------------------------
 		// Buffer Management
 		//---------------------------------------------------------------
-		virtual HVertexFormat	CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nElements)	= 0;
-
-		virtual HVertexBuffer	CreateVertexBuffer(uint32 _nVertices, void* _pData, HVertexFormat _hFormat)		= 0;
-		virtual void			SetVertexBufferActive(HVertexBuffer _hVertexBuffer)								= 0;
-
-		virtual HIndexBuffer	CreateIndexBuffer(uint32 _nIndices, uint32 _pData[])	= 0;
-		virtual void			SetIndexBufferActive(HIndexBuffer _hIndexBuffer)		= 0;
-
+		virtual HVertexFormat	CreateVertexFormat(VertexFormat::VertDataPair _VertexFormatArray[], uint32 _nElements)		= 0;
+		virtual HVertexBuffer	CreateVertexBuffer(uint32 _nVertices, HVertexFormat _hFormat, void* _pData = nullptr)		= 0;
+		virtual HIndexBuffer	CreateIndexBuffer(uint32 _nIndices, uint32 _pData[])										= 0;
 		virtual HConstantBuffer CreateConstantBuffer(uint32 _sizeOf_a16, void* _pData, Shader::eSHADER_TYPES _eShaderType)	= 0;
-		virtual void			SetConstantBufferActive(HConstantBuffer _hConstantBuffer)									= 0;
-
-		virtual void			UpdateBuffer(HBuffer _hBuffer, void* _pData) = 0;
 
 		//---------------------------------------------------------------
 		// View Management

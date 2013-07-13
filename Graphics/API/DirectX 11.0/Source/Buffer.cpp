@@ -57,9 +57,21 @@ VertexBuffer_DX11_0::VertexBuffer_DX11_0(ID3D11Buffer* _pBuffer, VertexFormat_DX
 }
 
 //---------------------------------------------------------------
+VertexBuffer_DX11_0::~VertexBuffer_DX11_0()
+{
+
+}
+
+//---------------------------------------------------------------
 void VertexBuffer_DX11_0::SetBufferActive()
 {
-	Renderer_DX11_0::Instance()->SetVertexBufferActive(this);
+	Renderer_DX11_0::Instance()->SetVertexBufferActive(this, 0, 1);
+}
+
+//---------------------------------------------------------------
+void VertexBuffer_DX11_0::SetActive()
+{
+
 }
 
 //---------------------------------------------------------------
@@ -72,9 +84,21 @@ IndexBuffer_DX11_0::IndexBuffer_DX11_0(ID3D11Buffer* _pBuffer)
 }
 
 //---------------------------------------------------------------
+IndexBuffer_DX11_0::~IndexBuffer_DX11_0()
+{
+
+}
+
+//---------------------------------------------------------------
 void IndexBuffer_DX11_0::SetBufferActive()
 {
 	Renderer_DX11_0::Instance()->SetIndexBufferActive(this);
+}
+
+//---------------------------------------------------------------
+void IndexBuffer_DX11_0::SetActive()
+{
+
 }
 
 //---------------------------------------------------------------
@@ -87,7 +111,19 @@ ConstantBuffer_DX11_0::ConstantBuffer_DX11_0(ID3D11Buffer* _pBuffer, Shader::eSH
 }
 
 //---------------------------------------------------------------
+ConstantBuffer_DX11_0::~ConstantBuffer_DX11_0()
+{
+
+}
+
+//---------------------------------------------------------------
 void ConstantBuffer_DX11_0::SetBufferActive()
 {
 	Renderer_DX11_0::Instance()->SetConstantBufferActive(this);
+}
+
+//---------------------------------------------------------------
+void ConstantBuffer_DX11_0::SetActive()
+{
+
 }
